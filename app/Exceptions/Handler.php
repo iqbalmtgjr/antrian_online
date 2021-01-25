@@ -12,15 +12,15 @@ class Handler extends ExceptionHandler
      *
      * @var array
      */
-    public function report(Throwable $exception)
-    {
-        parent::report($exception);
-    }
+    // public function report(Throwable $exception)
+    // {
+    //     parent::report($exception);
+    // }
 
-    public function render($request, Throwable $exception)
-    {
-        return parent::render($request, $exception);
-    }
+    // public function render($request, Throwable $exception)
+    // {
+    //     return parent::render($request, $exception);
+    // }
 
     protected $dontReport = [
         //
