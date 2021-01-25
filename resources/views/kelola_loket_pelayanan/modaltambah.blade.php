@@ -6,7 +6,7 @@
                 </button>
             </div>
             <div class="modal-body">
-                <form action="/loket_pelayanan/input" method="POST">
+                <form action="{{ url('/loket_pelayanan/input') }}" method="POST">
                     {{ csrf_field() }}
                     <div class="form-group">
                         <label for="recipient-name" class="col-form-label">Loket Pelayanan</label>

@@ -32,7 +32,7 @@
                                         </button>
                                     </div>
                                     <div class="modal-body">
-                                        <form action="/antrian/lanjut" method="post">
+                                        <form action="{{ url('/antrian/lanjut') }}" method="post">
                                             @csrf
                                             <input type="hidden" id="antri" name="antri" value="1">
                                             <center>
@@ -100,26 +100,7 @@
     </div>
 @endsection
 @section('footer')
-
     <script type="text/javascript">
-        $('.mulai').click(function() {
-            Swal.fire({
-                    title: 'Yakin?',
-                    text: "Ingin Memulai Antrian ?",
-                    icon: 'warning',
-                    showCancelButton: true,
-                    confirmButtonColor: '#3085d6',
-                    cancelButtonColor: '#d33',
-                    confirmButtonText: 'Ya',
-                })
-                .then((result) => {
-                    console.log(result);
-                    if (result.value) {
-                        window.location = "/antrian/mulai";
-                    }
-                });
-        });
-
         $('.reset').click(function() {
             Swal.fire({
                     title: 'Yakin?',
@@ -133,7 +114,7 @@
                 .then((result) => {
                     console.log(result);
                     if (result.value) {
-                        window.location = "/antrian/reset";
+                        window.location = {{ url('/antrian/reset') }};
                     }
                 });
                 
@@ -158,7 +139,7 @@
         });
 
         $.ajax({
-            url: '/getdata',
+            url: "{{ url('/getdata') }}",
             cache: false,
             success: function(response) {
                 console.log(response);
@@ -204,5 +185,6 @@
         });
 
     </script>
+
 
 @endsection

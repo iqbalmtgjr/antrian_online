@@ -6,7 +6,7 @@
                 </button>
             </div>
             <div class="modal-body">
-                <form action="/petugas/input" method="POST">
+                <form action="{{ url('/petugas/input') }}" method="POST">
                     {{ csrf_field() }}
                     <input type="hidden" id="role" name="role" value="Petugas">
                     <div class="form-group">

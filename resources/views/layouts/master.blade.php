@@ -73,28 +73,28 @@
                             </li>
                             
                             <li>
-                                <a href="/kelola_data_admin" class="waves-effect {{ request()->is('/kelola_data_admin') ? 'active' : '' }}">
+                                <a href="{{ url('/kelola_data_admin') }}" class="waves-effect {{ request()->is('/kelola_data_admin') ? 'active' : '' }}">
                                     <i class="fa fa-users"></i>
                                     <span> Kelola Data Admin </span>
                                 </a>
                             </li>
 
                             <li>
-                                <a href="/kelola_data_kepala_bagian" class="waves-effect {{ request()->is('/kelola_data_kepala_bagian') ? 'active' : '' }}">
+                                <a href="{{ url('/kelola_data_kepala_bagian') }}" class="waves-effect {{ request()->is('/kelola_data_kepala_bagian') ? 'active' : '' }}">
                                     <i class="fa fa-users"></i>
                                     <span> Kelola Data K. Bagian </span>
                                 </a>
                             </li>
 
                             <li>
-                                <a href="/kelola_data_petugas" class="waves-effect {{ request()->is('/kelola_data_petugas') ? 'active' : '' }}">
+                                <a href="{{ url('/kelola_data_petugas') }}" class="waves-effect {{ request()->is('/kelola_data_petugas') ? 'active' : '' }}">
                                     <i class="fa fa-users"></i>
                                     <span> Kelola Petugas loket </span>
                                 </a>
                             </li>
 
                             <li>
-                                <a href="/kelola_loket_pelayanan" class="waves-effect {{ request()->is('/kelola_loket_pelayanan') ? 'active' : '' }}">
+                                <a href="{{ url('/kelola_loket_pelayanan') }}" class="waves-effect {{ request()->is('/kelola_loket_pelayanan') ? 'active' : '' }}">
                                     <i class="fa fa-cog"></i>
                                     <span> Loket Pelayanan </span>
                                 </a>
@@ -103,10 +103,10 @@
                             <li class="has_sub">
                                 <a href="javascript:void(0);" class="waves-effect {{ request()->is('/javascript:void(0);') ? 'active' : '' }}"><i class="fa fa-desktop"></i> <span> Loket Antrian </span> <span class="float-right"><i class="mdi mdi-chevron-right"></i></span></a>
                                 <ul class="list-unstyled">
-                                    <li class="{{ request()->is('/antrian_a') ? 'active' : '' }}"><a href="/antrian_a">Loket A</a></li>
-                                    <li class="{{ request()->is('/antrian_b') ? 'active' : '' }}"><a href="/antrian_b">Loket B</a></li>
-                                    <li class="{{ request()->is('/antrian_c') ? 'active' : '' }}"><a href="/antrian_c">Loket C</a></li>
-                                    <li class="{{ request()->is('/antrian_d') ? 'active' : '' }}"><a href="/antrian_d">Loket D</a></li>
+                                    <li class="{{ request()->is('/antrian_a') ? 'active' : '' }}"><a href="{{ url('/antrian_a') }}">Loket A</a></li>
+                                    <li class="{{ request()->is('/antrian_b') ? 'active' : '' }}"><a href="{{ url('/antrian_b') }}">Loket B</a></li>
+                                    <li class="{{ request()->is('/antrian_c') ? 'active' : '' }}"><a href="{{ url('/antrian_c') }}">Loket C</a></li>
+                                    <li class="{{ request()->is('/antrian_d') ? 'active' : '' }}"><a href="{{ url('/antrian_d') }}">Loket D</a></li>
                                 </ul>
                             </li>
 
@@ -121,14 +121,14 @@
                             </li>
 
                             <li>
-                                <a href="/multi_channel_single_phase" class="waves-effect {{ request()->is('/multi_channel_single_phase') ? 'active' : '' }}">
+                                <a href="{{ url('/multi_channel_single_phase') }}" class="waves-effect {{ request()->is('/multi_channel_single_phase') ? 'active' : '' }}">
                                     <i class="fa fa-gears (alias)"></i>
                                     <span> MCSP </span>
                                 </a>
                             </li>
 
                             <li>
-                                <a href="/multi_channel_single_phase" class="waves-effect {{ request()->is('/multi_channel_single_phase') ? 'active' : '' }}">
+                                <a href="{{ url('/multi_channel_single_phase') }}" class="waves-effect {{ request()->is('/multi_channel_single_phase') ? 'active' : '' }}">
                                     <i class="fa fa-files-o"></i>
                                     <span> Laporan </span>
                                 </a>
