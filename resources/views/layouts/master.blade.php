@@ -66,7 +66,7 @@
                             <li class="menu-title">Main</li>
 
                             <li>
-                                <a href="/home" class="waves-effect {{ request()->is('/home') ? 'active' : '' }}">
+                                <a href="{{ url('/home') }}" class="waves-effect {{ request()->is('/home') ? 'active' : '' }}">
                                     <i class="mdi mdi-airplay"></i>
                                     <span> Dashboard </span>
                                 </a>
