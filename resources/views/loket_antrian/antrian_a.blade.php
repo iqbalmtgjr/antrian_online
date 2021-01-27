@@ -114,7 +114,7 @@
                 .then((result) => {
                     console.log(result);
                     if (result.value) {
-                        window.location = {{ url('/antrian/reset') }};
+                        window.location = '/antrian/reset';
                     }
                 });
                 
