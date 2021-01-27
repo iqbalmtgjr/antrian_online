@@ -6,7 +6,7 @@ use DateTime;
 use DateTimeZone;
 use App\Models\Antrian;
 use App\Models\Laporan;
-
+use App\Models\Loketpelayanan;
 use Illuminate\Http\Request;
 use function GuzzleHttp\Promise\all;
 
@@ -17,6 +17,11 @@ class AntrianController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
+
     public function antrian_a()
     {
         $data = Antrian::all();
@@ -114,6 +119,7 @@ class AntrianController extends Controller
         $tanggal = $date->format('Y-m-d');
         $localtime = $date->format('H:i:s');
         $pelayanan = 1;
+        // dd($pelayanan);
         switch ($hari) {
             case 'Sun':
                 $hari_ini = "Minggu";

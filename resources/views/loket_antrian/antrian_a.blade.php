@@ -34,7 +34,6 @@
                                     <div class="modal-body">
                                         <form action="{{ url('/antrian/lanjut') }}" method="post">
                                             @csrf
-                                            <input type="hidden" id="antri" name="antri" value="1">
                                             <center>
                                                 @if ($data1->count() >= 10)
                                                     <h2>
@@ -50,7 +49,11 @@
                                     </div>
                                     <div class="modal-footer">
                                         <button type="button" class="btn btn-secondary" data-dismiss="modal">Tutup</button>
-                                        <button type="submit" class="btn btn-primary">Lanjut</button>
+                                        @if ($data1->count() < 1)
+                                            <button type="submit" class="btn btn-primary">Mulai</button>
+                                        @else
+                                            <button type="submit" class="btn btn-primary">Lanjut</button>
+                                        @endif
                                         </form>
                                     </div>
                                 </div>
@@ -71,13 +74,7 @@
                                     @else
                                         <td>{{ 'A0' . $data->no_antrian }}</td>
                                     @endif
-                                    {{-- @if ($data->)
-                                        
-                                    @endif --}}
                                     <td id="antri{{ $data->id }}"></td>
-                                    {{-- <td id="isi{{ $data->id }}"></td> --}}
-                                   
-
 
                                 </tr>
                             </tbody>
@@ -114,10 +111,10 @@
                 .then((result) => {
                     console.log(result);
                     if (result.value) {
-                        window.location = '/antrian/reset';
+                        window.location = "{{ url('/antrian/reset ') }}";
                     }
                 });
-                
+
         });
 
         $('.stop').click(function() {
@@ -133,7 +130,7 @@
                 .then((result) => {
                     console.log(result);
                     if (result.value) {
-                        window.location = "/antrian/stop";
+                        window.location = "{{ url('/antrian/stop') }}";
                     }
                 });
         });
