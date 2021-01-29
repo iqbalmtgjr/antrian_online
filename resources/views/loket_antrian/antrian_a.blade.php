@@ -146,8 +146,8 @@
                     // const teks = document.getElementById("antri");
                     $('#isi' + item.id).html(item.id)
                     // const tanggalTujuan = new Date().getTime() + 180000;
-                    const tigamenit = new Date().getTime() + 180000;
-                    const selanjut = tigamenit * 2;
+                    const tigamenit = new Date().getTime() + 180000 * i;
+                    // const selanjut = tigamenit * 2;
                     // console.log(tanggalTujuan);
                     const hitungMundur = setInterval(function() {
                         const sekarang = new Date().getTime();
@@ -168,7 +168,6 @@
                             ":" +
                             detik +
                             " detik lagi";
-
                         if (selisih < 0) {
                             clearInterval(hitungMundur);
                             antri.innerText = "Sedang Dalam Pelayanan";
