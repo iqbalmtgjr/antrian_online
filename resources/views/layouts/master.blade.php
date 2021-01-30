@@ -16,7 +16,6 @@
         <link href={{asset("assets/css/bootstrap.min.css")}} rel="stylesheet" type="text/css">
         <link href={{asset("assets/css/icons.css")}} rel="stylesheet" type="text/css">
         <link href={{asset("assets/css/style.css")}} rel="stylesheet" type="text/css">
-        {{-- <link href={{ asset("js/belajar.js") }} rel="stylesheet" href=""> --}}
 
         {{-- <link rel="stylesheet" href="sweetalert2.min.css"> --}}
         {{-- <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script> --}}
@@ -24,12 +23,10 @@
         {{-- JAM --}}
         <script src={{ asset("js/jam.js") }}></script>
 
-        {{-- {{ Hitung Mundur }} --}}
-        <script src={{ asset("js/belajar.js") }}></script>
-
         <!-- DataTables -->
         <link href={{ asset("assets/plugins/datatables/dataTables.bootstrap4.min.css") }} rel="stylesheet" type="text/css" />
         <link href={{ asset("assets/plugins/datatables/buttons.bootstrap4.min.css") }} rel="stylesheet" type="text/css" />
+        <link href={{ asset("assets/plugins/datatables/responsive.bootstrap4.min.css") }} rel="stylesheet" type="text/css" />
 
         {{-- Toastr --}}
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css">
@@ -273,7 +270,6 @@
 	    <script src="sweetalert2.all.min.js"></script>
         <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
         <script src="https://cdn.jsdelivr.net/npm/promise-polyfill"></script>
-
         <!-- Required datatable js -->
         <script src={{ asset("assets/plugins/datatables/jquery.dataTables.min.js") }}></script>
         <script src={{ asset("assets/plugins/datatables/dataTables.bootstrap4.min.js") }}></script>

@@ -23,7 +23,6 @@ class CreateAntrianTable extends Migration
             $table->time('waktu_awal_antrian');
             $table->time('waktu_akhir_antrian')->nullable();
             $table->time('lama_pelayanan')->nullable();
-            $table->time('estimasi')->nullable();
             $table->timestamps();
         });
     }
