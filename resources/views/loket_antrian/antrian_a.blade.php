@@ -141,11 +141,20 @@
             cache: false,
             success: function(response) {
                 console.log(response);
-                // console.log(response.no_antrian);
+                const first = response[0];
+                const last = response[response.length - 1];
+                const created_at = last.created_at;
+                console.log(created_at);
+                // console.log(last.created_at);
                 $.each(response, function(i, item) {
                     // console.log(item.id);
                     // $('#isi' + item.id).html(item.id)
-                    const tigamenit = new Date().getTime() + 180000 * i;
+                    // const hm = item.length;
+                    // if (i > 1) {
+                    const tigamenit = new Date().getTime() + 180000;
+                    // } else {
+                    // const tigamenit = new Date().getTime() + 180000 + last.created_at;
+                    // }
                     const hitungMundur = setInterval(function() {
                         const sekarang = new Date().getTime();
                         const selisih = tigamenit - sekarang;
@@ -162,7 +171,7 @@
                                 jam +
                                 ":" +
                                 menit +
-                                ":0" +
+                                ":" +
                                 detik +
                                 " detik lagi";
                         } else {
@@ -177,6 +186,8 @@
 
                         if (selisih < 0) {
                             clearInterval(hitungMundur);
+                            antri.innerText = "Sedang Dalam Pelayanan";
+                        } else if (i == 0) {
                             antri.innerText = "Sedang Dalam Pelayanan";
                         }
                         const selesai = document.getElementById("selesai");
