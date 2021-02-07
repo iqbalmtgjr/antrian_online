@@ -143,18 +143,18 @@
                 console.log(response);
                 const first = response[0];
                 const last = response[response.length - 1];
-                const created_at = last.created_at;
-                console.log(created_at);
-                // console.log(last.created_at);
+                const created_at = last.waktu;
+                // console.log(response.created_at);
+                console.log(last.waktu);
                 $.each(response, function(i, item) {
-                    // console.log(item.id);
                     // $('#isi' + item.id).html(item.id)
                     // const hm = item.length;
-                    // if (i > 1) {
-                    const tigamenit = last.created_at + 180000;
+                    // if (i != null) {
+                    // const tigamenit = new Date().getTime() + 180000;
                     // } else {
-                    // const tigamenit = new Date().getTime() + 180000 + last.created_at;
+                    const tigamenit = new Date().getTime() + 180000;
                     // }
+                    // console.log(tigamenit);
                     const hitungMundur = setInterval(function() {
                         const sekarang = new Date().getTime();
                         const selisih = tigamenit - sekarang;

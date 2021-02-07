@@ -35,4 +35,10 @@ class Antrian extends Model
         return Carbon::parse($this->attributes['waktu_awal_antrian'])
             ->format('H:i:s');
     }
+
+    // public function getCreatedAtAttribute()
+    // {
+    //     return Carbon::parse($this->attributes['created_at'])
+    //         ->format('u');
+    // }
 }
