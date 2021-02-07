@@ -151,7 +151,7 @@
                     // $('#isi' + item.id).html(item.id)
                     // const hm = item.length;
                     // if (i > 1) {
-                    const tigamenit = new Date().getTime() + 180000;
+                    const tigamenit = last.created_at + 180000;
                     // } else {
                     // const tigamenit = new Date().getTime() + 180000 + last.created_at;
                     // }

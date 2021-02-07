@@ -237,6 +237,9 @@ class AntrianController extends Controller
     public function getdata()
     {
         $dataa = Antrian::all();
+        foreach ($dataa as $key => $value) {
+            $value->waktu = $value->created_at->format('H:i:s');
+        }
         return $dataa;
     }
 }
