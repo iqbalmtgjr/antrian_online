@@ -16,7 +16,7 @@
                         <a href="" class="btn btn-primary btn-md m-l-15 m-b-15" data-toggle="modal" data-target="#tambah"><i
                                 class="fa fa-plus"></i>
                             Tambah Lama Pelayanan</a>
-                        @include('kelola_loket_pelayanan/modaltambah')
+                        @include('kelola_lama_pelayanan/modaltambah')
                         <thead>
                             <tr>
                                 <th>No</th>
@@ -47,7 +47,7 @@
 @endsection
 @section('footer')
 
-    {{-- <script>
+    <script>
         $('.delete').click(function() {
             var Id = $(this).attr('id');
             Swal.fire({
@@ -67,5 +67,5 @@
                 });
         });
 
-    </script> --}}
+    </script>
 @endsection

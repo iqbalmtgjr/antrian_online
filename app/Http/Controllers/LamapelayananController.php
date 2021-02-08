@@ -5,17 +5,17 @@ namespace App\Http\Controllers;
 use App\Models\Lamapelayanan;
 use Illuminate\Http\Request;
 
-class LamapelayananController extends Controller
+class LamaPelayananController extends Controller
 {
-    public function __construct()
-    {
-        $this->middleware('auth');
-    }
+    // public function __construct()
+    // {
+    //     $this->middleware('auth');
+    // }
 
     public function index()
     {
         $data = Lamapelayanan::all();
-        return view('lama_pelayanan.index', compact('data'));
+        return view('kelola_lama_pelayanan.index', compact('data'));
     }
 
     public function store(Request $request)
@@ -24,7 +24,7 @@ class LamapelayananController extends Controller
             'lamapelayanan' => 'required',
         ]);
 
-        $tambah_loket = Lamapelayanan::create($request->all());
+        $tambah_lama_pelayanan = Lamapelayanan::create($request->all());
         return redirect()->back()->with('sukses', 'Lama Pelayanan Berhasil Ditambahkan !!!');
     }
 }
