@@ -7,7 +7,7 @@ use App\Http\Controllers\AdminController;
 use App\Http\Controllers\AntrianController;
 use App\Http\Controllers\PetugasController;
 use App\Http\Controllers\KepalabagianController;
-use App\Http\Controllers\LamaPelayananController;
+use App\Http\Controllers\LamapelayananController;
 use App\Http\Controllers\LoketPelayananController;
 
 /*
@@ -55,6 +55,8 @@ Route::get('/petugas/hapus/{id}', [PetugasController::class, 'destroy']);
 Route::get('/resetpassword/petugas/{id}', [PetugasController::class, 'resetpasswordpetugas']);
 Route::get('/kelola_lama_pelayanan', [LamapelayananController::class, 'index']);
 Route::post('/lama_pelayanan/input', [LamapelayananController::class, 'store']);
+Route::post('/lama_pelayanan/update', [LamapelayananController::class, 'update']);
+Route::get('/getdata_lamapelayanan/{id}', [LamapelayananController::class, 'getdata']);
 // });
 
 // Route::group(['middleware' => ['auth', 'checkRole:Petugas']], function () {

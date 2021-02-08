@@ -32,9 +32,10 @@
                                     <td>{{ $loop->iteration }}</td>
                                     <td>{{ $data->lamapelayanan }}</td>
                                     <td>
-                                        <a href="#" class="btn btn-danger btn-md delete" id="{{ $data->id }}"><span
+                                       <a href="#" onclick="getdata({{$data->id}})" data-toggle="modal" data-target="#edit" class="btn btn-success btn-md"> <span class="fa fa-pencil"></span> Edit</a> <a href="#" class="btn btn-danger btn-md delete" id="{{ $data->id }}"><span
                                                 class="fa fa-trash"></span> Hapus</a>
                                     </td>
+                                    @include('kelola_lama_pelayanan/modaledit')
                                 </tr>
                             @endforeach
                         </tbody>
@@ -47,7 +48,7 @@
 @endsection
 @section('footer')
 
-    {{-- <script>
+    <script>
         $('.delete').click(function() {
             var Id = $(this).attr('id');
             Swal.fire({
@@ -67,5 +68,5 @@
                 });
         });
 
-    </script> --}}
+    </script>
 @endsection
