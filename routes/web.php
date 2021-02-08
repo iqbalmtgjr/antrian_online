@@ -52,7 +52,7 @@ Route::get('/kelola_data_petugas', [PetugasController::class, 'index']);
 Route::post('/petugas/input', [PetugasController::class, 'store']);
 Route::get('/petugas/hapus/{id}', [PetugasController::class, 'destroy']);
 Route::get('/resetpassword/petugas/{id}', [PetugasController::class, 'resetpasswordpetugas']);
-Route::get('/kelola_lama_pelayanan', [App\Http\Controllers\LamapelayananController::class, 'index']);
+Route::get('/kelola_lama_pelayanan', [LamapelayananController::class, 'index']);
 Route::post('/lama_pelayanan/input', [LamapelayananController::class, 'store']);
 // });
 
