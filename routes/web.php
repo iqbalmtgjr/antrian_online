@@ -25,6 +25,7 @@ Route::get('/', function () {
     return view('auth.login1');
 });
 
+
 Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
@@ -52,8 +53,8 @@ Route::get('/kelola_data_petugas', [PetugasController::class, 'index']);
 Route::post('/petugas/input', [PetugasController::class, 'store']);
 Route::get('/petugas/hapus/{id}', [PetugasController::class, 'destroy']);
 Route::get('/resetpassword/petugas/{id}', [PetugasController::class, 'resetpasswordpetugas']);
-Route::get('/kelola_lama_pelayanan', [LamaPelayananController::class, 'index']);
-Route::post('/lama_pelayanan/input', [LamaPelayananController::class, 'store']);
+Route::get('/kelola_lama_pelayanan', [LamapelayananController::class, 'index']);
+Route::post('/lama_pelayanan/input', [LamapelayananController::class, 'store']);
 // });
 
 // Route::group(['middleware' => ['auth', 'checkRole:Petugas']], function () {

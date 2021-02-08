@@ -47,12 +47,12 @@
 @endsection
 @section('footer')
 
-    <script>
+    {{-- <script>
         $('.delete').click(function() {
             var Id = $(this).attr('id');
             Swal.fire({
                     title: 'Yakin?',
-                    text: "Mau Hapus Data Dengan Loket Pelayanan Ini ?",
+                    text: "Mau Hapus Data Dengan Lama Pelayanan Ini ?",
                     icon: 'warning',
                     showCancelButton: true,
                     confirmButtonColor: '#3085d6',
@@ -62,10 +62,10 @@
                 .then((result) => {
                     console.log(result);
                     if (result.value) {
-                        window.location = "/loket_pelayanan/hapus/" + Id + "";
+                        window.location = "/lama_pelayanan/hapus/" + Id + "";
                     }
                 });
         });
 
-    </script>
+    </script> --}}
 @endsection
