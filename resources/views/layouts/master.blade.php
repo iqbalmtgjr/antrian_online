@@ -118,6 +118,13 @@
                             </li>
 
                             <li>
+                                <a href="{{ url('/kelola_lama_pelayanan') }}" class="waves-effect {{ request()->is('/kelola_lama_pelayanan') ? 'active' : '' }}">
+                                    <i class="fa fa-clock-o"></i>
+                                    <span> Kelola L. Pelayanan </span>
+                                </a>
+                            </li>
+
+                            <li>
                                 <a href="{{ url('/multi_channel_single_phase') }}" class="waves-effect {{ request()->is('/multi_channel_single_phase') ? 'active' : '' }}">
                                     <i class="fa fa-gears (alias)"></i>
                                     <span> MCSP </span>
