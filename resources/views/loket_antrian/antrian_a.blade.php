@@ -144,10 +144,14 @@
                 const first = response[0];
                 const last = response[response.length - 1];
                 const created_at = last.waktu;
+                const time = response.lama_pelayanan;
                 // console.log(response.created_at);
                 console.log(last.waktu);
+                console.log(time);
                 $.each(response, function(i, item) {
                     // $('#isi' + item.id).html(item.id)
+                    // const jk = item.antrian;
+                    // console.log(jk);
                     // const hm = item.length;
                     // if (i != null) {
                     // const tigamenit = new Date().getTime() + 180000;

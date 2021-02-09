@@ -120,7 +120,7 @@
                             <li>
                                 <a href="{{ url('/kelola_lama_pelayanan') }}" class="waves-effect {{ request()->is('/kelola_lama_pelayanan') ? 'active' : '' }}">
                                     <i class="fa fa-clock-o"></i>
-                                    <span> Kelola L. Pelayanan </span>
+                                    <span> K. Lama Pelayanan </span>
                                 </a>
                             </li>
 

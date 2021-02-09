@@ -12,4 +12,9 @@ class Lamapelayanan extends Model
     protected $table = 'lama_pelayanan';
     protected $fillable = ['lamapelayanan'];
     protected $guarded = [];
+
+    public function antrians()
+    {
+        return $this->belongsToMany(Antrian::class, 'antrian_lama_pelayanan');
+    }
 }

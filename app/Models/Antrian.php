@@ -36,6 +36,11 @@ class Antrian extends Model
             ->format('H:i:s');
     }
 
+    public function lamapelayanans()
+    {
+        return $this->belongsToMany(Lamapelayanan::class, 'antrian_lama_pelayanan');
+    }
+
     // public function getCreatedAtAttribute()
     // {
     //     return Carbon::parse($this->attributes['created_at'])
