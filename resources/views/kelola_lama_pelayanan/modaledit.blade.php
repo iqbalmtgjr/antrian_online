@@ -9,8 +9,9 @@
                 <form action="{{ url('/lama_pelayanan/update') }}" method="POST">
                     {{ csrf_field() }}
                     <div class="form-group">
-                        <input type="hidden" class="form-control" id="id" name="id" value="" readonly> 
-                        <input type="hidden" class="form-control" id="url_getdata" name="url_getdata" value="{{url('getdata_lamapelayanan/')}}" readonly> 
+                        <input type="hidden" class="form-control" id="idd" name="id" value="" readonly>
+                        <input type="hidden" class="form-control" id="url_getdata" name="url_getdata"
+                            value="{{ url('getdata_lamapelayanan/') }}" readonly>
                         <label for="recipient-name" class="col-form-label">Lama Pelayanan</label>
                         <input type="time" class="form-control" id="lamapelayanann" name="lamapelayanan"
                             value="{{ old('lamapelayanan') }}">
@@ -31,24 +32,24 @@
 </div>
 
 <script>
-    function getdata(id)
-        {
-            console.log(id)
-            var url = $('#url_getdata').val() + '/' + id
-            console.log(url);
-    
-            $.ajax({
-                url: url,
-                cache: false,
-                success: function(response){
-                    console.log(response);
-                    // console.log(response.lamapelayanan);
-    
-                    $('#id').val(id);
-                    $('#id').val(response.id);
-                    $('#lamapelayanann').val(response.lamapelayanan);
-                    
-                }
-            });    
-        }
-    </script>
+    function getdata(id) {
+        console.log(id)
+        var url = $('#url_getdata').val() + '/' + id
+        console.log(url);
+
+        $.ajax({
+            url: url,
+            cache: false,
+            success: function(response) {
+                console.log(response);
+                // console.log(response.lamapelayanan);
+
+                $('#id').val(id);
+                $('#idd').val(response.id);
+                $('#lamapelayanann').val(response.lamapelayanan);
+
+            }
+        });
+    }
+
+</script>

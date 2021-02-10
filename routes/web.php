@@ -56,6 +56,7 @@ Route::get('/resetpassword/petugas/{id}', [PetugasController::class, 'resetpassw
 Route::get('/kelola_lama_pelayanan', [LamapelayananController::class, 'index']);
 Route::post('/lama_pelayanan/input', [LamapelayananController::class, 'store']);
 Route::post('/lama_pelayanan/update', [LamapelayananController::class, 'update']);
+Route::get('/lama_pelayanan/hapus/{id}', [LamapelayananController::class, 'destroy']);
 Route::get('/getdata_lamapelayanan/{id}', [LamapelayananController::class, 'getdata']);
 // });
 

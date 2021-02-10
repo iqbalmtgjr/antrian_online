@@ -42,10 +42,11 @@ class LamapelayananController extends Controller
     public function store(Request $request)
     {
         $this->validate($request, [
-            'lamapelayanan' => 'required|max:18',
+            'lamapelayanan' => 'required',
         ]);
 
-        $tambah_loket = Lamapelayanan::create($request->all());
+        $tambah_lama_pelayanan = Lamapelayanan::create($request->all());
+        // dd($tambah_lama_pelayanan);
         return redirect()->back()->with('sukses', 'Lama Pelayanan Berhasil Ditambahkan !!!');
     }
 
@@ -81,9 +82,10 @@ class LamapelayananController extends Controller
     public function update(Request $request)
     {
         $this->validate($request, [
-            'lamapelayanan' => 'required|max:18',
+            'lamapelayanan' => 'required',
         ]);
 
+        // dd($request->id);
         $update = Lamapelayanan::find($request->id)->update($request->except([$request->url_getdata]));
         return redirect()->back()->with('sukses', 'Lama Pelayanan Berhasil Update !!!');
     }
@@ -94,6 +96,7 @@ class LamapelayananController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
+
     public function destroy($id)
     {
         $delete = Lamapelayanan::find($id)->delete();

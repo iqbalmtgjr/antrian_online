@@ -32,8 +32,11 @@
                                     <td>{{ $loop->iteration }}</td>
                                     <td>{{ $data->lamapelayanan }}</td>
                                     <td>
-                                       <a href="#" onclick="getdata({{$data->id}})" data-toggle="modal" data-target="#edit" class="btn btn-success btn-md"> <span class="fa fa-pencil"></span> Edit</a> <a href="#" class="btn btn-danger btn-md delete" id="{{ $data->id }}"><span
-                                                class="fa fa-trash"></span> Hapus</a>
+                                        <a href="#" onclick="getdata({{ $data->id }})" data-toggle="modal"
+                                            data-target="#edit" class="btn btn-success btn-md"> <span
+                                                class="fa fa-pencil"></span> Edit</a> <a href="#"
+                                            class="btn btn-danger btn-md delete" lama="{{ $data->lama_pelayanan }}"
+                                            id="{{ $data->id }}"><span class="fa fa-trash"></span> Hapus</a>
                                     </td>
                                     @include('kelola_lama_pelayanan/modaledit')
                                 </tr>
@@ -51,9 +54,10 @@
     <script>
         $('.delete').click(function() {
             var Id = $(this).attr('id');
+            var Lama = $(this).attr('lama');
             Swal.fire({
                     title: 'Yakin?',
-                    text: "Mau Hapus Data Dengan Lama Pelayanan Ini ?",
+                    text: "Mau Hapus Data Dengan Lama Pelayanan " + Lama + " ?",
                     icon: 'warning',
                     showCancelButton: true,
                     confirmButtonColor: '#3085d6',
