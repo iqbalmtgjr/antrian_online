@@ -140,28 +140,32 @@
             url: "{{ url('/getdata') }}",
             cache: false,
             success: function(response) {
-                console.log(response);
-                const first = response[0];
-                const last = response[response.length - 1];
-                const created_at = last.waktu_awal_antrian;
-                // const time = response.lamapelayanan;
+                console.log(response.antrian);
+                console.log(response.lamapelayanan);
+                const first = response.antrian[0];
+                const last = response.antrian[response.antrian.length - 1];
+                const created_at = last.created_at;
+                const time = response.lamapelayanan;
                 // console.log(response.lamapelayanan);
-                console.log(created_at);
+                // console.log(first);
 
-                // console.log(response.created_at);
-                // console.log(last.lamapelayanan[0]);
-                $.each(response, function(i, item) {
+                console.log(created_at);
+                $.each(response.antrian, function(i, item) {
                     // $('#isi' + item.id).html(item.id)
                     // const jk = item.antrian;
                     // console.log(jk);
                     // const hm = item.length;
                     // if (i != null) {
-                    // const tigamenit = new Date().getTime() + 180000;
+                    const tigamenit = new Date().getTime() + 180000 * i;
+                    console.log(tigamenit)
                     // } else {
 
-                    const tigamenit = new Date().getTime() + 180000;
+                    // const tigamenit = created_at + time;
+                    console.log(tigamenit);
                     // }
                     // console.log(tigamenit);
+                    // const antrii = item;
+                    // console.log(antrii);
                     const hitungMundur = setInterval(function() {
                         const sekarang = new Date().getTime();
                         const selisih = tigamenit - sekarang;
@@ -206,11 +210,12 @@
 
                     }, 1000);
                     const tombol = document.getElementById("tombol");
-                    tombol.addEventListener("click", function() {
-                        clearInterval(hitungMundur);
-                        teks.innerText = "Berhenti";
-                        console.log('berhenti');
-                    });
+                    tombol.addEventListener("click",
+                        function() {
+                            clearInterval(hitungMundur);
+                            teks.innerText = "Berhenti";
+                            console.log('berhenti');
+                        });
                 });
 
 

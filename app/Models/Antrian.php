@@ -41,9 +41,9 @@ class Antrian extends Model
         return $this->belongsTo(Lamapelayanan::class, 'id');
     }
 
-    // public function getCreatedAtAttribute()
-    // {
-    //     return Carbon::parse($this->attributes['created_at'])
-    //         ->format('u');
-    // }
+    public function getCreatedAtAttribute()
+    {
+        return Carbon::parse($this->attributes['created_at'])
+            ->format('H:i:s');
+    }
 }

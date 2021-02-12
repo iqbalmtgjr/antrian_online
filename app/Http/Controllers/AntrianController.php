@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use DateTime;
 use DateTimeZone;
 use App\Models\Antrian;
+use App\Models\Lamapelayanan;
 use App\Models\Laporan;
 use App\Models\Loketpelayanan;
 use Illuminate\Http\Request;
@@ -240,7 +241,11 @@ class AntrianController extends Controller
     public function getdata()
     {
         $dataa = Antrian::all();
-        // $dataa->lamapelayanan;
-        return $dataa;
+        foreach ($dataa as $lama) {
+            $antrian = $dataa;
+            $lamapelayanan = $lama->lamapelayanan->lamapelayanan;
+            // return $lamapelayanan->lamapelayanan;
+            return compact('antrian', 'lamapelayanan');
+        }
     }
 }

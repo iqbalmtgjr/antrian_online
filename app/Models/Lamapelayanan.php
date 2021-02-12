@@ -2,8 +2,9 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 class Lamapelayanan extends Model
 {
@@ -16,5 +17,11 @@ class Lamapelayanan extends Model
     public function antrians()
     {
         return $this->hasMany(Antrian::class, 'lamapelayanan_id');
+    }
+
+    public function getLamaPelayananAttribute()
+    {
+        return Carbon::parse($this->attributes['lamapelayanan'])
+            ->format('H:i:s');
     }
 }
