@@ -11,7 +11,7 @@ class Antrian extends Model
     use HasFactory;
 
     protected $table = 'antrian';
-    protected $fillable = ['id_pelayanan', 'id_user', 'no_antrian', 'hari', 'tgl_antrian', 'waktu_awal_antrian', 'waktu_akhir_antrian', 'lama_pelayanan'];
+    protected $fillable = ['id_pelayanan', 'lamapelayanan_id', 'id_user', 'no_antrian', 'hari', 'tgl_antrian', 'waktu_awal_antrian', 'waktu_akhir_antrian', 'lama_pelayanan'];
     protected $guarded = [];
 
     public function user()
@@ -36,9 +36,9 @@ class Antrian extends Model
             ->format('H:i:s');
     }
 
-    public function lamapelayanans()
+    public function lamapelayanan()
     {
-        return $this->belongsToMany(Lamapelayanan::class, 'antrian_lama_pelayanan');
+        return $this->belongsTo(Lamapelayanan::class, 'id');
     }
 
     // public function getCreatedAtAttribute()

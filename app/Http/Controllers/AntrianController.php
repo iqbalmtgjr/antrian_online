@@ -119,6 +119,7 @@ class AntrianController extends Controller
         $tanggal = $date->format('Y-m-d');
         $localtime = $date->format('H:i:s');
         $pelayanan = 1;
+        $lamapelayanan = 1;
         // dd($pelayanan);
         switch ($hari) {
             case 'Sun':
@@ -156,6 +157,7 @@ class AntrianController extends Controller
         if ($antrii->count() == 0) {
             $antrian = Antrian::create([
                 'id_pelayanan' => $pelayanan,
+                'lamapelayanan_id' => $lamapelayanan,
                 'id_user' => auth()->user()->id,
                 'waktu_awal_antrian' => $localtime,
                 'tgl_antrian' => $tanggal,
@@ -165,6 +167,7 @@ class AntrianController extends Controller
         } else {
             $antrian = Antrian::create([
                 'id_pelayanan' => $pelayanan,
+                'lamapelayanan_id' => $lamapelayanan,
                 'id_user' => auth()->user()->id,
                 'waktu_awal_antrian' => $localtime,
                 'tgl_antrian' => $tanggal,
@@ -237,9 +240,7 @@ class AntrianController extends Controller
     public function getdata()
     {
         $dataa = Antrian::all();
-        foreach ($dataa as $key => $value) {
-            $value->waktu = $value->created_at->format('H:i:s');
-        }
+        // $dataa->lamapelayanan;
         return $dataa;
     }
 }

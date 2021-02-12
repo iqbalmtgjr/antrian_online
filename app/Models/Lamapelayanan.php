@@ -15,6 +15,6 @@ class Lamapelayanan extends Model
 
     public function antrians()
     {
-        return $this->belongsToMany(Antrian::class, 'antrian_lama_pelayanan');
+        return $this->hasMany(Antrian::class, 'lamapelayanan_id');
     }
 }

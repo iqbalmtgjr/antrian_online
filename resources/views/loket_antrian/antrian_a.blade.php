@@ -143,11 +143,13 @@
                 console.log(response);
                 const first = response[0];
                 const last = response[response.length - 1];
-                const created_at = last.waktu;
-                const time = response.lama_pelayanan;
+                const created_at = last.waktu_awal_antrian;
+                // const time = response.lamapelayanan;
+                // console.log(response.lamapelayanan);
+                console.log(created_at);
+
                 // console.log(response.created_at);
-                console.log(last.waktu);
-                console.log(time);
+                // console.log(last.lamapelayanan[0]);
                 $.each(response, function(i, item) {
                     // $('#isi' + item.id).html(item.id)
                     // const jk = item.antrian;
@@ -156,6 +158,7 @@
                     // if (i != null) {
                     // const tigamenit = new Date().getTime() + 180000;
                     // } else {
+
                     const tigamenit = new Date().getTime() + 180000;
                     // }
                     // console.log(tigamenit);

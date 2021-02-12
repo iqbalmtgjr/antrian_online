@@ -62,8 +62,12 @@ class AdminController extends Controller
         $admin = new Admin;
         $request->request->add(['user_id' => $user->id]);
         $tambah_admin = Admin::create($request->except(['email' => $request->email]));
-
-        return redirect()->back()->with('sukses', 'Data Berhasil di Simpan !!!');
+        // dd($tambah_admin);
+        if ($tambah_admin == true) {
+            return redirect()->back()->with('sukses', 'Data Berhasil di Simpan !!!');
+        } else {
+            return redirect()->back()->with('gagal', 'Data Gagal di Simpan !!!');
+        }
     }
 
     /**
