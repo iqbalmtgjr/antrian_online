@@ -50,8 +50,8 @@
                                     <select name="role" id="role" class="form-control @error('role') is-invalid @enderror"
                                         value="{{ old('role') }}" required autocomplete="role" autofocus>
                                         <option value="">--Pilih Role--</option>
-                                        <option value="Super Admin">Super Admin</option>
                                         <option value="Admin">Admin</option>
+                                        <option value="Koordinator">Koordinator</option>
                                         <option value="Petugas">Petugas</option>
                                         <option value="Kepala Bagian">Kepala Bagian</option>
                                     </select>

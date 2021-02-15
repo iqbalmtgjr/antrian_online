@@ -4,7 +4,7 @@
     <div class="row">
         <div class="col-sm-12">
             <div class="page-title-box">
-                <h4 class="page-title">Kelola Data Admin</h4>
+                <h4 class="page-title">Kelola Data Koordinator</h4>
             </div>
         </div>
     </div>
@@ -16,7 +16,7 @@
                         <a href="" class="btn btn-primary btn-md m-l-15 m-b-15" data-toggle="modal" data-target="#tambah"><i
                                 class="fa fa-user-plus"></i>
                             Tambah</a>
-                        @include('kelola_data_admin/modaltambah')
+                        @include('kelola_data_koordinator/modaltambah')
                         <thead>
                             <tr>
                                 <th>No</th>
@@ -73,7 +73,7 @@
                 .then((result) => {
                     console.log(result);
                     if (result.value) {
-                        window.location = "/admin/hapus/" + Id + "";
+                        window.location = "/koordinator/hapus/" + Id + "";
                     }
                 });
         });
@@ -83,7 +83,7 @@
             var NIP = $(this).attr('NIP');
             Swal.fire({
                     title: 'Yakin?',
-                    text: "Mau Reset Password Admin Dengan NIP " + NIP + "?",
+                    text: "Mau Reset Password Koordinator Dengan NIP " + NIP + "?",
                     icon: 'warning',
                     showCancelButton: true,
                     confirmButtonColor: '#3085d6',
@@ -93,7 +93,7 @@
                 .then((result) => {
                     console.log(result);
                     if (result.value) {
-                        window.location = "/resetpassword/admin/" + Id + "";
+                        window.location = "/resetpassword/koordinator/" + Id + "";
                     }
                 });
         });

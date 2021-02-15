@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateSuperadminTable extends Migration
+class CreateKoordinatorTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,12 +13,12 @@ class CreateSuperadminTable extends Migration
      */
     public function up()
     {
-        Schema::create('superadmin', function (Blueprint $table) {
+        Schema::create('koordinator', function (Blueprint $table) {
             $table->id();
             $table->integer('user_id')->unique();
             $table->string('NIP', 18);
             $table->string('username', 20);
-            $table->string('nama', 25);
+            $table->string('name', 25);
             $table->timestamps();
         });
     }
@@ -30,6 +30,6 @@ class CreateSuperadminTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('superadmin');
+        Schema::dropIfExists('koordinator');
     }
 }

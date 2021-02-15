@@ -6,11 +6,11 @@ use App\Models\User;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 
-class Admin extends Model
+class Koordinator extends Model
 {
     use HasFactory;
 
-    protected $table = 'admin';
+    protected $table = 'koordinator';
     protected $fillable = ['NIP', 'username', 'name', 'user_id'];
     protected $guarded = [];
 

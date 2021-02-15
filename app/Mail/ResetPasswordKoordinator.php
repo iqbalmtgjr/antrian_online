@@ -8,7 +8,7 @@ use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Mail\Mailable;
 use Illuminate\Queue\SerializesModels;
 
-class ResetPasswordAdmin extends Mailable
+class ResetPasswordKoordinator extends Mailable
 {
     use Queueable, SerializesModels;
 
@@ -32,6 +32,6 @@ class ResetPasswordAdmin extends Mailable
      */
     public function build()
     {
-        return $this->markdown('emails.resetpasswordadmin');
+        return $this->markdown('emails.resetpasswordkoordinator');
     }
 }

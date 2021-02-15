@@ -2,13 +2,13 @@
     <div class="modal-dialog" role="document">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalLabel">Tambah Admin</h5>
+                <h5 class="modal-title" id="exampleModalLabel">Tambah Koordinator</h5>
                 </button>
             </div>
             <div class="modal-body">
-                <form action="{{ url('/admin/input') }}" method="POST">
+                <form action="{{ url('/koordinator/input') }}" method="POST">
                     {{ csrf_field() }}
-                    <input type="hidden" id="role" name="role" value="Admin">
+                    <input type="hidden" id="role" name="role" value="Koordinator">
                     <div class="form-group">
                         <label for="recipient-name" class="col-form-label">NIP</label>
                         <input type="number" class="form-control" id="NIP" name="NIP" value="{{ old('NIP') }}"
@@ -23,7 +23,7 @@
                         <label for="message-text" class="col-form-label">Nama</label>
                         <input type="text" class="form-control" id="name" name="name" value="{{ old('name') }}"
                             placeholder="Masukkan Nama Pegawai ...">
-                        @error('nama')
+                        @error('name')
                             <div class="text-danger ml-3 mt-2">
                                 {{ $message }}
                             </div>

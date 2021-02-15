@@ -2,13 +2,13 @@
 
 namespace App\Http\Controllers;
 
-use App\Mail\ResetPasswordAdmin;
-use App\Models\Admin;
+use App\Mail\ResetPasswordKoordinator;
+use App\Models\Koordinator;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Mail;
 
-class AdminController extends Controller
+class KoordinatorController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -22,8 +22,8 @@ class AdminController extends Controller
 
     public function index()
     {
-        $data = Admin::all();
-        return view('kelola_data_admin.index', compact('data'));
+        $data = Koordinator::all();
+        return view('kelola_data_koordinator.index', compact('data'));
     }
 
     /**
@@ -44,7 +44,7 @@ class AdminController extends Controller
     public function store(Request $request)
     {
         $this->validate($request, [
-            'NIP' => 'required|min:16|max:18|unique:admin',
+            'NIP' => 'required|min:16|max:18|unique:koordinator',
             'username' => 'required|unique:users|max:20',
             'name' => 'required|max:25',
             'email' => 'required|max:35|unique:users|email',
@@ -54,20 +54,16 @@ class AdminController extends Controller
         $user = new User;
         $user->name = $request->name;
         $user->username = $request->username;
-        $user->role = 'Admin';
+        $user->role = 'Koordinator';
         $user->email = $request->email;
         $user->password = bcrypt('rahasia');
         $user->save();
 
-        $admin = new Admin;
+        $koordinator = new Koordinator;
         $request->request->add(['user_id' => $user->id]);
-        $tambah_admin = Admin::create($request->except(['email' => $request->email]));
-        // dd($tambah_admin);
-        if ($tambah_admin == true) {
-            return redirect()->back()->with('sukses', 'Data Berhasil di Simpan !!!');
-        } else {
-            return redirect()->back()->with('gagal', 'Data Gagal di Simpan !!!');
-        }
+        $tambah_koordinator = Koordinator::create($request->except(['email' => $request->email]));
+        // dd($tambah_koordinator);
+        return redirect()->back()->with('sukses', 'Data Berhasil di Simpan !!!');
     }
 
     /**
@@ -113,18 +109,18 @@ class AdminController extends Controller
     public function destroy($id)
     {
         $user = User::find($id)->delete();
-        $admin = Admin::where('user_id', $id)->first()->delete();
+        $koordinator = Koordinator::where('user_id', $id)->first()->delete();
 
         return redirect()->back()->with('sukses', 'Data Berhasil Dihapus !!!');
     }
 
-    public function resetpasswordadmin($id)
+    public function resetpasswordkoordinkoordinator($id)
     {
         $data = User::find($id);
         $data->password = bcrypt('rahasiakita');
         $data->update();
-        Mail::to($data->email)->send(new ResetPasswordAdmin($data));
+        Mail::to($data->email)->send(new ResetPasswordKoordinator($data));
 
-        return redirect()->back()->with('sukses', 'Password Sudah Dikirim ke Email Admin !!!');
+        return redirect()->back()->with('sukses', 'Password Sudah Dikirim ke Email Koordinator !!!');
     }
 }

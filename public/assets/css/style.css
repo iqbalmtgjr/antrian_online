@@ -3189,7 +3189,7 @@ body.fixed-left .side-menu.left {
 #sidebar-menu {
   background-color: #ffffff;
   padding-bottom: 50px;
-  width: 100%;
+  width: 110%;
 }
 
 #sidebar-menu ul ul {
@@ -3258,10 +3258,10 @@ body.fixed-left .side-menu.left {
   font-size: 18px;
   line-height: 17px;
   margin-left: 3px;
-  margin-right: 10px;
+  margin-right: 5px;
   text-align: center;
   vertical-align: middle;
-  width: 20px;
+  width: 25px;
   color: #707070;
 }
 

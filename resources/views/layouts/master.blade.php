@@ -68,35 +68,43 @@
                                     <span> Dashboard </span>
                                 </a>
                             </li>
-                            
+                            @if (auth()->user()->role == 'Admin')
                             <li>
-                                <a href="{{ url('/kelola_data_admin') }}" class="waves-effect {{ request()->is('/kelola_data_admin') ? 'active' : '' }}">
+                                <a href="{{ url('/kelola_data_koordinator') }}" class="waves-effect {{ request()->is('/kelola_data_koordinator') ? 'active' : '' }}">
                                     <i class="fa fa-users"></i>
-                                    <span> Kelola Data Admin </span>
+                                    <span> Kelola Data Koordinator </span>
                                 </a>
                             </li>
-
+                            @endif
+                            
+                            @if (auth()->user()->role == 'Admin')
                             <li>
                                 <a href="{{ url('/kelola_data_kepala_bagian') }}" class="waves-effect {{ request()->is('/kelola_data_kepala_bagian') ? 'active' : '' }}">
                                     <i class="fa fa-users"></i>
                                     <span> Kelola Data K. Bagian </span>
                                 </a>
                             </li>
+                            @endif
 
+                            @if (auth()->user()->role == 'Koordinator')
                             <li>
                                 <a href="{{ url('/kelola_data_petugas') }}" class="waves-effect {{ request()->is('/kelola_data_petugas') ? 'active' : '' }}">
                                     <i class="fa fa-users"></i>
-                                    <span> Kelola Petugas loket </span>
+                                    <span> Kelola Petugas </span>
                                 </a>
                             </li>
+                            @endif
 
+                            @if (auth()->user()->role == 'Admin')
                             <li>
                                 <a href="{{ url('/kelola_loket_pelayanan') }}" class="waves-effect {{ request()->is('/kelola_loket_pelayanan') ? 'active' : '' }}">
                                     <i class="fa fa-cog"></i>
-                                    <span> Kelola L. Pelayanan </span>
+                                    <span> Kelola Loket Pelayanan </span>
                                 </a>
                             </li>
+                            @endif
 
+                            @if (auth()->user()->role == 'Petugas')
                             <li class="has_sub">
                                 <a href="javascript:void(0);" class="waves-effect {{ request()->is('/javascript:void(0);') ? 'active' : '' }}"><i class="fa fa-desktop"></i> <span> Loket Antrian </span> <span class="float-right"><i class="mdi mdi-chevron-right"></i></span></a>
                                 <ul class="list-unstyled">
@@ -106,7 +114,9 @@
                                     <li class="{{ request()->is('/antrian_d') ? 'active' : '' }}"><a href="{{ url('/antrian_d') }}">Loket D</a></li>
                                 </ul>
                             </li>
+                            @endif
 
+                            @if (auth()->user()->role == 'Petugas')
                             <li class="has_sub">
                                 <a href="javascript:void(0);" class="waves-effect {{ request()->is('/javascript:void(0);') ? 'active' : '' }}"><i class="fa fa-desktop"></i> <span> Loket Pelayanan </span> <span class="float-right"><i class="mdi mdi-chevron-right"></i></span></a>
                                 <ul class="list-unstyled">
@@ -116,27 +126,34 @@
                                     <li class="{{ request()->is('/pelayanan_d') ? 'active' : '' }}"><a href="/pelayanan_d">Loket D</a></li>
                                 </ul>
                             </li>
+                            @endif
 
+                            @if (auth()->user()->role == 'Koordinator')
                             <li>
                                 <a href="{{ url('/kelola_lama_pelayanan') }}" class="waves-effect {{ request()->is('/kelola_lama_pelayanan') ? 'active' : '' }}">
                                     <i class="fa fa-clock-o"></i>
                                     <span> K. Lama Pelayanan </span>
                                 </a>
                             </li>
+                            @endif
 
+                            @if (auth()->user()->role == 'Kepala Bagian')
                             <li>
                                 <a href="{{ url('/multi_channel_single_phase') }}" class="waves-effect {{ request()->is('/multi_channel_single_phase') ? 'active' : '' }}">
                                     <i class="fa fa-gears (alias)"></i>
                                     <span> MCSP </span>
                                 </a>
                             </li>
+                            @endif                           
 
+                            @if (auth()->user()->role == 'Kepala Bagian')
                             <li>
                                 <a href="{{ url('/multi_channel_single_phase') }}" class="waves-effect {{ request()->is('/multi_channel_single_phase') ? 'active' : '' }}">
                                     <i class="fa fa-files-o"></i>
                                     <span> Laporan </span>
                                 </a>
                             </li>
+                            @endif                                                       
 
                         </ul>
                     </div>
@@ -159,9 +176,9 @@
                             <ul class="list-inline float-right mb-0">
                                 
                                 <li class="list-inline-item dropdown notification-list">
-                                    <a class="nav-link dropdown-toggle arrow-none waves-effect nav-user" data-toggle="dropdown" href="#" role="button"
+                                    <a style="color: white" class="nav-link dropdown-toggle arrow-none waves-effect nav-user" data-toggle="dropdown" href="#" role="button"
                                        aria-haspopup="false" aria-expanded="false">
-                                        <img src="{{asset('assets/images/logosintang.png')}}" alt="user" class="rounded-circle">
+                                      {{  auth()->user()->role }} &nbsp; <img src="{{asset('assets/images/logosintang.png')}}" alt="user" class="rounded-circle">
                                     </a>
                                     <div class="dropdown-menu dropdown-menu-right profile-dropdown ">
                                         <!-- item-->

@@ -53,7 +53,7 @@ class PetugasController extends Controller
         $user = new User;
         $user->name = $request->name;
         $user->username = $request->username;
-        $user->role = 'Kepala Bagian';
+        $user->role = 'Petugas';
         $user->email = $request->email;
         $user->password = bcrypt('rahasia');
         $user->save();
