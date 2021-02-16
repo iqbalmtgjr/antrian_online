@@ -38,7 +38,7 @@ class Antrian extends Model
 
     public function lamapelayanan()
     {
-        return $this->belongsTo(Lamapelayanan::class, 'id');
+        return $this->belongsTo(Lamapelayanan::class, 'lamapelayanan_id');
     }
 
     public function getCreatedAtAttribute()

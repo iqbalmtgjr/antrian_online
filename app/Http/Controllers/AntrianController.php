@@ -27,6 +27,12 @@ class AntrianController extends Controller
     {
         $data = Antrian::all();
         $data1 = Antrian::orderBy('no_antrian', 'DESC')->get();
+
+        // foreach ($data as $data) {
+        //     $data->lamapelayanan;
+        // }
+        $count = Antrian::all()->last();
+        $hitung = date(strtotime($count->waktu_akhir_antrian) - strtotime($count->lamapelayanan));
         return view('loket_antrian.antrian_a', compact('data', 'data1'));
     }
 
@@ -108,6 +114,11 @@ class AntrianController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
+
+    // public function hitung_antrian()
+    // {
+    //     ;
+    // }
 
     public function store(Request $request)
     {

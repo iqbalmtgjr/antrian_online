@@ -74,7 +74,8 @@
                                     @else
                                         <td>{{ 'A0' . $data->no_antrian }}</td>
                                     @endif
-                                    <td id="antri{{ $data->id }}"></td>
+                                    {{-- <td id="antri{{ $data->id }}"></td> --}}
+                                    <td>{{ $data->lamapelayanan->lamapelayanan }}</td>
 
                                 </tr>
                             </tbody>
