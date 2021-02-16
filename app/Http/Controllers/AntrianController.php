@@ -26,14 +26,12 @@ class AntrianController extends Controller
     public function antrian_a()
     {
         $data = Antrian::all();
-        $data1 = Antrian::orderBy('no_antrian', 'DESC')->get();
-
         // foreach ($data as $data) {
         //     $data->lamapelayanan;
         // }
-        $count = Antrian::all()->last();
-        $hitung = date(strtotime($count->waktu_akhir_antrian) - strtotime($count->lamapelayanan));
-        return view('loket_antrian.antrian_a', compact('data', 'data1'));
+        // $count = Antrian::all()->last();
+        // $hitung = date('H:i:s', strtotime($data->waktu_awal_antrian) + strtotime($data->lamapelayanan->lamapelayanan));
+        return view('loket_antrian.antrian_a', compact('data'));
     }
 
     public function reset_antrian_a()

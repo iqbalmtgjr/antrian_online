@@ -35,7 +35,7 @@
                                         <form action="{{ url('/antrian/lanjut') }}" method="post">
                                             @csrf
                                             <center>
-                                                @if ($data1->count() >= 9)
+                                                @if ($data->count() >= 9)
                                                     <h2>
                                                         A{{ App\Models\Antrian::all()->count() + 1 }}
 
@@ -49,7 +49,7 @@
                                     </div>
                                     <div class="modal-footer">
                                         <button type="button" class="btn btn-secondary" data-dismiss="modal">Tutup</button>
-                                        @if ($data1->count() < 1)
+                                        @if ($data->count() < 1)
                                             <button type="submit" id="selesai" class="btn btn-primary">Mulai</button>
                                         @else
                                             <button type="submit" id="selesai" class="btn btn-primary">Lanjut</button>
@@ -75,8 +75,12 @@
                                         <td>{{ 'A0' . $data->no_antrian }}</td>
                                     @endif
                                     {{-- <td id="antri{{ $data->id }}"></td> --}}
-                                    <td>{{ $data->lamapelayanan->lamapelayanan }}</td>
+                                    <td>
+                                        {{ 'Silahkan Datang Pada Pukul ' . date('H:i:s', strtotime($data->waktu_awal_antrian) + strtotime($data->lamapelayanan->lamapelayanan)) . ' wib' }}
 
+
+                                    </td>
+                                    {{-- <td>{{ date('H:i:s', strtotimme('+3 time')) }}</td> --}}
                                 </tr>
                             </tbody>
                         @endforeach
