@@ -25,7 +25,7 @@ class AntrianController extends Controller
 
     public function antrian_a()
     {
-        $data = Antrian::all();
+        $data = Antrian::where('id_pelayanan', 1)->get();
         // foreach ($data as $data) {
         //     $data->lamapelayanan;
         // }
@@ -34,9 +34,104 @@ class AntrianController extends Controller
         return view('loket_antrian.antrian_a', compact('data'));
     }
 
+    public function store_a(Request $request)
+    {
+        $antrii = Antrian::where('id_pelayanan', 1)->get();
+        $lama_pelayanan = Lamapelayanan::get()->first()->lamapelayanan;
+        // $lama_pelayanan = 180;
+        // $lama_pelayanan = strtotime($lama_pelayanan1);
+        $antri = $antrii->count() + 1;
+
+        // $timezone = "Asia/Jakarta";
+        $date = new DateTime('now');
+        $hari = $date->format('D');
+        $tanggal = $date->format('Y-m-d');
+        $localtime = $date->format('H:i:s');
+        // dd($localtime);
+        // $l_pelayanan = $lama_pelayanan->lamapelayanan;
+        $pelayanan = 1;
+        $lamapelayanan = 1;
+        // dd($localtime);
+        switch ($hari) {
+            case 'Sun':
+                $hari_ini = "Minggu";
+                break;
+
+            case 'Mon':
+                $hari_ini = "Senin";
+                break;
+
+            case 'Tue':
+                $hari_ini = "Selasa";
+                break;
+
+            case 'Wed':
+                $hari_ini = "Rabu";
+                break;
+
+            case 'Thu':
+                $hari_ini = "Kamis";
+                break;
+
+            case 'Fri':
+                $hari_ini = "Jumat";
+                break;
+
+            case 'Sat':
+                $hari_ini = "Sabtu";
+                break;
+
+            default:
+                $hari_ini = "Tidak di ketahui";
+                break;
+        }
+        if ($antrii->count() == 0) {
+            $antrian = Antrian::create([
+                'id_pelayanan' => $pelayanan,
+                'lamapelayanan_id' => $lamapelayanan,
+                'id_user' => auth()->user()->id,
+                'waktu_awal_antrian' => $localtime,
+                'tgl_antrian' => $tanggal,
+                'hari' => $hari_ini,
+                'no_antrian' => $antri,
+                'estimasi' => date('H:i:s', strtotime($localtime) + ($lama_pelayanan * 60))
+            ]);
+        } else {
+            $last = Antrian::where('id_pelayanan', 1)->get()->last();
+            // $waktu_awal_antrian = $last->waktu_awal_antrian;
+            $antrian = Antrian::create([
+                'id_pelayanan' => $pelayanan,
+                'lamapelayanan_id' => $lamapelayanan,
+                'id_user' => auth()->user()->id,
+                'waktu_awal_antrian' => $localtime,
+                'tgl_antrian' => $tanggal,
+                'hari' => $hari_ini,
+                'no_antrian' => $antri,
+                'estimasi' => date('H:i:s', strtotime($last->estimasi) + ($lama_pelayanan * 60))
+            ]);
+            $last = Antrian::where('id_pelayanan', 1)->get()->last();
+            $last_count = $last->no_antrian - 1;
+            $antriann = Antrian::where('no_antrian', $last_count)->first();
+            $waktu_awal = new DateTime($antriann->waktu_awal_antrian);
+            $waktu_akhir = new DateTime($antriann->waktu_akhir_antrian);
+            $hitung = $waktu_awal->diff($waktu_akhir);
+            $antriann->update([
+                'waktu_akhir_antrian' => $last->waktu_awal_antrian,
+                'lama_pelayanan' => $hitung->format('%H:%I:%S')
+            ]);
+            // dd($antriann);
+        }
+
+
+
+        // dd($antrian);
+
+        return redirect()->back()->with('sukses', 'Antrian Sudah Masuk !!!');
+    }
+
     public function reset_antrian_a()
     {
-        $antrian_all = Antrian::all();
+        $antrian_all = Antrian::where('id_pelayanan', 1)->get();
         foreach ($antrian_all as $all) {
             $laporan = Laporan::create([
                 'id_pelayanan' => $all->id_pelayanan,
@@ -58,22 +153,340 @@ class AntrianController extends Controller
 
     public function antrian_b()
     {
-        return view('loket_antrian.antrian_b');
+        $data = Antrian::where('id_pelayanan', 2)->get();
+        return view('loket_antrian.antrian_b', compact('data'));
+    }
+
+    public function store_b(Request $request)
+    {
+        $antrii = Antrian::where('id_pelayanan', 2)->get();
+        $lama_pelayanan = Lamapelayanan::get()->first()->lamapelayanan;
+        $antri = $antrii->count() + 1;
+
+        $date = new DateTime('now');
+        $hari = $date->format('D');
+        $tanggal = $date->format('Y-m-d');
+        $localtime = $date->format('H:i:s');
+        $pelayanan = 2;
+        $lamapelayanan = 1;
+        switch ($hari) {
+            case 'Sun':
+                $hari_ini = "Minggu";
+                break;
+
+            case 'Mon':
+                $hari_ini = "Senin";
+                break;
+
+            case 'Tue':
+                $hari_ini = "Selasa";
+                break;
+
+            case 'Wed':
+                $hari_ini = "Rabu";
+                break;
+
+            case 'Thu':
+                $hari_ini = "Kamis";
+                break;
+
+            case 'Fri':
+                $hari_ini = "Jumat";
+                break;
+
+            case 'Sat':
+                $hari_ini = "Sabtu";
+                break;
+
+            default:
+                $hari_ini = "Tidak di ketahui";
+                break;
+        }
+        if ($antrii->count() == 0) {
+            $antrian = Antrian::create([
+                'id_pelayanan' => $pelayanan,
+                'lamapelayanan_id' => $lamapelayanan,
+                'id_user' => auth()->user()->id,
+                'waktu_awal_antrian' => $localtime,
+                'tgl_antrian' => $tanggal,
+                'hari' => $hari_ini,
+                'no_antrian' => $antri,
+                'estimasi' => date('H:i:s', strtotime($localtime) + ($lama_pelayanan * 60))
+            ]);
+        } else {
+            $last = Antrian::where('id_pelayanan', 2)->get()->last();
+            $antrian = Antrian::create([
+                'id_pelayanan' => $pelayanan,
+                'lamapelayanan_id' => $lamapelayanan,
+                'id_user' => auth()->user()->id,
+                'waktu_awal_antrian' => $localtime,
+                'tgl_antrian' => $tanggal,
+                'hari' => $hari_ini,
+                'no_antrian' => $antri,
+                'estimasi' => date('H:i:s', strtotime($last->estimasi) + ($lama_pelayanan * 60))
+            ]);
+            $last = Antrian::where('id_pelayanan', 2)->get()->last();
+            $last_count = $last->no_antrian - 1;
+            $antriann = Antrian::where('no_antrian', $last_count)->where('id_pelayanan', 2)->first();
+            $waktu_awal = new DateTime($antriann->waktu_awal_antrian);
+            $waktu_akhir = new DateTime($antriann->waktu_akhir_antrian);
+            $hitung = $waktu_awal->diff($waktu_akhir);
+            $antriann->update([
+                'waktu_akhir_antrian' => $last->waktu_awal_antrian,
+                'lama_pelayanan' => $hitung->format('%H:%I:%S')
+            ]);
+        }
+
+        return redirect()->back()->with('sukses', 'Antrian Sudah Masuk !!!');
+    }
+
+    public function reset_antrian_b()
+    {
+        $antrian_all = Antrian::where('id_pelayanan', 2)->get();
+        foreach ($antrian_all as $all) {
+            $laporan = Laporan::create([
+                'id_pelayanan' => $all->id_pelayanan,
+                'id_user' => $all->id_user,
+                'no_antrian' => $all->no_antrian,
+                'hari' => $all->hari,
+                'tgl_antrian' => $all->tgl_antrian,
+                'waktu_awal_antrian' => $all->waktu_awal_antrian,
+                'waktu_akhir_antrian' => $all->waktu_akhir_antrian,
+                'lama_pelayanan' => $all->lama_pelayanan,
+                'estimasi' => $all->estimasi
+            ]);
+        }
+        $antrian = Antrian::where('id_pelayanan', 2);
+        $antrian->delete();
+
+        return redirect()->back()->with('sukses', 'Antrian Berhasil Direset !!!');
     }
 
     public function antrian_c()
     {
-        return view('loket_antrian.antrian_c');
+        $data = Antrian::where('id_pelayanan', 3)->get();
+        return view('loket_antrian.antrian_c', compact('data'));
     }
 
+    public function store_c(Request $request)
+    {
+        $antrii = Antrian::where('id_pelayanan', 3)->get();
+        $lama_pelayanan = Lamapelayanan::get()->first()->lamapelayanan;
+        $antri = $antrii->count() + 1;
+
+        $date = new DateTime('now');
+        $hari = $date->format('D');
+        $tanggal = $date->format('Y-m-d');
+        $localtime = $date->format('H:i:s');
+        $pelayanan = 3;
+        $lamapelayanan = 1;
+        switch ($hari) {
+            case 'Sun':
+                $hari_ini = "Minggu";
+                break;
+
+            case 'Mon':
+                $hari_ini = "Senin";
+                break;
+
+            case 'Tue':
+                $hari_ini = "Selasa";
+                break;
+
+            case 'Wed':
+                $hari_ini = "Rabu";
+                break;
+
+            case 'Thu':
+                $hari_ini = "Kamis";
+                break;
+
+            case 'Fri':
+                $hari_ini = "Jumat";
+                break;
+
+            case 'Sat':
+                $hari_ini = "Sabtu";
+                break;
+
+            default:
+                $hari_ini = "Tidak di ketahui";
+                break;
+        }
+        if ($antrii->count() == 0) {
+            $antrian = Antrian::create([
+                'id_pelayanan' => $pelayanan,
+                'lamapelayanan_id' => $lamapelayanan,
+                'id_user' => auth()->user()->id,
+                'waktu_awal_antrian' => $localtime,
+                'tgl_antrian' => $tanggal,
+                'hari' => $hari_ini,
+                'no_antrian' => $antri,
+                'estimasi' => date('H:i:s', strtotime($localtime) + ($lama_pelayanan * 60))
+            ]);
+        } else {
+            $last = Antrian::where('id_pelayanan', 3)->get()->last();
+            $antrian = Antrian::create([
+                'id_pelayanan' => $pelayanan,
+                'lamapelayanan_id' => $lamapelayanan,
+                'id_user' => auth()->user()->id,
+                'waktu_awal_antrian' => $localtime,
+                'tgl_antrian' => $tanggal,
+                'hari' => $hari_ini,
+                'no_antrian' => $antri,
+                'estimasi' => date('H:i:s', strtotime($last->estimasi) + ($lama_pelayanan * 60))
+            ]);
+            $last = Antrian::where('id_pelayanan', 3)->get()->last();
+            $last_count = $last->no_antrian - 1;
+            $antriann = Antrian::where('no_antrian', $last_count)->where('id_pelayanan', 3)->first();
+            $waktu_awal = new DateTime($antriann->waktu_awal_antrian);
+            $waktu_akhir = new DateTime($antriann->waktu_akhir_antrian);
+            $hitung = $waktu_awal->diff($waktu_akhir);
+            $antriann->update([
+                'waktu_akhir_antrian' => $last->waktu_awal_antrian,
+                'lama_pelayanan' => $hitung->format('%H:%I:%S')
+            ]);
+        }
+
+        return redirect()->back()->with('sukses', 'Antrian Sudah Masuk !!!');
+    }
+
+    public function reset_antrian_c()
+    {
+        $antrian_all = Antrian::where('id_pelayanan', 3)->get();
+        foreach ($antrian_all as $all) {
+            $laporan = Laporan::create([
+                'id_pelayanan' => $all->id_pelayanan,
+                'id_user' => $all->id_user,
+                'no_antrian' => $all->no_antrian,
+                'hari' => $all->hari,
+                'tgl_antrian' => $all->tgl_antrian,
+                'waktu_awal_antrian' => $all->waktu_awal_antrian,
+                'waktu_akhir_antrian' => $all->waktu_akhir_antrian,
+                'lama_pelayanan' => $all->lama_pelayanan,
+                'estimasi' => $all->estimasi
+            ]);
+        }
+        $antrian = Antrian::where('id_pelayanan', 3);
+        $antrian->delete();
+
+        return redirect()->back()->with('sukses', 'Antrian Berhasil Direset !!!');
+    }
     public function antrian_d()
     {
-        return view('loket_antrian.antrian_d');
+        $data = Antrian::where('id_pelayanan', 4)->get();
+        return view('loket_antrian.antrian_d', compact('data'));
+    }
+
+    public function store_d(Request $request)
+    {
+        $antrii = Antrian::where('id_pelayanan', 4)->get();
+        $lama_pelayanan = Lamapelayanan::get()->first()->lamapelayanan;
+        $antri = $antrii->count() + 1;
+
+        $date = new DateTime('now');
+        $hari = $date->format('D');
+        $tanggal = $date->format('Y-m-d');
+        $localtime = $date->format('H:i:s');
+        $pelayanan = 4;
+        $lamapelayanan = 1;
+        switch ($hari) {
+            case 'Sun':
+                $hari_ini = "Minggu";
+                break;
+
+            case 'Mon':
+                $hari_ini = "Senin";
+                break;
+
+            case 'Tue':
+                $hari_ini = "Selasa";
+                break;
+
+            case 'Wed':
+                $hari_ini = "Rabu";
+                break;
+
+            case 'Thu':
+                $hari_ini = "Kamis";
+                break;
+
+            case 'Fri':
+                $hari_ini = "Jumat";
+                break;
+
+            case 'Sat':
+                $hari_ini = "Sabtu";
+                break;
+
+            default:
+                $hari_ini = "Tidak di ketahui";
+                break;
+        }
+        if ($antrii->count() == 0) {
+            $antrian = Antrian::create([
+                'id_pelayanan' => $pelayanan,
+                'lamapelayanan_id' => $lamapelayanan,
+                'id_user' => auth()->user()->id,
+                'waktu_awal_antrian' => $localtime,
+                'tgl_antrian' => $tanggal,
+                'hari' => $hari_ini,
+                'no_antrian' => $antri,
+                'estimasi' => date('H:i:s', strtotime($localtime) + ($lama_pelayanan * 60))
+            ]);
+        } else {
+            $last = Antrian::where('id_pelayanan', 4)->get()->last();
+            $antrian = Antrian::create([
+                'id_pelayanan' => $pelayanan,
+                'lamapelayanan_id' => $lamapelayanan,
+                'id_user' => auth()->user()->id,
+                'waktu_awal_antrian' => $localtime,
+                'tgl_antrian' => $tanggal,
+                'hari' => $hari_ini,
+                'no_antrian' => $antri,
+                'estimasi' => date('H:i:s', strtotime($last->estimasi) + ($lama_pelayanan * 60))
+            ]);
+            $last = Antrian::where('id_pelayanan', 4)->get()->last();
+            $last_count = $last->no_antrian - 1;
+            $antriann = Antrian::where('no_antrian', $last_count)->where('id_pelayanan', 4)->first();
+            $waktu_awal = new DateTime($antriann->waktu_awal_antrian);
+            $waktu_akhir = new DateTime($antriann->waktu_akhir_antrian);
+            $hitung = $waktu_awal->diff($waktu_akhir);
+            $antriann->update([
+                'waktu_akhir_antrian' => $last->waktu_awal_antrian,
+                'lama_pelayanan' => $hitung->format('%H:%I:%S')
+            ]);
+        }
+
+        return redirect()->back()->with('sukses', 'Antrian Sudah Masuk !!!');
+    }
+
+    public function reset_antrian_d()
+    {
+        $antrian_all = Antrian::where('id_pelayanan', 4)->get();
+        foreach ($antrian_all as $all) {
+            $laporan = Laporan::create([
+                'id_pelayanan' => $all->id_pelayanan,
+                'id_user' => $all->id_user,
+                'no_antrian' => $all->no_antrian,
+                'hari' => $all->hari,
+                'tgl_antrian' => $all->tgl_antrian,
+                'waktu_awal_antrian' => $all->waktu_awal_antrian,
+                'waktu_akhir_antrian' => $all->waktu_akhir_antrian,
+                'lama_pelayanan' => $all->lama_pelayanan,
+                'estimasi' => $all->estimasi
+            ]);
+        }
+        $antrian = Antrian::where('id_pelayanan', 4);
+        $antrian->delete();
+
+        return redirect()->back()->with('sukses', 'Antrian Berhasil Direset !!!');
     }
 
     public function pelayanan_a()
     {
-        return view('loket_pelayanan.pelayanan_a');
+        $data = Antrian::where('id_pelayanan', 1)->get();
+        return view('loket_pelayanan.pelayanan_a', compact('data'));
     }
 
     public function pelayanan_b()
@@ -118,89 +531,9 @@ class AntrianController extends Controller
     //     ;
     // }
 
-    public function store(Request $request)
-    {
-        $antrii = Antrian::all();
-        $antri = $antrii->count() + 1;
-
-        $timezone = "Asia/Jakarta";
-        $date = new DateTime('now', new DateTimeZone($timezone));
-        $hari = $date->format('D');
-        $tanggal = $date->format('Y-m-d');
-        $localtime = $date->format('H:i:s');
-        $pelayanan = 1;
-        $lamapelayanan = 1;
-        // dd($pelayanan);
-        switch ($hari) {
-            case 'Sun':
-                $hari_ini = "Minggu";
-                break;
-
-            case 'Mon':
-                $hari_ini = "Senin";
-                break;
-
-            case 'Tue':
-                $hari_ini = "Selasa";
-                break;
-
-            case 'Wed':
-                $hari_ini = "Rabu";
-                break;
-
-            case 'Thu':
-                $hari_ini = "Kamis";
-                break;
-
-            case 'Fri':
-                $hari_ini = "Jumat";
-                break;
-
-            case 'Sat':
-                $hari_ini = "Sabtu";
-                break;
-
-            default:
-                $hari_ini = "Tidak di ketahui";
-                break;
-        }
-        if ($antrii->count() == 0) {
-            $antrian = Antrian::create([
-                'id_pelayanan' => $pelayanan,
-                'lamapelayanan_id' => $lamapelayanan,
-                'id_user' => auth()->user()->id,
-                'waktu_awal_antrian' => $localtime,
-                'tgl_antrian' => $tanggal,
-                'hari' => $hari_ini,
-                'no_antrian' => $antri,
-            ]);
-        } else {
-            $antrian = Antrian::create([
-                'id_pelayanan' => $pelayanan,
-                'lamapelayanan_id' => $lamapelayanan,
-                'id_user' => auth()->user()->id,
-                'waktu_awal_antrian' => $localtime,
-                'tgl_antrian' => $tanggal,
-                'hari' => $hari_ini,
-                'no_antrian' => $antri,
-            ]);
-            $last = Antrian::get()->last();
-            $last_count = $last->no_antrian - 1;
-            $antriann = Antrian::where('no_antrian', $last_count)->first();
-            $antriann->update([
-                'lama_pelayanan' => date(strtotime($antriann->waktu_akhir_antrian) - strtotime($antriann->waktu_awal_antrian)),
-                'waktu_akhir_antrian' => $last->waktu_awal_antrian
-            ]);
-
-            // dd($antriann);
-        }
 
 
 
-        // dd($antrian);
-
-        return redirect()->back()->with('sukses', 'Antrian Sudah Masuk !!!');
-    }
 
     /**
      * Display the specified resource.

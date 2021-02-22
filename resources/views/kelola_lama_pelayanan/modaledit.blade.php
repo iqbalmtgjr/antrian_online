@@ -13,8 +13,9 @@
                         <input type="hidden" class="form-control" id="url_getdata" name="url_getdata"
                             value="{{ url('getdata_lamapelayanan/') }}" readonly>
                         <label for="recipient-name" class="col-form-label">Lama Pelayanan</label>
-                        <input type="time" class="form-control" id="lamapelayanann" name="lamapelayanan"
+                        <input type="number" class="form-control" id="lamapelayanann" name="lamapelayanan"
                             value="{{ old('lamapelayanan') }}">
+                        <p style="font-size: 13px">*Dalam Menit</p>
                         @error('lamapelayanan')
                             <div class="text-danger ml-3 mt-2">
                                 {{ $message }}

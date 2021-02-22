@@ -30,7 +30,7 @@
                             @foreach ($data as $data)
                                 <tr>
                                     <td>{{ $loop->iteration }}</td>
-                                    <td>{{ $data->lamapelayanan }}</td>
+                                    <td>{{ $data->lamapelayanan }} Menit</td>
                                     <td>
                                         <a href="#" onclick="getdata({{ $data->id }})" data-toggle="modal"
                                             data-target="#edit" class="btn btn-success btn-md"> <span

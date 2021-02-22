@@ -32,17 +32,17 @@
                                         </button>
                                     </div>
                                     <div class="modal-body">
-                                        <form action="{{ url('/antrian/lanjut') }}" method="post">
+                                        <form action="{{ url('/antrian/lanjut/a') }}" method="post">
                                             @csrf
                                             <center>
                                                 @if ($data->count() >= 9)
                                                     <h2>
-                                                        A{{ App\Models\Antrian::all()->count() + 1 }}
+                                                        A{{ App\Models\Antrian::where('id_pelayanan', 1)->count() + 1 }}
 
                                                     </h2>
                                                 @else
                                                     <h2>
-                                                        A0{{ App\Models\Antrian::all()->count() + 1 }}
+                                                        A0{{ App\Models\Antrian::where('id_pelayanan', 1)->count() + 1 }}
                                                     </h2>
                                                 @endif
                                             </center>
@@ -76,7 +76,12 @@
                                     @endif
                                     {{-- <td id="antri{{ $data->id }}"></td> --}}
                                     <td>
-                                        {{ 'Silahkan Datang Pada Pukul ' . date('H:i:s', strtotime($data->waktu_awal_antrian) + strtotime($data->lamapelayanan->lamapelayanan)) . ' wib' }}
+                                        @if ($data->no_antrian == 1)
+                                            Sedang Dalam Pelayanan
+                                        @else
+                                            {{ 'Akan Dilayani Pada Pukul ' . $data->estimasi . ' Wib' }}
+
+                                        @endif
 
 
                                     </td>
@@ -117,7 +122,7 @@
                 .then((result) => {
                     console.log(result);
                     if (result.value) {
-                        window.location = "{{ url('/antrian/reset ') }}";
+                        window.location = "{{ url('/antrian/reset/a ') }}";
                     }
                 });
 

@@ -62,12 +62,19 @@ Route::group(['middleware' => ['auth', 'checkRole:Koordinator']], function () {
 
 Route::group(['middleware' => ['auth', 'checkRole:Petugas']], function () {
     Route::get('/antrian_a', [AntrianController::class, 'antrian_a']);
-    Route::post('/antrian/lanjut', [AntrianController::class, 'store']);
-    Route::get('/antrian/reset', [AntrianController::class, 'reset_antrian_a']);
+    Route::post('/antrian/lanjut/a', [AntrianController::class, 'store_a']);
+    Route::get('/antrian/reset/a', [AntrianController::class, 'reset_antrian_a']);
     Route::get('/antrian_b', [AntrianController::class, 'antrian_b']);
+    Route::post('/antrian/lanjut/b', [AntrianController::class, 'store_b']);
+    Route::get('/antrian/reset/b', [AntrianController::class, 'reset_antrian_b']);
     Route::get('/antrian_c', [AntrianController::class, 'antrian_c']);
+    Route::post('/antrian/lanjut/c', [AntrianController::class, 'store_c']);
+    Route::get('/antrian/reset/c', [AntrianController::class, 'reset_antrian_c']);
     Route::get('/antrian_d', [AntrianController::class, 'antrian_d']);
+    Route::post('/antrian/lanjut/d', [AntrianController::class, 'store_d']);
+    Route::get('/antrian/reset/d', [AntrianController::class, 'reset_antrian_d']);
     Route::get('/pelayanan_a', [AntrianController::class, 'pelayanan_a']);
+    Route::post('/pelayanan/lanjut/a', [AntrianController::class, 'store_pelayanan_a']);
     Route::get('/pelayanan_b', [AntrianController::class, 'pelayanan_b']);
     Route::get('/pelayanan_c', [AntrianController::class, 'pelayanan_c']);
     Route::get('/pelayanan_d', [AntrianController::class, 'pelayanan_d']);

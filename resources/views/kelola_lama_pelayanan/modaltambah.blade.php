@@ -10,7 +10,7 @@
                     {{ csrf_field() }}
                     <div class="form-group">
                         <label for="recipient-name" class="col-form-label">Lama Pelayanan</label>
-                        <input type="time" class="form-control" id="lamapelayanan" name="lamapelayanan"
+                        <input type="number" class="form-control" id="lamapelayanan" name="lamapelayanan"
                             value="{{ old('lamapelayanan') }}">
                         @error('lamapelayanan')
                             <div class="text-danger ml-3 mt-2">
