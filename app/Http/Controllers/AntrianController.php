@@ -489,6 +489,12 @@ class AntrianController extends Controller
         return view('loket_pelayanan.pelayanan_a', compact('data'));
     }
 
+    public function store_pelayanan_a(Request $request)
+    {
+        $antrian = Antrian::where('id_pelayanan', 1)->where('no_antrian', $request)->first();
+        $antrian->delete();
+    }
+
     public function pelayanan_b()
     {
         return view('loket_pelayanan.pelayanan_b');

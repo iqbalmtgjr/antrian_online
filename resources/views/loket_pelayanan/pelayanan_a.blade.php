@@ -37,12 +37,12 @@
                                             <center>
                                                 @if ($data->count() >= 9)
                                                     <h2>
-                                                        A{{ App\Models\Antrian::where('id_pelayanan', 1)->count() + 1 }}
+                                                        A{{ App\Models\Antrian::where('id_pelayanan', 1)->first()->no_antrian + 1 }}
 
                                                     </h2>
                                                 @else
                                                     <h2>
-                                                        A0{{ App\Models\Antrian::where('id_pelayanan', 1)->count() + 1 }}
+                                                        A0{{ App\Models\Antrian::where('id_pelayanan', 1)->first()->no_antrian + 1 }}
                                                     </h2>
                                                 @endif
                                             </center>
