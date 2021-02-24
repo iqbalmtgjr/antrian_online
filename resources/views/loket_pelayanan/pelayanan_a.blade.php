@@ -82,12 +82,11 @@
                                     @endif
                                     {{-- <td id="antri{{ $data->id }}"></td> --}}
                                     <td>
-                                        {{-- @if ($data->first()->waktu_awal_antrian <= $data->first()->estimasi) --}}
-                                        {{-- Sedang Dalam Pelayanan --}}
-                                        {{-- @else --}}
+                                        @if ($data->estimasi <= $localtime)
+                                        Sedang Dalam Pelayanan
+                                        @else
                                         {{ 'Akan Dilayani Pada Pukul ' . $data->estimasi . ' Wib' }}
-                                        {{-- {{ $localtime }} --}}
-                                        {{-- @endif --}}
+                                        @endif
                                     </td>
                                 </tr>
                             </tbody>

@@ -5,6 +5,10 @@
         <div class="col-sm-12">
             <div class="page-title-box">
                 <h4 class="page-title">Loket Pelayanan D</h4>
+                <form action="">
+                    <div class="form-group"></div>
+                </form>
+
             </div>
         </div>
     </div>
@@ -13,10 +17,54 @@
             <div class="card m-b-30">
                 <div class="card-body">
                     <table id="datatable" class="table table-striped">
-                        <a href="" class="btn btn-primary btn-md m-l-15 m-b-15" data-toggle="modal" data-target="#tambah"><i
-                                class="mdi mdi-skip-next-circle"></i>
+                        <a href="#" class="btn btn-primary btn-md m-l-15 m-b-15" data-toggle="modal"
+                            data-target="#mulai_lanjut"><i class="mdi mdi-skip-next-circle"></i>
                             Mulai/Lanjut</a>
-                        {{-- @include('kelola_data_admin/modaltambah') --}}
+                        <!-- Modal -->
+                        <div class="modal fade" id="mulai_lanjut" tabindex="-1" role="dialog"
+                            aria-labelledby="exampleModalLabel" aria-hidden="true">
+                            <div class="modal-dialog" role="document">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <h5 class="modal-title" id="exampleModalLabel">Pelayanan Loket D</h5>
+                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                            <span aria-hidden="true">&times;</span>
+                                        </button>
+                                    </div>
+                                    <div class="modal-body">
+                                        <form action="{{ url('/pelayanan/lanjut/d') }}" method="post">
+                                            @csrf
+                                            <center>
+                                                @if ($data->count() >= 9)
+                                                    <h2>
+                                                        B{{ App\Models\Antrian::where('id_pelayanan', 4)->first()->no_antrian + 1 }}
+
+                                                    </h2>
+                                                @else
+                                                    <h2>
+                                                        @if (App\Models\Antrian::where('id_pelayanan', 4)
+            ->get()
+            ->count() <= 1)
+                                                            B0{{ $data->count() + 1 }}
+                                                        @else
+                                                            B0{{ App\Models\Antrian::where('id_pelayanan', 4)->first()->no_antrian + 1 }}
+                                                        @endif
+                                                    </h2>
+                                                @endif
+                                            </center>
+                                    </div>
+                                    <div class="modal-footer">
+                                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Tutup</button>
+                                        @if ($data->count() < 1)
+                                            <button type="submit" id="selesai" class="btn btn-primary">Mulai</button>
+                                        @else
+                                            <button type="submit" id="selesai" class="btn btn-primary">Lanjut</button>
+                                        @endif
+                                        </form>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
                         <thead>
                             <tr>
                                 <th>No Antrian</th>
@@ -24,75 +72,29 @@
                             </tr>
                         </thead>
 
-
-                        <tbody>
-                            {{-- @foreach ($data as $data)
+                        @foreach ($data as $data)
+                            <tbody>
                                 <tr>
-                                    <td>{{ $loop->iteration }}</td>
-                                    <td>{{ $data->NIP }}</td>
-                                    <td>{{ $data->name }}</td>
-                                    <td>{{ $data->username }}</td>
-                                    <td>{{ $data->user->email }}</td>
+                                    @if ($data->no_antrian >= 10)
+                                        <td>{{ 'D' . $data->no_antrian }}</td>
+                                    @else
+                                        <td>{{ 'D0' . $data->no_antrian }}</td>
+                                    @endif
+                                    {{-- <td id="antri{{ $data->id }}"></td> --}}
                                     <td>
-                                        <a href="#" id="{{ $data->user->id }}" NIP="{{ $data->NIP }}"
-                                            class="btn btn-success btn-md resetpassword"><span class="fa fa-key"></span>
-                                            Reset
-                                            Password</a>
-                                        <a href="#" class="btn btn-danger btn-md delete" NIP="{{ $data->NIP }}"
-                                            id="{{ $data->user->id }}"><span class="fa fa-trash"></span> Hapus</a>
+                                        @if ($data->estimasi <= $localtime)
+                                        Sedang Dalam Pelayanan
+                                        @else
+                                        {{ 'Akan Dilayani Pada Pukul ' . $data->estimasi . ' Wib' }}
+                                        {{-- {{ $localtime }} --}}
+                                        @endif
                                     </td>
                                 </tr>
-                            @endforeach --}}
-                        </tbody>
+                            </tbody>
+                        @endforeach
                     </table>
-
                 </div>
             </div>
         </div>
     </div>
 @endsection
-{{-- @section('footer')
-
-    <script>
-        $('.delete').click(function() {
-            var Id = $(this).attr('id');
-            var NIP = $(this).attr('NIP');
-            Swal.fire({
-                    title: 'Yakin?',
-                    text: "Mau Hapus Data Dengan NIP " + NIP + "?",
-                    icon: 'warning',
-                    showCancelButton: true,
-                    confirmButtonColor: '#3085d6',
-                    cancelButtonColor: '#d33',
-                    confirmButtonText: 'Ya',
-                })
-                .then((result) => {
-                    console.log(result);
-                    if (result.value) {
-                        window.location = "/admin/hapus/" + Id + "";
-                    }
-                });
-        });
-
-        $('.resetpassword').click(function() {
-            var Id = $(this).attr('id');
-            var NIP = $(this).attr('NIP');
-            Swal.fire({
-                    title: 'Yakin?',
-                    text: "Mau Reset Password Admin Dengan NIP " + NIP + "?",
-                    icon: 'warning',
-                    showCancelButton: true,
-                    confirmButtonColor: '#3085d6',
-                    cancelButtonColor: '#d33',
-                    confirmButtonText: 'Ya',
-                })
-                .then((result) => {
-                    console.log(result);
-                    if (result.value) {
-                        window.location = "/resetpassword/admin/" + Id + "";
-                    }
-                });
-        });
-
-    </script>
-@endsection --}}

@@ -82,11 +82,10 @@
                                     @endif
                                     {{-- <td id="antri{{ $data->id }}"></td> --}}
                                     <td>
-                                        @if ($data->no_antrian == 1)
+                                        @if ($data->estimasi <= $localtime)
                                             Sedang Dalam Pelayanan
                                         @else
                                             {{ 'Akan Dilayani Pada Pukul ' . $data->estimasi . ' Wib' }}
-
                                         @endif
                                     </td>
                                 </tr>

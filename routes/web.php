@@ -76,8 +76,11 @@ Route::group(['middleware' => ['auth', 'checkRole:Petugas']], function () {
     Route::get('/pelayanan_a', [AntrianController::class, 'pelayanan_a']);
     Route::post('/pelayanan/lanjut/a', [AntrianController::class, 'store_pelayanan_a']);
     Route::get('/pelayanan_b', [AntrianController::class, 'pelayanan_b']);
+    Route::post('/pelayanan/lanjut/b', [AntrianController::class, 'store_pelayanan_b']);
     Route::get('/pelayanan_c', [AntrianController::class, 'pelayanan_c']);
+    Route::post('/pelayanan/lanjut/c', [AntrianController::class, 'store_pelayanan_c']);
     Route::get('/pelayanan_d', [AntrianController::class, 'pelayanan_d']);
+    Route::post('/pelayanan/lanjut/d', [AntrianController::class, 'store_pelayanan_d']);
     Route::get('/getdata', [AntrianController::class, 'getdata'])->name('get.data.antrian');
 });
 
