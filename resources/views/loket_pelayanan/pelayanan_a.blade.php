@@ -42,11 +42,13 @@
                                                     </h2>
                                                 @else
                                                     <h2>
-                                                    @if (App\Models\Antrian::where('id_pelayanan', 1)->get()->count() <= 1)
-                                                        A0{{$data->count() + 1}}
-                                                    @else
-                                                        A0{{ App\Models\Antrian::where('id_pelayanan', 1)->first()->no_antrian + 1 }}
-                                                    @endif
+                                                        @if (App\Models\Antrian::where('id_pelayanan', 1)
+            ->get()
+            ->count() <= 1)
+                                                            A0{{ $data->count() + 1 }}
+                                                        @else
+                                                            A0{{ App\Models\Antrian::where('id_pelayanan', 1)->first()->no_antrian + 1 }}
+                                                        @endif
                                                     </h2>
                                                 @endif
                                             </center>
@@ -80,163 +82,19 @@
                                     @endif
                                     {{-- <td id="antri{{ $data->id }}"></td> --}}
                                     <td>
-                                        @if ($data->no_antrian == 1)
-                                            Sedang Dalam Pelayanan
-                                        @else
-                                            {{ 'Akan Dilayani Pada Pukul ' . $data->estimasi . ' Wib' }}
-                                        @endif
-
-
+                                        {{-- @if ($data->first()->waktu_awal_antrian <= $data->first()->estimasi) --}}
+                                        {{-- Sedang Dalam Pelayanan --}}
+                                        {{-- @else --}}
+                                        {{ 'Akan Dilayani Pada Pukul ' . $data->estimasi . ' Wib' }}
+                                        {{-- {{ $localtime }} --}}
+                                        {{-- @endif --}}
                                     </td>
-                                    {{-- <td>{{ date('H:i:s', strtotimme('+3 time')) }}</td> --}}
                                 </tr>
                             </tbody>
                         @endforeach
                     </table>
-                    <div class="row mt-2">
-                        {{-- <div class="col-md-4"></div> --}}
-                        {{-- <div class="col-md-4"></div> --}}
-                        {{-- <div class="col-md-4">
-                            <a href="#" class="btn btn-success btn-md m-l-15 m-b-15 reset"><i class="mdi mdi-reload"></i>
-                                Reset Antrian</a>
-                            <a href="#" id="tombol" class="btn btn-danger btn-md m-l-15 m-b-15 stop"><i
-                                    class="fa fa-times-circle"></i>
-                                Hentikan Antrian</a>
-                        </div> --}}
-
-                    </div>
                 </div>
             </div>
         </div>
     </div>
-@endsection
-@section('footer')
-    <script type="text/javascript">
-        $('.reset').click(function() {
-            Swal.fire({
-                    title: 'Yakin?',
-                    text: "Mau Reset Antrian ?",
-                    icon: 'warning',
-                    showCancelButton: true,
-                    confirmButtonColor: '#3085d6',
-                    cancelButtonColor: '#d33',
-                    confirmButtonText: 'Ya',
-                })
-                .then((result) => {
-                    console.log(result);
-                    if (result.value) {
-                        window.location = "{{ url('/antrian/reset/a ') }}";
-                    }
-                });
-
-        });
-
-        $('.stop').click(function() {
-            Swal.fire({
-                    title: 'Yakin?',
-                    text: "Mau Menghentikan Antrian ?",
-                    icon: 'warning',
-                    showCancelButton: true,
-                    confirmButtonColor: '#3085d6',
-                    cancelButtonColor: '#d33',
-                    confirmButtonText: 'Ya',
-                })
-                .then((result) => {
-                    console.log(result);
-                    if (result.value) {
-                        window.location = "#tombol";
-                    }
-                });
-        });
-
-        $.ajax({
-            url: "{{ url('/getdata') }}",
-            cache: false,
-            success: function(response) {
-                console.log(response.antrian);
-                console.log(response.lamapelayanan);
-                const first = response.antrian[0];
-                const last = response.antrian[response.antrian.length - 1];
-                const created_at = last.created_at;
-                const time = response.lamapelayanan;
-                // console.log(response.lamapelayanan);
-                // console.log(first);
-
-                console.log(created_at);
-                $.each(response.antrian, function(i, item) {
-                    // $('#isi' + item.id).html(item.id)
-                    // const jk = item.antrian;
-                    // console.log(jk);
-                    // const hm = item.length;
-                    // if (i != null) {
-                    const tigamenit = new Date().getTime() + 180000 * i;
-                    console.log(tigamenit)
-                    // } else {
-
-                    // const tigamenit = created_at + time;
-                    console.log(tigamenit);
-                    // }
-                    // console.log(tigamenit);
-                    // const antrii = item;
-                    // console.log(antrii);
-                    const hitungMundur = setInterval(function() {
-                        const sekarang = new Date().getTime();
-                        const selisih = tigamenit - sekarang;
-
-                        const hari = Math.floor(selisih / (1000 * 60 * 60 * 24));
-                        const jam = Math.floor((selisih % (1000 * 60 * 60 * 24)) / (1000 * 60 *
-                            60));
-                        const menit = Math.floor((selisih % (1000 * 60 * 60)) / (1000 * 60));
-                        const detik = Math.floor((selisih % (1000 * 60)) / 1000);
-
-                        const antri = document.getElementById("antri" + item.id);
-                        if (menit > 9) {
-                            antri.innerText = "0" +
-                                jam +
-                                ":" +
-                                menit +
-                                ":" +
-                                detik +
-                                " detik lagi";
-                        } else {
-                            antri.innerText = "0" +
-                                jam +
-                                ":0" +
-                                menit +
-                                ":" +
-                                detik +
-                                " detik lagi";
-                        }
-
-                        if (selisih < 0) {
-                            clearInterval(hitungMundur);
-                            antri.innerText = "Sedang Dalam Pelayanan";
-                        } else if (i == 0) {
-                            antri.innerText = "Sedang Dalam Pelayanan";
-                        }
-                        const selesai = document.getElementById("selesai");
-                        tombol.addEventListener("click", function() {
-                            clearInterval(hitungMundur);
-                            teks.innerText = "Anda Selesai";
-                            console.log('berhenti');
-                        });
-
-                    }, 1000);
-                    const tombol = document.getElementById("tombol");
-                    tombol.addEventListener("click",
-                        function() {
-                            clearInterval(hitungMundur);
-                            teks.innerText = "Berhenti";
-                            console.log('berhenti');
-                        });
-                });
-
-
-
-            }
-        });
-
-    </script>
-
-
 @endsection
