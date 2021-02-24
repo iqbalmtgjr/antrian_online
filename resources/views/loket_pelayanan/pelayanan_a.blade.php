@@ -42,7 +42,11 @@
                                                     </h2>
                                                 @else
                                                     <h2>
+                                                    @if (App\Models\Antrian::where('id_pelayanan', 1)->get()->count() <= 1)
+                                                        A0{{$data->count() + 1}}
+                                                    @else
                                                         A0{{ App\Models\Antrian::where('id_pelayanan', 1)->first()->no_antrian + 1 }}
+                                                    @endif
                                                     </h2>
                                                 @endif
                                             </center>
@@ -80,7 +84,6 @@
                                             Sedang Dalam Pelayanan
                                         @else
                                             {{ 'Akan Dilayani Pada Pukul ' . $data->estimasi . ' Wib' }}
-
                                         @endif
 
 

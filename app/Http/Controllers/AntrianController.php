@@ -37,10 +37,16 @@ class AntrianController extends Controller
     public function store_a(Request $request)
     {
         $antrii = Antrian::where('id_pelayanan', 1)->get();
+        $antriii = Antrian::where('id_pelayanan', 1)->get()->last();
         $lama_pelayanan = Lamapelayanan::get()->first()->lamapelayanan;
         // $lama_pelayanan = 180;
         // $lama_pelayanan = strtotime($lama_pelayanan1);
-        $antri = $antrii->count() + 1;
+        if ($antriii == null) {
+            $antri = $antrii->count() + 1;
+        } else {
+            $antri = $antriii->no_antrian + 1;
+        }
+        
 
         // $timezone = "Asia/Jakarta";
         $date = new DateTime('now');
@@ -111,7 +117,7 @@ class AntrianController extends Controller
             ]);
             $last = Antrian::where('id_pelayanan', 1)->get()->last();
             $last_count = $last->no_antrian - 1;
-            $antriann = Antrian::where('no_antrian', $last_count)->first();
+            $antriann = Antrian::where('no_antrian', $last_count)->where('id_pelayanan', 1)->first();
             $waktu_awal = new DateTime($antriann->waktu_awal_antrian);
             $waktu_akhir = new DateTime($antriann->waktu_akhir_antrian);
             $hitung = $waktu_awal->diff($waktu_akhir);
@@ -160,8 +166,13 @@ class AntrianController extends Controller
     public function store_b(Request $request)
     {
         $antrii = Antrian::where('id_pelayanan', 2)->get();
+        $antriii = Antrian::where('id_pelayanan', 2)->get()->last();
         $lama_pelayanan = Lamapelayanan::get()->first()->lamapelayanan;
-        $antri = $antrii->count() + 1;
+        if ($antriii == null) {
+            $antri = $antrii->count() + 1;
+        } else {
+            $antri = $antriii->no_antrian + 1;
+        }
 
         $date = new DateTime('now');
         $hari = $date->format('D');
@@ -271,8 +282,13 @@ class AntrianController extends Controller
     public function store_c(Request $request)
     {
         $antrii = Antrian::where('id_pelayanan', 3)->get();
+        $antriii = Antrian::where('id_pelayanan', 3)->get()->last();
         $lama_pelayanan = Lamapelayanan::get()->first()->lamapelayanan;
-        $antri = $antrii->count() + 1;
+        if ($antriii == null) {
+            $antri = $antrii->count() + 1;
+        } else {
+            $antri = $antriii->no_antrian + 1;
+        }
 
         $date = new DateTime('now');
         $hari = $date->format('D');
@@ -381,8 +397,13 @@ class AntrianController extends Controller
     public function store_d(Request $request)
     {
         $antrii = Antrian::where('id_pelayanan', 4)->get();
+        $antriii = Antrian::where('id_pelayanan', 4)->get()->last();
         $lama_pelayanan = Lamapelayanan::get()->first()->lamapelayanan;
-        $antri = $antrii->count() + 1;
+        if ($antriii == null) {
+            $antri = $antrii->count() + 1;
+        } else {
+            $antri = $antriii->no_antrian + 1;
+        }
 
         $date = new DateTime('now');
         $hari = $date->format('D');
@@ -485,14 +506,32 @@ class AntrianController extends Controller
 
     public function pelayanan_a()
     {
-        $data = Antrian::where('id_pelayanan', 1)->get();
+        if (Antrian::where('id_pelayanan', 1)->get()->count() == null) {
+            $data = Antrian::where('id_pelayanan', 1);
+        } else {
+          $data = Antrian::where('id_pelayanan', 1)->get();
+        }
+        
         return view('loket_pelayanan.pelayanan_a', compact('data'));
     }
 
     public function store_pelayanan_a(Request $request)
     {
-        $antrian = Antrian::where('id_pelayanan', 1)->where('no_antrian', $request)->first();
+        $antrian = Antrian::where('id_pelayanan', 1)->first();
+        $laporan = Laporan::create([
+            'id_pelayanan' => $antrian->id_pelayanan,
+            'id_user' => $antrian->id_user,
+            'no_antrian' => $antrian->no_antrian,
+            'hari' => $antrian->hari,
+            'tgl_antrian' => $antrian->tgl_antrian,
+            'waktu_awal_antrian' => $antrian->waktu_awal_antrian,
+            'waktu_akhir_antrian' => $antrian->waktu_akhir_antrian,
+            'lama_pelayanan' => $antrian->lama_pelayanan,
+            'estimasi' => $antrian->estimasi
+        ]);
         $antrian->delete();
+
+        return redirect()->back()->with('sukses', 'Antrian Selanjutnya !!!');
     }
 
     public function pelayanan_b()
