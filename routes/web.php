@@ -5,6 +5,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\KoordinatorController;
 use App\Http\Controllers\AntrianController;
+use App\Http\Controllers\FrontendController;
 use App\Http\Controllers\PetugasController;
 use App\Http\Controllers\KepalabagianController;
 use App\Http\Controllers\LamapelayananController;
@@ -21,9 +22,7 @@ use App\Http\Controllers\LoketPelayananController;
 | 
 */
 
-Route::get('/', function () {
-    return view('auth.login1');
-});
+Route::get('/', [FrontendController::class, 'index']);
 
 
 Auth::routes();
@@ -83,6 +82,7 @@ Route::group(['middleware' => ['auth', 'checkRole:Petugas']], function () {
     Route::post('/pelayanan/lanjut/d', [AntrianController::class, 'store_pelayanan_d']);
     Route::get('/getdata', [AntrianController::class, 'getdata'])->name('get.data.antrian');
 });
+
 
 // Route::group(['middleware' => ['auth', 'checkRole:Kepala Bagian']], function () {
 
