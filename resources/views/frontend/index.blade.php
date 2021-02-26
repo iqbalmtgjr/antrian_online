@@ -45,24 +45,15 @@ https://templatemo.com/tm-537-art-factory
                 <div class="col-12">
                     <nav class="main-nav">
                         <!-- ***** Logo Start ***** -->
-                        <a href="#" class="logo">DUKCAPIL SINTANG</a>
+                        <a href="#" class="logo">DUKCAPIL</a>
                         <!-- ***** Logo End ***** -->
                         <!-- ***** Menu Start ***** -->
                         <ul class="nav">
-                            <li class="scroll-to-section"><a href="#welcome" class="active">Home</a></li>
-                            <li class="scroll-to-section"><a href="#about">About</a></li>
-                            <li class="scroll-to-section"><a href="#services">Services</a></li>
-                            <li class="scroll-to-section"><a href="#frequently-question">Frequently Questions</a></li>
-                            <li class="submenu">
-                                <a href="javascript:;">Drop Down</a>
-                                <ul>
-                                    <li><a href="">About Us</a></li>
-                                    <li><a href="">Features</a></li>
-                                    <li><a href="">FAQ's</a></li>
-                                    <li><a href="">Blog</a></li>
-                                </ul>
-                            </li>
-                            <li class="scroll-to-section"><a href="#contact-us">Contact Us</a></li>
+                            <li class="scroll-to-section"><a href="#welcome" class="active">Utama</a></li>
+                            <li class="scroll-to-section"><a href="#about">Lacak Antrian</a></li>
+                            <li class="scroll-to-section"><a href="#services">Info Loket Pelayanan</a></li>
+                            <li class="scroll-to-section"><a href="#frequently-question">Keuntungan SIANTRI</a></li>
+                            <li class="scroll-to-section"><a href="#contact-us">Lokasi</a></li>
                         </ul>
                         <a class='menu-trigger'>
                             <span>Menu</span>
@@ -84,11 +75,11 @@ https://templatemo.com/tm-537-art-factory
             <div class="container">
                 <div class="row">
                     <div class="left-text col-lg-6 col-md-6 col-sm-12 col-xs-12" data-scroll-reveal="enter left move 30px over 0.6s after 0.4s">
-                        <h1>Selamat Datang di<strong> SIANTRI</strong></h1>
+                       <br><br><br><br> <h1>Selamat Datang <br> di<strong> SIANTRI</strong></h1>
                         <p>SIANTRI Adalah Sistem Informasi Antrian Online Berbasis Website Untuk Memudahkan Pengatri Agar Dapat Memantau Nomor Antrian di Disdukcapil Sintang</p>
                     </div>
-                    <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12" data-scroll-reveal="enter right move 30px over 0.6s after 0.4s">
-                        <img width="60%" src={{ asset("frontend/assets/images/l_sintang.png") }} alt="">
+                    <div style="margin-top: -10px" class="mb-5 col-lg-6 col-md-6 col-sm-12 col-xs-12" data-scroll-reveal="enter right move 30px over 0.6s after 0.4s">
+                        <img width="50%" src={{ asset("frontend/assets/images/l_sintang.png") }} alt="">
                     </div>
                 </div>
             </div>
@@ -96,24 +87,97 @@ https://templatemo.com/tm-537-art-factory
         <!-- ***** Header Text End ***** -->
     </div>
     <!-- ***** Welcome Area End ***** -->
-
-
-    <!-- ***** Features Big Item Start ***** -->
     <section class="section" id="about">
         <div class="container">
+                    <div class="mb-5">
+                        <center><h3>Antrian Online Real Time</h3></center>
+                    </div>
+                    <div class="row">
+                        <div class="input-group mb-2 col-md-6">
+                            <select class="custom-select" id="inputGroupSelect04">
+                              <option selected>-- Pilih Loket --</option>
+                              <option value="1">Loket A</option>
+                              <option value="2">Loket B</option>
+                              <option value="3">Loket C</option>
+                              <option value="4">Loket D</option>
+                            </select>
+                            <div class="input-group-append">
+                              <button class="btn btn-outline-secondary" type="button">Pilih</button>
+                            </div>
+                        </div>
+                        <div class="col-md-3"></div>
+                        <div class="col-md-3">
+                            <input type="text" name="" id="" class="form-control" placeholder="Search ...">
+                        </div>
+                    </div>
+                    
+                    <table class="table">
+                        <thead class="thead-dark">
+                          <tr>
+                            <th scope="col">No Antrian</th>
+                            <th scope="col">Loket</th>
+                            <th scope="col">Estimasi</th>
+                          </tr>
+                        </thead>
+                        <tbody>
+                          <tr>
+                            <th scope="row">A01</th>
+                            <td>Loket A</td>
+                            <td>Akan Dilayani Pukul 10:23</td>
+                          </tr>
+                          <tr>
+                            <th scope="row">A02</th>
+                            <td>Loket A</td>
+                            <td>Akan Dilayani Pukul 10:26</td>
+                          </tr>
+                          <tr>
+                            <th scope="row">A03</th>
+                            <td>Loket A</td>
+                            <td>Akan Dilayani Pukul 10:29</td>
+                          </tr>
+                        </tbody>
+                      </table>
+        </div>
+    </section>
+
+    <!-- ***** Features Big Item Start ***** -->
+    <section class="section" id="services">
+        <div class="container">
+            <div style="margin-top: -50px" class="mb-3">
+                <center><h2>Keterangan Loket Pelayanan</h2></center> <br>
+            </div>
             <div class="row">
-                <div class="col-lg-7 col-md-12 col-sm-12" data-scroll-reveal="enter left move 30px over 0.6s after 0.4s">
-                    <img src={{ asset("frontend/assets/images/left-image.png") }} class="rounded img-fluid d-block mx-auto" alt="App">
+                <div class="col-md-3">
+                    <h5 class=" text-center">Loket A</h5> <br>
+                    <p>
+                        - Pengambilan KTP <br>
+                        - Pengambilan KK <br>
+                        - dll
+                    </p>
                 </div>
-                <div class="right-text col-lg-5 col-md-12 col-sm-12 mobile-top-fix">
-                    <div class="left-heading">
-                        <h5>Vivamus sodales nisi id ante molestie venenatis</h5>
-                    </div>
-                    <div class="left-text">
-                        <p>This template is <a href="#">last updated on 20 August 2019 </a>for main menu drop-down arrow and sub menu text color. Duis auctor dolor eu scelerisque vestibulum. Vestibulum lacinia, nisl sit amet tristique condimentum. <br><br>
-                        Sed a consequat velit. Morbi lectus sapien, vestibulum et sapien sit amet, ultrices malesuada odio. Donec non quam euismod, mattis dui a, ultrices nisi.</p>
-                        <a href="#about2" class="main-button">Discover More</a>
-                    </div>
+                <div class="col-md-3">
+                    <h5 class=" text-center">Loket B</h5> <br>
+                    <p>
+                        - Pengambilan KTP <br>
+                        - Pengambilan KK <br>
+                        - dll
+                    </p>
+                </div>
+                <div class="col-md-3">
+                    <h5 class=" text-center">Loket C</h5> <br>
+                    <p>
+                        - Pengambilan KTP <br>
+                        - Pengambilan KK <br>
+                        - dll
+                    </p>
+                </div>
+                <div class="col-md-3">
+                    <h5 class=" text-center">Loket D</h5> <br>
+                    <p>
+                        - Pengambilan KTP <br>
+                        - Pengambilan KK <br>
+                        - dll
+                    </p>
                 </div>
             </div>
             <div class="row">
@@ -125,51 +189,8 @@ https://templatemo.com/tm-537-art-factory
     </section>
     <!-- ***** Features Big Item End ***** -->
 
-
-    <!-- ***** Features Big Item Start ***** -->
-    <section class="section" id="about2">
-        <div class="container">
-            <div class="row">
-                <div class="left-text col-lg-5 col-md-12 col-sm-12 mobile-bottom-fix">
-                    <div class="left-heading">
-                        <h5>Curabitur aliquam eget tellus id porta</h5>
-                    </div>
-                    <p>Proin justo sapien, posuere suscipit tortor in, fermentum mattis elit. Aenean in feugiat purus.</p>
-                    <ul>
-                        <li>
-                            <img src="assets/images/about-icon-01.png" alt="">
-                            <div class="text">
-                                <h6>Nulla ultricies risus quis risus</h6>
-                                <p>You can use this website template for commercial or non-commercial purposes.</p>
-                            </div>
-                        </li>
-                        <li>
-                            <img src="assets/images/about-icon-02.png" alt="">
-                            <div class="text">
-                                <h6>Donec consequat commodo purus</h6>
-                                <p>You have no right to re-distribute this template as a downloadable ZIP file on any website.</p>
-                            </div>
-                        </li>
-                        <li>
-                            <img src="assets/images/about-icon-03.png" alt="">
-                            <div class="text">
-                                <h6>Sed placerat sollicitudin mauris</h6>
-                                <p>If you have any question or comment, please <a rel="nofollow" href="https://templatemo.com/contact">contact</a> us on TemplateMo.</p>
-                            </div>
-                        </li>
-                    </ul>
-                </div>
-                <div class="right-image col-lg-7 col-md-12 col-sm-12 mobile-bottom-fix-big" data-scroll-reveal="enter right move 30px over 0.6s after 0.4s">
-                    <img src="assets/images/right-image.png" class="rounded img-fluid d-block mx-auto" alt="App">
-                </div>
-            </div>
-        </div>
-    </section>
-    <!-- ***** Features Big Item End ***** -->
-
-
     <!-- ***** Features Small Start ***** -->
-    <section class="section" id="services">
+    {{-- <section class="section" id="services">
         <div class="container">
             <div class="row">
                 <div class="owl-carousel owl-theme">
@@ -232,7 +253,7 @@ https://templatemo.com/tm-537-art-factory
                 </div>
             </div>
         </div>
-    </section>
+    </section> --}}
     <!-- ***** Features Small End ***** -->
 
 
@@ -241,122 +262,21 @@ https://templatemo.com/tm-537-art-factory
         <div class="container">
             <!-- ***** Section Title Start ***** -->
             <div class="row">
-                <div class="col-lg-12">
-                    <div class="section-heading">
-                        <h2>Frequently Asked Questions</h2>
-                    </div>
+                <div class="col-lg-7 col-md-12 col-sm-12" data-scroll-reveal="enter left move 30px over 0.6s after 0.4s">
+                    <img src={{ asset("frontend/assets/images/disdukcapil.jpg") }} class="rounded img-fluid d-block mx-auto" alt="App">
                 </div>
-                <div class="offset-lg-3 col-lg-6">
-                    <div class="section-heading">
-                        <p>Vivamus venenatis eu mi ac mattis. Maecenas ut elementum sapien. Nunc euismod risus ac lobortis congue. Sed erat quam.</p>
+                <div class="right-text col-lg-5 col-md-12 col-sm-12 mobile-top-fix">
+                    <div class="left-heading">
+                        <h5>Keuntungan Dari SIANTRI</h5> <br>
+                    </div>
+                    <div class="left-text">
+                        <p>Keuntungan Menggunakan Sistem Informasi Antrian Online <b>( SIANTRI )</b> Adalah dapat mengetahui atau memantau nomor antrian yang 
+                            sudah di ambil dari instansi Dinas Kependudukan Dan Pencatatan Sipil Sintang Secara Online Tanpa Harus Datang Terlebih Dahulu ke 
+                            Dinas Kependudukan Dan Pencatatan Sipil Sintang.<br><br>  </p>
                     </div>
                 </div>
             </div>
             <!-- ***** Section Title End ***** -->
-
-            <div class="row">
-                <div class="left-text col-lg-6 col-md-6 col-sm-12">
-                    <h5>Class aptent taciti sociosqu ad litora torquent per conubia</h5>
-                    <div class="accordion-text">
-                        <p>Curabitur placerat diam in risus lobortis, laoreet porttitor est elementum. Nulla ultricies risus quis risus scelerisque, a aliquam tellus maximus. Cras pretium nulla ac convallis iaculis. Aenean bibendum erat vitae odio sodales, in facilisis tellus volutpat.</p>
-                        <p>Sed lobortis pellentesque magna ac congue. Suspendisse quis molestie magna, id eleifend ex. Ut mollis ultricies diam nec dictum. Morbi commodo hendrerit mi vel vulputate. Proin non tincidunt dui. Lorem ipsum dolor sit amet.</p>
-                        <span>Email: <a href="#">email@company.com</a><br></span>
-                        <a href="#contact-us" class="main-button">Contact Us</a>
-                    </div>
-                </div>
-                <div class="col-lg-6 col-md-6 col-sm-12">
-                    <div class="accordions is-first-expanded">
-                        <article class="accordion">
-                            <div class="accordion-head">
-                                <span>First Common Question</span>
-                                <span class="icon">
-                                    <i class="icon fa fa-chevron-right"></i>
-                                </span>
-                            </div>
-                            <div class="accordion-body">
-                                <div class="content">
-                                    <p>Duis vulputate porttitor urna sit amet pretium. Phasellus sed pulvinar eros, condimentum consequat ex. Suspendisse potenti.
-                                    <br><br>
-                                    Pellentesque maximus lorem sed elit imperdiet mattis. Duis posuere mauris ut eros rutrum sodales. Aliquam erat volutpat.</p>
-                                </div>
-                            </div>
-                        </article>
-                        <article class="accordion">
-                            <div class="accordion-head">
-                                <span>Second Question Answer</span>
-                                <span class="icon">
-                                    <i class="icon fa fa-chevron-right"></i>
-                                </span>
-                            </div>
-                            <div class="accordion-body">
-                                <div class="content">
-                                    <p>Sed odio elit, cursus sed consequat at, rutrum eget augue. Cras ac eros iaculis, tempor quam sit amet, scelerisque mi. Quisque eu risus eget nunc porttitor vestibulum at a ante.
-                                    <br><br>
-                                    Praesent ut placerat turpis, vel pellentesque dolor. Sed rutrum eleifend tortor, eu luctus orci sagittis in. In blandit fringilla mollis.</p>
-                                </div>
-                            </div>
-                        </article>
-                        <article class="accordion">
-                            <div class="accordion-head">
-                                <span>Third Answer for you</span>
-                                <span class="icon">
-                                    <i class="icon fa fa-chevron-right"></i>
-                                </span>
-                            </div>
-                            <div class="accordion-body">
-                                <div class="content">
-                                    <p>Proin feugiat ante ut vulputate rutrum. Nam quis erat turpis. Nullam maximus pharetra lorem, eu condimentum est iaculis ut. Pellentesque mattis ultrices dignissim. 
-                                    <br><br>
-                                    Etiam et enim finibus, feugiat massa efficitur, finibus sapien. Sed cursus lacus quis arcu scelerisque, eget ornare risus maximus. Aenean non lectus id odio rhoncus pharetra.</p>
-                                </div>
-                            </div>
-                        </article>
-                        <article class="accordion">
-                            <div class="accordion-head">
-                                <span>Fourth Question Asked</span>
-                                <span class="icon">
-                                    <i class="icon fa fa-chevron-right"></i>
-                                </span>
-                            </div>
-                            <div class="accordion-body">
-                                <div class="content">
-                                    <p>Phasellus eu purus ornare, eleifend orci nec, egestas nulla. Sed sed aliquet sapien. Proin placerat, ipsum eu posuere blandit, tellus quam consectetur nisi, id sollicitudin diam ex at nisi.
-                                    <br><br>
-                                    Aenean fermentum eget turpis egestas semper. Sed finibus mollis venenatis. Praesent at sem in massa iaculis pharetra.</p>
-                                </div>
-                            </div>
-                        </article>
-                        <article class="accordion">
-                            <div class="accordion-head">
-                                <span>Fifth Ever Question</span>
-                                <span class="icon">
-                                    <i class="icon fa fa-chevron-right"></i>
-                                </span>
-                            </div>
-                            <div class="accordion-body">
-                                <div class="content">
-                                    <p>Quisque aliquet ipsum ut magna rhoncus, euismod lacinia elit rhoncus. Sed sapien elit, mollis ut ultricies quis, fermentum nec ante.
-                                    <br><br>
-                                    Sed nec ex nec tortor fermentum sollicitudin id ut ligula. Ut sagittis rutrum lectus, non sagittis ante euismod eu. </p>
-                                </div>
-                            </div>
-                        </article>
-                        <article class="accordion">
-                            <div class="accordion-head">
-                                <span>Sixth Sense Question</span>
-                                <span class="icon">
-                                    <i class="icon fa fa-chevron-right"></i>
-                                </span>
-                            </div>
-                            <div class="accordion-body">
-                                <div class="content">
-                                    <p>Suspendisse potenti. Ut dapibus leo ut massa vulputate semper. Pellentesque maximus lorem sed elit imperdiet mattis. Duis posuere mauris ut eros rutrum sodales. Aliquam erat volutpat.</p>
-                                </div>
-                            </div>
-                        </article>
-                    </div>
-                </div>
-            </div>
         </div>
     </section>
     <!-- ***** Frequently Question End ***** -->
@@ -364,10 +284,10 @@ https://templatemo.com/tm-537-art-factory
 
     <!-- ***** Contact Us Start ***** -->
     <section class="section" id="contact-us">
-        <div class="container-fluid">
+        <div class="container">
             <div class="row">
                 <!-- ***** Contact Map Start ***** -->
-                <div class="col-lg-6 col-md-6 col-sm-12">
+                <div class="col-lg-12 col-md-6 col-sm-12">
                     <div id="map">
                       <!-- How to change your own map point
                            1. Go to Google Maps
@@ -375,13 +295,13 @@ https://templatemo.com/tm-537-art-factory
                            3. Click "Share" and choose "Embed map" tab
                            4. Copy only URL and paste it within the src="" field below
                     -->
-                    <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d1197183.8373802372!2d-1.9415093691103689!3d6.781986417238027!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0xfdb96f349e85efd%3A0xb8d1e0b88af1f0f5!2sKumasi+Central+Market!5e0!3m2!1sen!2sth!4v1532967884907" width="100%" height="500px" frameborder="0" style="border:0" allowfullscreen></iframe>
+                    <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3989.81602774175!2d111.49835651475325!3d0.06142219995518961!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2e01de0e35dcecc9%3A0x38750985d63180e3!2sDinas%20Kependudukan%20dan%20Catatan%20Sipil%20Sintang!5e0!3m2!1sid!2sid!4v1614321729107!5m2!1sid!2sid" width="100%" height="500" style="border:0;" allowfullscreen="" loading="lazy"></iframe>
                     </div>
                 </div>
                 <!-- ***** Contact Map End ***** -->
 
                 <!-- ***** Contact Form Start ***** -->
-                <div class="col-lg-6 col-md-6 col-sm-12">
+                {{-- <div class="col-lg-6 col-md-6 col-sm-12">
                     <div class="contact-form">
                         <form id="contact" action="" method="post">
                           <div class="row">
@@ -408,7 +328,7 @@ https://templatemo.com/tm-537-art-factory
                           </div>
                         </form>
                     </div>
-                </div>
+                </div> --}}
                 <!-- ***** Contact Form End ***** -->
             </div>
         </div>
@@ -421,11 +341,11 @@ https://templatemo.com/tm-537-art-factory
         <div class="container">
             <div class="row">
                 <div class="col-lg-7 col-md-12 col-sm-12">
-                    <p class="copyright">Copyright &copy; 2020 Art Factory Company 
+                    <p class="copyright">Copyright &copy; 2021 Muhammad Iqbal
                 
                 . Design: <a rel="nofollow" href="https://templatemo.com">TemplateMo</a></p>
                 </div>
-                <div class="col-lg-5 col-md-12 col-sm-12">
+                {{-- <div class="col-lg-5 col-md-12 col-sm-12">
                     <ul class="social">
                         <li><a href="#"><i class="fa fa-facebook"></i></a></li>
                         <li><a href="#"><i class="fa fa-twitter"></i></a></li>
@@ -433,7 +353,7 @@ https://templatemo.com/tm-537-art-factory
                         <li><a href="#"><i class="fa fa-rss"></i></a></li>
                         <li><a href="#"><i class="fa fa-dribbble"></i></a></li>
                     </ul>
-                </div>
+                </div> --}}
             </div>
         </div>
     </footer>
