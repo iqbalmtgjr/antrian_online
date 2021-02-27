@@ -17,28 +17,25 @@ class FrontendController extends Controller
     {
         $date = new DateTime('now');
         $localtime = $date->format('H:i:s');
-        // dd($data);
-        // dd($request->all());
-        if ($request->has('cari')) {
-            $data = Antrian::where('no_antrian', 'LIKE', '%' . $request->cari . '%')->get();
-        } else {
-            $data = Antrian::orderBy('id_pelayanan', 'asc')->get();
-        }
 
         if ($request->id_pelayanan == 1 && $request->cari == null) {
             $data = Antrian::where('id_pelayanan', 1)->get();
+        } elseif ($request->id_pelayanan == null && $request->cari == null) {
+            $data = Antrian::orderBy('id_pelayanan', 'asc')->get();
+        } elseif ($request->id_pelayanan != null && $request->cari != null) {
+            $data = Antrian::where('no_antrian', $request->cari)->where('id_pelayanan', $request->id_pelayanan)->get();
         } elseif ($request->id_pelayanan == 2) {
             $data = Antrian::where('id_pelayanan', 2)->get();
         } elseif ($request->id_pelayanan == 3) {
             $data = Antrian::where('id_pelayanan', 3)->get();
         } elseif ($request->id_pelayanan == 4) {
             $data = Antrian::where('id_pelayanan', 4)->get();
-        } elseif ($request->id_pelayanan == null && $request->has('cari')) {
-            $data = Antrian::where('no_antrian', 'LIKE', '%' . $request->cari . '%')->get();
+        } elseif ($request->has('cari')) {
+            $data = Antrian::where('no_antrian',  $request->cari)->get();
         } else {
             $data = Antrian::orderBy('id_pelayanan', 'asc')->get();
         }
-        // dd($data);
+
 
         return view('frontend.index', compact('data', 'localtime'));
     }
