@@ -8,7 +8,7 @@
     <meta name="description" content="">
     <meta name="author" content="Template Mo">
     <link href="https://fonts.googleapis.com/css?family=Roboto:100,300,400,500,700,900" rel="stylesheet">
-
+    <link href={{asset("assets/images/logosintang.png")}} rel="shortcut icon">
     <title>SIANTRI Capil Sintang</title>
 <!--
 
@@ -90,52 +90,79 @@ https://templatemo.com/tm-537-art-factory
     <section class="section" id="about">
         <div class="container">
                     <div class="mb-5">
-                        <center><h3>Antrian Online Real Time</h3></center>
+                        <center><h1>Antrian Online Real Time</h1></center>
                     </div>
+                    <form method="GET" action="/">
                     <div class="row">
                         <div class="input-group mb-2 col-md-6">
-                            <select class="custom-select" id="inputGroupSelect04">
-                              <option selected>-- Pilih Loket --</option>
+                            <select name="id_pelayanan" class="custom-select" id="id_pelayanan">
+                              <option value="">-- Pilih Loket --</option>
                               <option value="1">Loket A</option>
                               <option value="2">Loket B</option>
                               <option value="3">Loket C</option>
                               <option value="4">Loket D</option>
                             </select>
                             <div class="input-group-append">
-                              <button class="btn btn-outline-secondary" type="button">Pilih</button>
+                              <button class="btn btn-outline-secondary" type="submit">Pilih</button>
                             </div>
                         </div>
                         <div class="col-md-3"></div>
-                        <div class="col-md-3">
-                            <input type="text" name="" id="" class="form-control" placeholder="Search ...">
+                        <div class="input-group mb-2 col-md-3">
+                            <input type="search" name="cari" id="cari" class="form-control" aria-label="Search" placeholder="Cari No Antrian">
+                            <div class="input-group-append">
+                                <button class="btn btn-outline-secondary" type="submit">Cari</button>
+                            </div>
                         </div>
+                    </form>
                     </div>
                     
                     <table class="table">
                         <thead class="thead-dark">
-                          <tr>
-                            <th scope="col">No Antrian</th>
-                            <th scope="col">Loket</th>
-                            <th scope="col">Estimasi</th>
-                          </tr>
+                            <tr>
+                                <th scope="col">No Antrian</th>
+                                <th scope="col">Loket</th>
+                                <th scope="col">Estimasi</th>
+                            </tr>
                         </thead>
+                        @foreach ($data as $data)
                         <tbody>
-                          <tr>
-                            <th scope="row">A01</th>
-                            <td>Loket A</td>
-                            <td>Akan Dilayani Pukul 10:23</td>
-                          </tr>
-                          <tr>
-                            <th scope="row">A02</th>
-                            <td>Loket A</td>
-                            <td>Akan Dilayani Pukul 10:26</td>
-                          </tr>
-                          <tr>
-                            <th scope="row">A03</th>
-                            <td>Loket A</td>
-                            <td>Akan Dilayani Pukul 10:29</td>
-                          </tr>
+                            <tr>
+                                @if ($data->id_pelayanan == 1 && $data->no_antrian >= 10)
+                                <td>{{"A". $data->no_antrian }}</td>
+                                @elseif ($data->id_pelayanan == 1 )
+                                <td>{{"A0". $data->no_antrian }}</td>
+                                @elseif($data->id_pelayanan == 2 && $data->no_antrian >= 10)
+                                <td>{{"B". $data->no_antrian }}</td>
+                                @elseif ($data->id_pelayanan == 2)
+                                <td>{{"B0". $data->no_antrian }}</td>
+                                @elseif($data->id_pelayanan == 3 && $data->no_antrian >= 10)
+                                <td>{{"C". $data->no_antrian }}</td>
+                                @elseif ($data->id_pelayanan == 3)
+                                <td>{{"C0". $data->no_antrian }}</td>
+                                @elseif($data->id_pelayanan == 4 && $data->no_antrian >= 10)
+                                <td>{{"D". $data->no_antrian }}</td>
+                                @elseif ($data->id_pelayanan == 4)
+                                <td>{{"D0". $data->no_antrian }}</td>
+                                @endif
+
+                                @if ($data->id_pelayanan == 1 )
+                                <td>Loket A</td>
+                                @elseif($data->id_pelayanan == 2)
+                                <td>Loket B</td>
+                                @elseif($data->id_pelayanan == 3)
+                                <td>Loket C</td>
+                                @elseif($data->id_pelayanan == 4)
+                                <td>Loket D</td>
+                                @endif
+
+                                @if ($data->estimasi <= $localtime)
+                                   <td> Sedang Dalam Pelayanan </td>
+                                @else
+                                   <td> {{ 'Akan Dilayani Pada Pukul ' . $data->estimasi . ' Wib' }} </td>
+                                @endif
+                            </tr>
                         </tbody>
+                        @endforeach
                       </table>
         </div>
     </section>
@@ -147,37 +174,44 @@ https://templatemo.com/tm-537-art-factory
                 <center><h2>Keterangan Loket Pelayanan</h2></center> <br>
             </div>
             <div class="row">
-                <div class="col-md-3">
+                <div class="col-md-3 border border-dark pt-4 pb-4">
                     <h5 class=" text-center">Loket A</h5> <br>
-                    <p>
-                        - Pengambilan KTP <br>
-                        - Pengambilan KK <br>
-                        - dll
-                    </p>
+                    <ul style="padding-left: 7px">
+                        <li>Pengambilan KTP</li>
+                        <li>Perbaiki KTP</li>
+                        <li>Pembuatan KIA</li>
+                        <li>Pengambilan KIA</li>
+                        <li>Pengambilan KK</li>
+                    </ul>
                 </div>
-                <div class="col-md-3">
+                <div class="col-md-3 border border-dark pt-4 pb-4">
                     <h5 class=" text-center">Loket B</h5> <br>
-                    <p>
-                        - Pengambilan KTP <br>
-                        - Pengambilan KK <br>
-                        - dll
-                    </p>
+                    <ul style="padding-left: 7px">
+                        <li>Pindah Datang</li>
+                        <li>Pindah Antar Desa</li>
+                        <li>Pindah Antar Provinsi</li>
+                        <li>Pindah Antar Kecamatan</li>
+                        <li>Pindah Antar Kabupaten</li>
+                        <li>Pengambilan Pindah Antar Kabupaten</li>
+                    </ul>
                 </div>
-                <div class="col-md-3">
+                <div class="col-md-3 border border-dark pt-4 pb-4">
                     <h5 class=" text-center">Loket C</h5> <br>
-                    <p>
-                        - Pengambilan KTP <br>
-                        - Pengambilan KK <br>
-                        - dll
-                    </p>
+                    <ul style="padding-left: 7px">
+                        <li>Penyerahan dan Pengambilan Akta Perkawinan</li>
+                        <li>Penyerahan dan Pengambilan Akta Perceraian</li>
+                        <li>Penyerahan dan Pengambilan Akta Kelahiran</li>
+                        <li>Penyerahan dan Pengambilan Akta Kematian</li>
+                        <li>Penyerahan dan Pengambilan Akta Pengesahan Anak</li>
+                    </ul>
                 </div>
-                <div class="col-md-3">
+                <div class="col-md-3 border border-dark pt-4 pb-3">
                     <h5 class=" text-center">Loket D</h5> <br>
-                    <p>
-                        - Pengambilan KTP <br>
-                        - Pengambilan KK <br>
-                        - dll
-                    </p>
+                    <ul style="padding-left: 7px">
+                        <li>Perubahan KK</li>
+                        <li>Tambah Jiwa</li>
+                        <li>Perbaiki KK</li>
+                    </ul>
                 </div>
             </div>
             <div class="row">

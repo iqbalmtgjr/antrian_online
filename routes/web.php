@@ -24,7 +24,6 @@ use App\Http\Controllers\LoketPelayananController;
 
 Route::get('/', [FrontendController::class, 'index']);
 
-
 Auth::routes();
 
 Route::get('/home', [HomeController::class, 'index'])->name('home');
