@@ -12,7 +12,7 @@
                         <label for="recipient-name" class="col-form-label">Lama Pelayanan</label>
                         <input type="number" class="form-control" id="lamapelayanan" name="lamapelayanan"
                             value="{{ old('lamapelayanan') }}">
-                            <p style="font-size: 13px">*Dalam Menit</p>
+                            <p style="font-size: 13px; color: red">*Dalam Menit</p>
                         @error('lamapelayanan')
                             <div class="text-danger ml-3 mt-2">
                                 {{ $message }}

@@ -190,44 +190,63 @@ https://templatemo.com/tm-537-art-factory
                 <center><h2>Keterangan Loket Pelayanan</h2></center> <br>
             </div>
             <div class="row">
-                <div class="col-md-3 border border-dark pt-4 pb-4">
-                    <h5 class=" text-center">Loket A</h5> <br>
-                    <ul style="padding-left: 7px">
-                        <li>Pengambilan KTP</li>
-                        <li>Perbaiki KTP</li>
-                        <li>Pembuatan KIA</li>
-                        <li>Pengambilan KIA</li>
-                        <li>Pengambilan KK</li>
-                    </ul>
+                <div class="col-md-3">
+                    <div class="card border-dark mb-3" style="max-width: 18rem; height:400px ">
+                        <div class="card-header text-light bg-dark text-center"><h5>Loket A</h5></div>
+                        <div class="card-body text-dark">
+                            <ul style="padding-left: 7px">
+                                <li>Pengambilan KTP</li>
+                                <li>Perbaiki KTP</li>
+                                <li>Pembuatan KIA</li>
+                                <li>Pengambilan KIA</li>
+                                <li>Pengambilan KK</li>
+                            </ul>
+                        </div>
+                      </div>
                 </div>
-                <div class="col-md-3 border border-dark pt-4 pb-4">
-                    <h5 class=" text-center">Loket B</h5> <br>
-                    <ul style="padding-left: 7px">
-                        <li>Pindah Datang</li>
-                        <li>Pindah Antar Desa</li>
-                        <li>Pindah Antar Provinsi</li>
-                        <li>Pindah Antar Kecamatan</li>
-                        <li>Pindah Antar Kabupaten</li>
-                        <li>Pengambilan Pindah Antar Kabupaten</li>
-                    </ul>
+                
+                <div class="col-md-3">
+                    <div class="card border-dark mb-3" style="max-width: 18rem; height:400px">
+                        <div class="card-header text-light bg-dark text-center"><h5>Loket B</h5></div>
+                        <div class="card-body text-dark">
+                            <ul style="padding-left: 7px">
+                                <li>Pindah Datang</li>
+                                <li>Pindah Antar Desa</li>
+                                <li>Pindah Antar Provinsi</li>
+                                <li>Pindah Antar Kecamatan</li>
+                                <li>Pindah Antar Kabupaten</li>
+                                <li>Pengambilan Pindah Antar Kabupaten</li>
+                            </ul>
+                        </div>
+                      </div>
                 </div>
-                <div class="col-md-3 border border-dark pt-4 pb-4">
-                    <h5 class=" text-center">Loket C</h5> <br>
-                    <ul style="padding-left: 7px">
-                        <li>Penyerahan dan Pengambilan Akta Perkawinan</li>
-                        <li>Penyerahan dan Pengambilan Akta Perceraian</li>
-                        <li>Penyerahan dan Pengambilan Akta Kelahiran</li>
-                        <li>Penyerahan dan Pengambilan Akta Kematian</li>
-                        <li>Penyerahan dan Pengambilan Akta Pengesahan Anak</li>
-                    </ul>
+
+                <div class="col-md-3">
+                    <div class="card border-dark mb-3" style="max-width: 18rem; height:400px">
+                        <div class="card-header text-light bg-dark text-center"><h5>Loket B</h5></div>
+                        <div class="card-body text-dark">
+                            <ul style="padding-left: 7px">
+                                <li>Penyerahan dan Pengambilan Akta Perkawinan</li>
+                                <li>Penyerahan dan Pengambilan Akta Perceraian</li>
+                                <li>Penyerahan dan Pengambilan Akta Kelahiran</li>
+                                <li>Penyerahan dan Pengambilan Akta Kematian</li>
+                                <li>Penyerahan dan Pengambilan Akta Pengesahan Anak</li>
+                            </ul>
+                        </div>
+                      </div>
                 </div>
-                <div class="col-md-3 border border-dark pt-4 pb-3">
-                    <h5 class=" text-center">Loket D</h5> <br>
-                    <ul style="padding-left: 7px">
-                        <li>Perubahan KK</li>
-                        <li>Tambah Jiwa</li>
-                        <li>Perbaiki KK</li>
-                    </ul>
+
+                <div class="col-md-3">
+                    <div class="card border-dark mb-3" style="max-width: 18rem; height:400px">
+                        <div class="card-header text-light bg-dark text-center"><h5>Loket D</h5></div>
+                        <div class="card-body text-dark">
+                            <ul style="padding-left: 7px">
+                                <li>Perubahan KK</li>
+                                <li>Tambah Jiwa</li>
+                                <li>Perbaiki KK</li>
+                            </ul>
+                        </div>
+                      </div>
                 </div>
             </div>
             <div class="row">
