@@ -19,21 +19,21 @@ class FrontendController extends Controller
         $localtime = $date->format('H:i:s');
 
         if ($request->id_pelayanan == 1 && $request->cari == null) {
-            $data = Antrian::where('id_pelayanan', 1)->get();
+            $data = Antrian::where('id_pelayanan', 1)->paginate(10);
         } elseif ($request->id_pelayanan == null && $request->cari == null) {
-            $data = Antrian::orderBy('id_pelayanan', 'asc')->get();
+            $data = Antrian::orderBy('id_pelayanan', 'asc')->orderBy('no_antrian', 'asc')->paginate(10);
         } elseif ($request->id_pelayanan != null && $request->cari != null) {
-            $data = Antrian::where('no_antrian', $request->cari)->where('id_pelayanan', $request->id_pelayanan)->get();
+            $data = Antrian::where('no_antrian', $request->cari)->where('id_pelayanan', $request->id_pelayanan)->paginate(10);
         } elseif ($request->id_pelayanan == 2) {
-            $data = Antrian::where('id_pelayanan', 2)->get();
+            $data = Antrian::where('id_pelayanan', 2)->paginate(10);
         } elseif ($request->id_pelayanan == 3) {
-            $data = Antrian::where('id_pelayanan', 3)->get();
+            $data = Antrian::where('id_pelayanan', 3)->paginate(10);
         } elseif ($request->id_pelayanan == 4) {
-            $data = Antrian::where('id_pelayanan', 4)->get();
+            $data = Antrian::where('id_pelayanan', 4)->paginate(10);
         } elseif ($request->has('cari')) {
-            $data = Antrian::where('no_antrian',  $request->cari)->get();
+            $data = Antrian::where('no_antrian',  $request->cari)->paginate(10);
         } else {
-            $data = Antrian::orderBy('id_pelayanan', 'asc')->get();
+            $data = Antrian::orderBy('id_pelayanan', 'asc')->orderBy('no_antrian', 'asc')->paginate(10);
         }
 
 

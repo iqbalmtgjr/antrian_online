@@ -16,10 +16,18 @@
         <div class="col-12">
             <div class="card m-b-30">
                 <div class="card-body">
-                    <table id="datatable" class="table table-striped">
+                    <table id="" class="table">
                         <a href="#" class="btn btn-primary btn-md m-l-15 m-b-15" data-toggle="modal"
                             data-target="#mulai_lanjut"><i class="mdi mdi-skip-next-circle"></i>
-                            Mulai/Lanjut</a>
+                            Mulai/Lanjut</a> <br>
+                            <form action="{{ url('/pelayanan_d') }}" method="GET">
+                                <div class="row pull-right input-group mb-2 col-md-3">
+                                        <input type="number" name="cari" id="cari" class="form-control" aria-label="Search" placeholder="Cari No Antrian .. (Hanya Angka No Antrian)">
+                                        <div class="input-group-append">
+                                            <button class="btn btn-outline-secondary" type="submit">Cari</button>
+                                        </div>
+                                </div> 
+                            </form>
                         <!-- Modal -->
                         <div class="modal fade" id="mulai_lanjut" tabindex="-1" role="dialog"
                             aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -65,27 +73,27 @@
                                 </div>
                             </div>
                         </div>
-                        <thead>
+                        <thead class="thead-dark">
                             <tr>
                                 <th>No Antrian</th>
                                 <th>Estimasi Waktu Tunggu</th>
                             </tr>
                         </thead>
 
-                        @foreach ($data as $data)
+                        @foreach ($data as $datas)
                             <tbody>
                                 <tr>
-                                    @if ($data->no_antrian >= 10)
-                                        <td>{{ 'D' . $data->no_antrian }}</td>
+                                    @if ($datas->no_antrian >= 10)
+                                        <td>{{ 'D' . $datas->no_antrian }}</td>
                                     @else
-                                        <td>{{ 'D0' . $data->no_antrian }}</td>
+                                        <td>{{ 'D0' . $datas->no_antrian }}</td>
                                     @endif
-                                    {{-- <td id="antri{{ $data->id }}"></td> --}}
+                                    {{-- <td id="antri{{ $datas->id }}"></td> --}}
                                     <td>
-                                        @if ($data->estimasi <= $localtime)
+                                        @if ($datas->estimasi <= $localtime)
                                         Sedang Dalam Pelayanan
                                         @else
-                                        {{ 'Akan Dilayani Pada Pukul ' . $data->estimasi . ' Wib' }}
+                                        {{ 'Akan Dilayani Pada Pukul ' . $datas->estimasi . ' Wib' }}
                                         {{-- {{ $localtime }} --}}
                                         @endif
                                     </td>
@@ -93,6 +101,18 @@
                             </tbody>
                         @endforeach
                     </table>
+                    <div class="">
+                        Menampilkan
+                        {{ $data->firstItem() }}
+                        sampai
+                        {{ $data->lastItem() }}
+                        dari
+                        {{ $data->total() }}
+                        data
+                    </div>
+                    <div class="text-right pull-right">
+                        {{ $data->links() }}
+                    </div>
                 </div>
             </div>
         </div>

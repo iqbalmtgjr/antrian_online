@@ -24,9 +24,11 @@
         <script src={{ asset("js/jam.js") }}></script>
 
         <!-- DataTables -->
-        <link href={{ asset("assets/plugins/datatables/dataTables.bootstrap4.min.css") }} rel="stylesheet" type="text/css" />
+        {{-- <link href={{ asset("assets/plugins/datatables/dataTables.bootstrap4.min.css") }} rel="stylesheet" type="text/css" />
         <link href={{ asset("assets/plugins/datatables/buttons.bootstrap4.min.css") }} rel="stylesheet" type="text/css" />
-        <link href={{ asset("assets/plugins/datatables/responsive.bootstrap4.min.css") }} rel="stylesheet" type="text/css" />
+        <link href={{ asset("assets/plugins/datatables/responsive.bootstrap4.min.css") }} rel="stylesheet" type="text/css" /> --}}
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.5.2/css/bootstrap.css">
+        <link rel="stylesheet" href="https://cdn.datatables.net/1.10.23/css/dataTables.bootstrap4.min.css">
 
         {{-- Toastr --}}
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css">
@@ -275,10 +277,16 @@
         {{-- <script src="https://cdn.datatables.net/1.10.21/js/jquery.dataTables.min.js"></script> --}}
         {{-- <script src="https://cdn.jsdelivr.net/npm/sweetalert2@8"></script> --}}
 
-        <!-- Datatable init js -->
-        <script src={{ asset("assets/pages/datatables.init.js") }}></script>
+        {{-- DataTable Baru --}}
 
-        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.0/jquery.min.js"></script>
+        <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
+        <script src="https://cdn.datatables.net/1.10.23/js/jquery.dataTables.min.js"></script>
+        <script src="https://cdn.datatables.net/1.10.23/js/dataTables.bootstrap4.min.js"></script>
+
+        <!-- Datatable init js -->
+        {{-- <script src={{ asset("assets/pages/datatables.init.js") }}></script> --}}
+
+        {{-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.0/jquery.min.js"></script> --}}
         {{-- <script src="https://cdn.datatables.net/1.10.19/js/jquery.dataTables.min.js"></script> --}}
         {{-- <script src="https://cdn.datatables.net/buttons/1.5.6/js/dataTables.buttons.min.js"></script> --}}
         {{-- <script src="https://cdn.datatables.net/buttons/1.5.6/js/buttons.flash.min.js"></script> --}}
@@ -287,14 +295,14 @@
         <script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.53/vfs_fonts.js"></script> --}}
         {{-- <script src="https://cdn.datatables.net/buttons/1.5.6/js/buttons.html5.min.js"></script> --}}
         {{-- <script src="https://cdn.datatables.net/buttons/1.5.6/js/buttons.print.min.js"></script> --}}
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
+        {{-- <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script> --}}
 
         {{-- Sweetalert2 --}}
         <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
 	    <script src="sweetalert2.all.min.js"></script>
         <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
         <script src="https://cdn.jsdelivr.net/npm/promise-polyfill"></script>
-        <!-- Required datatable js -->
+        {{-- <!-- Required datatable js -->
         <script src={{ asset("assets/plugins/datatables/jquery.dataTables.min.js") }}></script>
         <script src={{ asset("assets/plugins/datatables/dataTables.bootstrap4.min.js") }}></script>
         <!-- Buttons examples -->
@@ -309,14 +317,43 @@
         <!-- Responsive examples -->
         <script src={{ asset("assets/plugins/datatables/dataTables.responsive.min.js") }}></script>
         <script src={{ asset("assets/plugins/datatables/responsive.bootstrap4.min.js") }}></script>
+        <!-- Datatable init js -->
+        <script src="assets/pages/datatables.init.js"></script> --}}
         <script src={{ asset('js/jam.js') }}></script>
 
         <!-- App js -->
         <script src={{ asset("assets/js/app.js") }}></script>
         <script type="text/javascript">
             $(document).ready(function() {
-                $('#datatable2').DataTable();  
+                $('#datatable').DataTable();  
             } );
+        </script>
+        <script>
+            $(function() {
+                $("#example1").DataTable({
+                    "responsive": true,
+                    "autoWidth": false,
+                    "language": {
+                        "sEmptyTable": "Tidak ada data yang tersedia pada tabel ini",
+                        "sProcessing": "Sedang memproses...",
+                        "sLengthMenu": "Tampilkan MENU data",
+                        "sZeroRecords": "Tidak ditemukan data yang sesuai",
+                        "sInfo": "Menampilkan START sampai END dari TOTAL data",
+                        "sInfoEmpty": "Menampilkan 0 sampai 0 dari 0 data",
+                        "sInfoFiltered": "(disaring dari MAX data keseluruhan)",
+                        "sInfoPostFix": "",
+                        "sSearchPlaceholder": "Cari...",
+                        "sSearch": "Cari:",
+                        "sUrl": "",
+                        "oPaginate": {
+                            "sFirst": "Pertama",
+                            "sPrevious": "Sebelumnya",
+                            "sNext": "Selanjutnya",
+                            "sLast": "Terakhir"
+                        }
+                    }
+                });
+            });
         </script>
         
 

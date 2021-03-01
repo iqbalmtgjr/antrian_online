@@ -115,56 +115,72 @@ https://templatemo.com/tm-537-art-factory
                         </div>
                     </form>
                     </div>
-                    
-                    <table class="table">
-                        <thead class="thead-dark">
-                            <tr>
-                                <th scope="col">No Antrian</th>
-                                <th scope="col">Loket</th>
-                                <th scope="col">Estimasi</th>
-                            </tr>
-                        </thead>
-                        @foreach ($data as $data)
-                        <tbody>
-                            <tr>
-                                @if ($data->id_pelayanan == 1 && $data->no_antrian >= 10)
-                                <td>{{"A". $data->no_antrian }}</td>
-                                @elseif ($data->id_pelayanan == 1 )
-                                <td>{{"A0". $data->no_antrian }}</td>
-                                @elseif($data->id_pelayanan == 2 && $data->no_antrian >= 10)
-                                <td>{{"B". $data->no_antrian }}</td>
-                                @elseif ($data->id_pelayanan == 2)
-                                <td>{{"B0". $data->no_antrian }}</td>
-                                @elseif($data->id_pelayanan == 3 && $data->no_antrian >= 10)
-                                <td>{{"C". $data->no_antrian }}</td>
-                                @elseif ($data->id_pelayanan == 3)
-                                <td>{{"C0". $data->no_antrian }}</td>
-                                @elseif($data->id_pelayanan == 4 && $data->no_antrian >= 10)
-                                <td>{{"D". $data->no_antrian }}</td>
-                                @elseif ($data->id_pelayanan == 4)
-                                <td>{{"D0". $data->no_antrian }}</td>
-                                @endif
+                    {{-- <div class="col-md-12"> --}}
+                        <table class="table">
+                            <thead class="thead-dark">
+                                <tr>
+                                    <th scope="col">No Antrian</th>
+                                    <th scope="col">Loket</th>
+                                    <th scope="col">Estimasi</th>
+                                </tr>
+                            </thead>
+                            @foreach ($data as $datas)
+                            <tbody>
+                                <tr>
+                                    @if ($datas->id_pelayanan == 1 && $datas->no_antrian >= 10)
+                                    <td>{{"A". $datas->no_antrian }}</td>
+                                    @elseif ($datas->id_pelayanan == 1 )
+                                    <td>{{"A0". $datas->no_antrian }}</td>
+                                    @elseif($datas->id_pelayanan == 2 && $datas->no_antrian >= 10)
+                                    <td>{{"B". $datas->no_antrian }}</td>
+                                    @elseif ($datas->id_pelayanan == 2)
+                                    <td>{{"B0". $datas->no_antrian }}</td>
+                                    @elseif($datas->id_pelayanan == 3 && $datas->no_antrian >= 10)
+                                    <td>{{"C". $datas->no_antrian }}</td>
+                                    @elseif ($datas->id_pelayanan == 3)
+                                    <td>{{"C0". $datas->no_antrian }}</td>
+                                    @elseif($datas->id_pelayanan == 4 && $datas->no_antrian >= 10)
+                                    <td>{{"D". $datas->no_antrian }}</td>
+                                    @elseif ($datas->id_pelayanan == 4)
+                                    <td>{{"D0". $datas->no_antrian }}</td>
+                                    @endif
+    
+                                    @if ($datas->id_pelayanan == 1 )
+                                    <td>Loket A</td>
+                                    @elseif($datas->id_pelayanan == 2)
+                                    <td>Loket B</td>
+                                    @elseif($datas->id_pelayanan == 3)
+                                    <td>Loket C</td>
+                                    @elseif($datas->id_pelayanan == 4)
+                                    <td>Loket D</td>
+                                    @endif
+    
+                                    @if ($datas->estimasi <= $localtime)
+                                    <td> Sedang Dalam Pelayanan </td>
+                                    @else
+                                    <td> {{ 'Akan Dilayani Pada Pukul ' . $datas->estimasi . ' Wib' }} </td>
+                                    @endif
+                                </tr>
+                            </tbody>
+                            @endforeach
+                        </table>
+                        <div class="row">
+                            <div class="col-4">
+                                Menampilkan
+                                {{ $data->firstItem() }}
+                                sampai
+                                {{ $data->lastItem() }}
+                                dari
+                                {{ $data->total() }}
+                                data
+                            </div>
+                            <div class="text-right pull-right offset-4 col-4">
+                                {{ $data->links() }}
+                            </div>
+                        </div>  
+                    {{-- </div> --}}
+                </div>
 
-                                @if ($data->id_pelayanan == 1 )
-                                <td>Loket A</td>
-                                @elseif($data->id_pelayanan == 2)
-                                <td>Loket B</td>
-                                @elseif($data->id_pelayanan == 3)
-                                <td>Loket C</td>
-                                @elseif($data->id_pelayanan == 4)
-                                <td>Loket D</td>
-                                @endif
-
-                                @if ($data->estimasi <= $localtime)
-                                   <td> Sedang Dalam Pelayanan </td>
-                                @else
-                                   <td> {{ 'Akan Dilayani Pada Pukul ' . $data->estimasi . ' Wib' }} </td>
-                                @endif
-                            </tr>
-                        </tbody>
-                        @endforeach
-                      </table>
-        </div>
     </section>
 
     <!-- ***** Features Big Item Start ***** -->

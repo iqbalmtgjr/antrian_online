@@ -23,9 +23,16 @@ class AntrianController extends Controller
         $this->middleware('auth');
     }
 
-    public function antrian_a()
+    public function antrian_a(Request $request)
     {
-        $data = Antrian::where('id_pelayanan', 1)->get();
+        // dd($request->all());
+        if ($request->has('cari')) {
+            $data = Antrian::where('id_pelayanan', 1)->where('no_antrian', 'LIKE', '%' . $request->cari . '%')->paginate(10);
+        } else {
+            $data = Antrian::where('id_pelayanan', 1)->paginate(10);
+        }
+        // dd($data);
+
         // foreach ($data as $data) {
         //     $data->lamapelayanan;
         // }
@@ -157,9 +164,13 @@ class AntrianController extends Controller
         return redirect()->back()->with('sukses', 'Antrian Berhasil Direset !!!');
     }
 
-    public function antrian_b()
+    public function antrian_b(Request $request)
     {
-        $data = Antrian::where('id_pelayanan', 2)->get();
+        if ($request->has('cari')) {
+            $data = Antrian::where('id_pelayanan', 2)->where('no_antrian', 'LIKE', '%' . $request->cari . '%')->paginate(10);
+        } else {
+            $data = Antrian::where('id_pelayanan', 2)->paginate(10);
+        }
         $date = new DateTime('now');
         $localtime = $date->format('H:i:s');
         return view('loket_antrian.antrian_b', compact('data', 'localtime'));
@@ -249,9 +260,13 @@ class AntrianController extends Controller
         return redirect()->back()->with('sukses', 'Antrian Berhasil Direset !!!');
     }
 
-    public function antrian_c()
+    public function antrian_c(Request $request)
     {
-        $data = Antrian::where('id_pelayanan', 3)->get();
+        if ($request->has('cari')) {
+            $data = Antrian::where('id_pelayanan', 3)->where('no_antrian', 'LIKE', '%' . $request->cari . '%')->paginate(10);
+        } else {
+            $data = Antrian::where('id_pelayanan', 3)->paginate(10);
+        }
         $date = new DateTime('now');
         $localtime = $date->format('H:i:s');
         return view('loket_antrian.antrian_c', compact('data', 'localtime'));
@@ -340,9 +355,13 @@ class AntrianController extends Controller
         $antrian = Antrian::where('id_pelayanan', 3)->delete();
         return redirect()->back()->with('sukses', 'Antrian Berhasil Direset !!!');
     }
-    public function antrian_d()
+    public function antrian_d(Request $request)
     {
-        $data = Antrian::where('id_pelayanan', 4)->get();
+        if ($request->has('cari')) {
+            $data = Antrian::where('id_pelayanan', 4)->where('no_antrian', 'LIKE', '%' . $request->cari . '%')->paginate(10);
+        } else {
+            $data = Antrian::where('id_pelayanan', 4)->paginate(10);
+        }
         $date = new DateTime('now');
         $localtime = $date->format('H:i:s');
         return view('loket_antrian.antrian_d', compact('data', 'localtime'));
@@ -432,13 +451,17 @@ class AntrianController extends Controller
         return redirect()->back()->with('sukses', 'Antrian Berhasil Direset !!!');
     }
 
-    public function pelayanan_a()
+    public function pelayanan_a(Request $request)
     {
 
         if (Antrian::where('id_pelayanan', 1)->get()->count() == null) {
             $data = Antrian::where('id_pelayanan', 1);
         } else {
-            $data = Antrian::where('id_pelayanan', 1)->get();
+            if ($request->has('cari')) {
+                $data = Antrian::where('id_pelayanan', 1)->where('no_antrian', 'LIKE', '%' . $request->cari . '%')->paginate(10);
+            } else {
+                $data = Antrian::where('id_pelayanan', 1)->paginate(10);
+            }
         }
         $date = new DateTime('now');
         $localtime = $date->format('H:i:s');
@@ -473,7 +496,7 @@ class AntrianController extends Controller
         return redirect()->back()->with('sukses', 'Antrian Selanjutnya !!!');
     }
 
-    public function pelayanan_b()
+    public function pelayanan_b(Request $request)
     {
         $date = new DateTime('now');
         $localtime = $date->format('H:i:s');
@@ -481,7 +504,11 @@ class AntrianController extends Controller
         if (Antrian::where('id_pelayanan', 2)->get()->count() == null) {
             $data = Antrian::where('id_pelayanan', 2);
         } else {
-            $data = Antrian::where('id_pelayanan', 2)->get();
+            if ($request->has('cari')) {
+                $data = Antrian::where('id_pelayanan', 2)->where('no_antrian', 'LIKE', '%' . $request->cari . '%')->paginate(10);
+            } else {
+                $data = Antrian::where('id_pelayanan', 2)->paginate(10);
+            }
         }
         // dd($data);
         return view('loket_pelayanan.pelayanan_b', compact('data', 'localtime'));
@@ -512,7 +539,7 @@ class AntrianController extends Controller
         return redirect()->back()->with('sukses', 'Antrian Selanjutnya !!!');
     }
 
-    public function pelayanan_c()
+    public function pelayanan_c(Request $request)
     {
         $date = new DateTime('now');
         $localtime = $date->format('H:i:s');
@@ -520,7 +547,11 @@ class AntrianController extends Controller
         if (Antrian::where('id_pelayanan', 3)->get()->count() == null) {
             $data = Antrian::where('id_pelayanan', 3);
         } else {
-            $data = Antrian::where('id_pelayanan', 3)->get();
+            if ($request->has('cari')) {
+                $data = Antrian::where('id_pelayanan', 3)->where('no_antrian', 'LIKE', '%' . $request->cari . '%')->paginate(10);
+            } else {
+                $data = Antrian::where('id_pelayanan', 3)->paginate(10);
+            }
         }
         // dd($data);
         return view('loket_pelayanan.pelayanan_c', compact('data', 'localtime'));
@@ -551,7 +582,7 @@ class AntrianController extends Controller
         return redirect()->back()->with('sukses', 'Antrian Selanjutnya !!!');
     }
 
-    public function pelayanan_d()
+    public function pelayanan_d(Request $request)
     {
         $date = new DateTime('now');
         $localtime = $date->format('H:i:s');
@@ -559,7 +590,11 @@ class AntrianController extends Controller
         if (Antrian::where('id_pelayanan', 4)->get()->count() == null) {
             $data = Antrian::where('id_pelayanan', 4);
         } else {
-            $data = Antrian::where('id_pelayanan', 4)->get();
+            if ($request->has('cari')) {
+                $data = Antrian::where('id_pelayanan', 4)->where('no_antrian', 'LIKE', '%' . $request->cari . '%')->paginate(10);
+            } else {
+                $data = Antrian::where('id_pelayanan', 4)->paginate(10);
+            }
         }
         // dd($data);
         return view('loket_pelayanan.pelayanan_d', compact('data', 'localtime'));
