@@ -640,6 +640,12 @@ class AntrianController extends Controller
         //
     }
 
+    public function laporan(Request $request)
+    {
+        $data = Laporan::all();
+        return view('laporan.index', compact('data'));
+    }
+
     /**
      * Store a newly created resource in storage.
      *

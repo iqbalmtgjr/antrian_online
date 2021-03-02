@@ -150,7 +150,7 @@
 
                             @if (auth()->user()->role == 'Kepala Bagian')
                             <li>
-                                <a href="{{ url('/multi_channel_single_phase') }}" class="waves-effect {{ request()->is('/multi_channel_single_phase') ? 'active' : '' }}">
+                                <a href="{{ url('/laporan') }}" class="waves-effect {{ request()->is('/laporan') ? 'active' : '' }}">
                                     <i class="fa fa-files-o"></i>
                                     <span> Laporan </span>
                                 </a>
@@ -302,9 +302,9 @@
 	    <script src="sweetalert2.all.min.js"></script>
         <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
         <script src="https://cdn.jsdelivr.net/npm/promise-polyfill"></script>
-        {{-- <!-- Required datatable js -->
-        <script src={{ asset("assets/plugins/datatables/jquery.dataTables.min.js") }}></script>
-        <script src={{ asset("assets/plugins/datatables/dataTables.bootstrap4.min.js") }}></script>
+        <!-- Required datatable js -->
+        {{-- <script src={{ asset("assets/plugins/datatables/jquery.dataTables.min.js") }}></script> --}}
+        {{-- <script src={{ asset("assets/plugins/datatables/dataTables.bootstrap4.min.js") }}></script> --}}
         <!-- Buttons examples -->
         <script src={{ asset("assets/plugins/datatables/dataTables.buttons.min.js") }}></script>
         <script src={{ asset("assets/plugins/datatables/buttons.bootstrap4.min.js") }}></script>
@@ -318,27 +318,32 @@
         <script src={{ asset("assets/plugins/datatables/dataTables.responsive.min.js") }}></script>
         <script src={{ asset("assets/plugins/datatables/responsive.bootstrap4.min.js") }}></script>
         <!-- Datatable init js -->
-        <script src="assets/pages/datatables.init.js"></script> --}}
-        <script src={{ asset('js/jam.js') }}></script>
+        {{-- {{-- <script src="assets/pages/datatables.init.js"></script> --}}
+        {{-- <script src={{ asset('js/jam.js') }}></script> --}}
 
         <!-- App js -->
         <script src={{ asset("assets/js/app.js") }}></script>
         <script type="text/javascript">
             $(document).ready(function() {
-                $('#datatable').DataTable();  
+                $('#datatable').DataTable({
+                    dom: 'Bfrtip',
+                    buttons: [
+                        'excel', 'pdf', 'print'
+                    ]
+                });  
             } );
         </script>
         <script>
             $(function() {
-                $("#example1").DataTable({
+                $("#example").DataTable({
                     "responsive": true,
                     "autoWidth": false,
                     "language": {
                         "sEmptyTable": "Tidak ada data yang tersedia pada tabel ini",
                         "sProcessing": "Sedang memproses...",
-                        "sLengthMenu": "Tampilkan MENU data",
+                        // "sLengthMenu": "Tampilkan MENU data",
                         "sZeroRecords": "Tidak ditemukan data yang sesuai",
-                        "sInfo": "Menampilkan START sampai END dari TOTAL data",
+                        // "sInfo": "Menampilkan START sampai END dari TOTAL data",
                         "sInfoEmpty": "Menampilkan 0 sampai 0 dari 0 data",
                         "sInfoFiltered": "(disaring dari MAX data keseluruhan)",
                         "sInfoPostFix": "",
