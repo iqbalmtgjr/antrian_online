@@ -625,7 +625,7 @@ class AntrianController extends Controller
         return redirect()->back()->with('sukses', 'Antrian Selanjutnya !!!');
     }
 
-    public function index()
+    public function mcsp()
     {
         //
     }
@@ -657,10 +657,6 @@ class AntrianController extends Controller
     // {
     //     ;
     // }
-
-
-
-
 
     /**
      * Display the specified resource.

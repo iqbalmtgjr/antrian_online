@@ -84,5 +84,6 @@ Route::group(['middleware' => ['auth', 'checkRole:Petugas']], function () {
 
 Route::group(['middleware' => ['auth', 'checkRole:Kepala Bagian']], function () {
     Route::get('/laporan', [AntrianController::class, 'laporan']);
+    Route::get('/multi_channel_single_phase', [AntrianController::class, 'mcsp']);
 });
 // Route::get('/belajarjs', []);

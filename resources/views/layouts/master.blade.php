@@ -330,7 +330,7 @@
                     buttons: [
                         'excel', 'pdf', 'print'
                     ]
-                });  
+                });
             } );
         </script>
         <script>
