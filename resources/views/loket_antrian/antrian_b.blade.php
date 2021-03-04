@@ -45,12 +45,22 @@
                                             <center>
                                                 @if ($data->count() >= 9)
                                                     <h2>
-                                                        B{{ App\Models\Antrian::where('id_pelayanan', 2)->get()->count() + 1 }}
+                                                        A{{ App\Models\Antrian::where('id_pelayanan', 2)->get()->last()->no_antrian + 1 }}
 
                                                     </h2>
                                                 @else
                                                     <h2>
-                                                        B0{{ App\Models\Antrian::where('id_pelayanan', 2)->get()->count() + 1 }}
+                                                        @if (App\Models\Antrian::where('id_pelayanan', 2)
+            ->get()
+            ->count() <= 1)
+                                                        A0{{ App\Models\Antrian::where('id_pelayanan', 2)->get()->last()->no_antrian + 1 }}
+                                                        @else
+                                                            @if (App\Models\Antrian::where('id_pelayanan', 2)->get()->last()->no_antrian >= 9)
+                                                            A{{ App\Models\Antrian::where('id_pelayanan', 2)->get()->last()->no_antrian + 1 }}
+                                                            @else
+                                                            A0{{ App\Models\Antrian::where('id_pelayanan', 2)->get()->last()->no_antrian + 1 }}
+                                                            @endif
+                                                        @endif
                                                     </h2>
                                                 @endif
                                             </center>

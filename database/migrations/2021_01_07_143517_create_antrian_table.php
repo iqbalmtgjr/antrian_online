@@ -15,14 +15,19 @@ class CreateAntrianTable extends Migration
     {
         Schema::create('antrian', function (Blueprint $table) {
             $table->id();
-            $table->integer('id_pelayanan');
-            $table->integer('id_user');
+            $table->foreignId('id_pelayanan');
+            $table->foreignId('id_user');
+            $table->foreignId('lamapelayanan_id');
             $table->integer('no_antrian')->nullable();
             $table->string('hari', 6);
             $table->date('tgl_antrian');
             $table->time('waktu_awal_antrian');
             $table->time('waktu_akhir_antrian')->nullable();
+            $table->time('lama_menunggu')->nullable();
+            $table->time('waktu_awal_pelayanan')->nullable();
+            $table->time('waktu_akhir_pelayanan')->nullable();
             $table->time('lama_pelayanan')->nullable();
+            $table->time('estimasi')->nullable();
             $table->timestamps();
         });
     }

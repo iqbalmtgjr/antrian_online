@@ -52,7 +52,7 @@
                                                     <h2>
                                                         @if (App\Models\Antrian::where('id_pelayanan', 1)
             ->get()
-            ->count() <= 1)
+            ->count() < 1)
                                                             A0{{ $data->count() + 1 }}
                                                         @else
                                                         @if (App\Models\Antrian::where('id_pelayanan', 1)->get()->last()->no_antrian >= 9)

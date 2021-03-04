@@ -53,7 +53,7 @@
                                                         @if (App\Models\Antrian::where('id_pelayanan', 3)
             ->get()
             ->count() <= 1)
-                                                            C0{{ $data->count() + 1 }}
+                                                            -
                                                         @else
                                                             C0{{ App\Models\Antrian::where('id_pelayanan', 3)->first()->no_antrian + 1 }}
                                                         @endif

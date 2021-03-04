@@ -36,6 +36,18 @@ class Antrian extends Model
             ->format('H:i:s');
     }
 
+    public function getWaktuAkhirPelayananAttribute()
+    {
+        return Carbon::parse($this->attributes['waktu_akhir_pelayanan'])
+            ->format('H:i:s');
+    }
+
+    public function getWaktuAwalPelayananAttribute()
+    {
+        return Carbon::parse($this->attributes['waktu_awal_pelayanan'])
+            ->format('H:i:s');
+    }
+
     public function lamapelayanan()
     {
         return $this->belongsTo(Lamapelayanan::class, 'lamapelayanan_id');
