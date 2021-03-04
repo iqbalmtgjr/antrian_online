@@ -37,7 +37,7 @@
                         </div>
                     </div>
                 </form>
-                <table id="datatable" class="table table-striped">
+                <table id="datatables" class="table table-striped">
                     <thead>
                         <tr>
                             <th>No</th>
@@ -94,4 +94,17 @@
         </div>
     </div>
 </div>
+@endsection
+
+@section('footer')
+<script type="text/javascript">
+    $(document).ready(function() {
+        $('#datatables').DataTable({
+            dom: 'Bfrtip',
+            buttons: [
+                'excel', 'pdf', 'print'
+            ]
+        });
+    } );
+</script>
 @endsection

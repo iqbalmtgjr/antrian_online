@@ -473,23 +473,43 @@ class AntrianController extends Controller
 
     public function store_pelayanan_a(Request $request)
     {
+        $date = new DateTime('now');
+        $localtime = $date->format('H:i:s');
         $antrian = Antrian::where('id_pelayanan', 1)->first();
-        $last_count = $antrian->no_antrian + 1;
-        $antriann = Antrian::where('no_antrian', $last_count)->where('id_pelayanan', 1)->first();
+        $first_count = $antrian->no_antrian + 1;
+        $antriann = Antrian::where('no_antrian', $first_count)->where('id_pelayanan', 1)->first();
         $waktu_awal = new DateTime($antrian->waktu_awal_antrian);
         $waktu_akhir = new DateTime($antriann->waktu_awal_antrian);
         $hitung = $waktu_awal->diff($waktu_akhir);
-        $laporan = Laporan::create([
-            'id_pelayanan' => $antrian->id_pelayanan,
-            'id_user' => $antrian->id_user,
-            'no_antrian' => $antrian->no_antrian,
-            'hari' => $antrian->hari,
-            'tgl_antrian' => $antrian->tgl_antrian,
-            'waktu_awal_antrian' => $antrian->waktu_awal_antrian,
-            'waktu_akhir_antrian' => $antriann->waktu_awal_antrian,
-            'lama_pelayanan' => $hitung->format('%H:%I:%S'),
-            'estimasi' => $antrian->estimasi
-        ]);
+        $estimasi = new DateTime($antrian->estimasi);
+        $kurang = new DateTime($hitung->format('%H:%I:%S'));
+        if ($antrian->estimasi > $localtime) {
+            $laporan = Laporan::create([
+                'id_pelayanan' => $antrian->id_pelayanan,
+                'id_user' => $antrian->id_user,
+                'no_antrian' => $antrian->no_antrian,
+                'hari' => $antrian->hari,
+                'tgl_antrian' => $antrian->tgl_antrian,
+                'waktu_awal_antrian' => $antrian->waktu_awal_antrian,
+                'waktu_akhir_antrian' => $antriann->waktu_awal_antrian,
+                'lama_pelayanan' => $hitung->format('%H:%I:%S'),
+                'estimasi' => ($estimasi)->diff($kurang)->format('%H:%I:%S'),
+                // 'estimasi' => date('H:i:s', strtotime($antrian->estimasi) - strtotime($hitung->format('%H:%I:%S')))
+            ]);
+        } else {
+            $laporan = Laporan::create([
+                'id_pelayanan' => $antrian->id_pelayanan,
+                'id_user' => $antrian->id_user,
+                'no_antrian' => $antrian->no_antrian,
+                'hari' => $antrian->hari,
+                'tgl_antrian' => $antrian->tgl_antrian,
+                'waktu_awal_antrian' => $antrian->waktu_awal_antrian,
+                'waktu_akhir_antrian' => $antriann->waktu_awal_antrian,
+                'lama_pelayanan' => $hitung->format('%H:%I:%S'),
+                'estimasi' => $antrian->estimasi
+            ]);
+        }
+
 
         $antrian->delete();
 
@@ -522,17 +542,36 @@ class AntrianController extends Controller
         $waktu_awal = new DateTime($antrian->waktu_awal_antrian);
         $waktu_akhir = new DateTime($antrian->waktu_akhir_antrian);
         $hitung = $waktu_awal->diff($waktu_akhir);
-        $laporan = Laporan::create([
-            'id_pelayanan' => $antrian->id_pelayanan,
-            'id_user' => $antrian->id_user,
-            'no_antrian' => $antrian->no_antrian,
-            'hari' => $antrian->hari,
-            'tgl_antrian' => $antrian->tgl_antrian,
-            'waktu_awal_antrian' => $antrian->waktu_awal_antrian,
-            'waktu_akhir_antrian' => $antriann->waktu_awal_antrian,
-            'lama_pelayanan' => $hitung->format('%H:%I:%S'),
-            'estimasi' => $antrian->estimasi
-        ]);
+        $date = new DateTime('now');
+        $localtime = $date->format('H:i:s');
+        $estimasi = new DateTime($antrian->estimasi);
+        $kurang = new DateTime($hitung->format('%H:%I:%S'));
+        if ($antrian->estimasi > $localtime) {
+            $laporan = Laporan::create([
+                'id_pelayanan' => $antrian->id_pelayanan,
+                'id_user' => $antrian->id_user,
+                'no_antrian' => $antrian->no_antrian,
+                'hari' => $antrian->hari,
+                'tgl_antrian' => $antrian->tgl_antrian,
+                'waktu_awal_antrian' => $antrian->waktu_awal_antrian,
+                'waktu_akhir_antrian' => $antriann->waktu_awal_antrian,
+                'lama_pelayanan' => $hitung->format('%H:%I:%S'),
+                'estimasi' => ($estimasi)->diff($kurang)->format('%H:%I:%S'),
+                // 'estimasi' => date('H:i:s', strtotime($antrian->estimasi) - strtotime($hitung->format('%H:%I:%S')))
+            ]);
+        } else {
+            $laporan = Laporan::create([
+                'id_pelayanan' => $antrian->id_pelayanan,
+                'id_user' => $antrian->id_user,
+                'no_antrian' => $antrian->no_antrian,
+                'hari' => $antrian->hari,
+                'tgl_antrian' => $antrian->tgl_antrian,
+                'waktu_awal_antrian' => $antrian->waktu_awal_antrian,
+                'waktu_akhir_antrian' => $antriann->waktu_awal_antrian,
+                'lama_pelayanan' => $hitung->format('%H:%I:%S'),
+                'estimasi' => $antrian->estimasi
+            ]);
+        }
 
         $antrian->delete();
 
@@ -565,17 +604,36 @@ class AntrianController extends Controller
         $waktu_awal = new DateTime($antrian->waktu_awal_antrian);
         $waktu_akhir = new DateTime($antrian->waktu_akhir_antrian);
         $hitung = $waktu_awal->diff($waktu_akhir);
-        $laporan = Laporan::create([
-            'id_pelayanan' => $antrian->id_pelayanan,
-            'id_user' => $antrian->id_user,
-            'no_antrian' => $antrian->no_antrian,
-            'hari' => $antrian->hari,
-            'tgl_antrian' => $antrian->tgl_antrian,
-            'waktu_awal_antrian' => $antrian->waktu_awal_antrian,
-            'waktu_akhir_antrian' => $antriann->waktu_awal_antrian,
-            'lama_pelayanan' => $hitung->format('%H:%I:%S'),
-            'estimasi' => $antrian->estimasi
-        ]);
+        $date = new DateTime('now');
+        $localtime = $date->format('H:i:s');
+        $estimasi = new DateTime($antrian->estimasi);
+        $kurang = new DateTime($hitung->format('%H:%I:%S'));
+        if ($antrian->estimasi > $localtime) {
+            $laporan = Laporan::create([
+                'id_pelayanan' => $antrian->id_pelayanan,
+                'id_user' => $antrian->id_user,
+                'no_antrian' => $antrian->no_antrian,
+                'hari' => $antrian->hari,
+                'tgl_antrian' => $antrian->tgl_antrian,
+                'waktu_awal_antrian' => $antrian->waktu_awal_antrian,
+                'waktu_akhir_antrian' => $antriann->waktu_awal_antrian,
+                'lama_pelayanan' => $hitung->format('%H:%I:%S'),
+                'estimasi' => ($estimasi)->diff($kurang)->format('%H:%I:%S'),
+                // 'estimasi' => date('H:i:s', strtotime($antrian->estimasi) - strtotime($hitung->format('%H:%I:%S')))
+            ]);
+        } else {
+            $laporan = Laporan::create([
+                'id_pelayanan' => $antrian->id_pelayanan,
+                'id_user' => $antrian->id_user,
+                'no_antrian' => $antrian->no_antrian,
+                'hari' => $antrian->hari,
+                'tgl_antrian' => $antrian->tgl_antrian,
+                'waktu_awal_antrian' => $antrian->waktu_awal_antrian,
+                'waktu_akhir_antrian' => $antriann->waktu_awal_antrian,
+                'lama_pelayanan' => $hitung->format('%H:%I:%S'),
+                'estimasi' => $antrian->estimasi
+            ]);
+        }
 
         $antrian->delete();
 
@@ -608,17 +666,36 @@ class AntrianController extends Controller
         $waktu_awal = new DateTime($antrian->waktu_awal_antrian);
         $waktu_akhir = new DateTime($antrian->waktu_akhir_antrian);
         $hitung = $waktu_awal->diff($waktu_akhir);
-        $laporan = Laporan::create([
-            'id_pelayanan' => $antrian->id_pelayanan,
-            'id_user' => $antrian->id_user,
-            'no_antrian' => $antrian->no_antrian,
-            'hari' => $antrian->hari,
-            'tgl_antrian' => $antrian->tgl_antrian,
-            'waktu_awal_antrian' => $antrian->waktu_awal_antrian,
-            'waktu_akhir_antrian' => $antriann->waktu_awal_antrian,
-            'lama_pelayanan' => $hitung->format('%H:%I:%S'),
-            'estimasi' => $antrian->estimasi
-        ]);
+        $date = new DateTime('now');
+        $localtime = $date->format('H:i:s');
+        $estimasi = new DateTime($antrian->estimasi);
+        $kurang = new DateTime($hitung->format('%H:%I:%S'));
+        if ($antrian->estimasi > $localtime) {
+            $laporan = Laporan::create([
+                'id_pelayanan' => $antrian->id_pelayanan,
+                'id_user' => $antrian->id_user,
+                'no_antrian' => $antrian->no_antrian,
+                'hari' => $antrian->hari,
+                'tgl_antrian' => $antrian->tgl_antrian,
+                'waktu_awal_antrian' => $antrian->waktu_awal_antrian,
+                'waktu_akhir_antrian' => $antriann->waktu_awal_antrian,
+                'lama_pelayanan' => $hitung->format('%H:%I:%S'),
+                'estimasi' => ($estimasi)->diff($kurang)->format('%H:%I:%S'),
+                // 'estimasi' => date('H:i:s', strtotime($antrian->estimasi) - strtotime($hitung->format('%H:%I:%S')))
+            ]);
+        } else {
+            $laporan = Laporan::create([
+                'id_pelayanan' => $antrian->id_pelayanan,
+                'id_user' => $antrian->id_user,
+                'no_antrian' => $antrian->no_antrian,
+                'hari' => $antrian->hari,
+                'tgl_antrian' => $antrian->tgl_antrian,
+                'waktu_awal_antrian' => $antrian->waktu_awal_antrian,
+                'waktu_akhir_antrian' => $antriann->waktu_awal_antrian,
+                'lama_pelayanan' => $hitung->format('%H:%I:%S'),
+                'estimasi' => $antrian->estimasi
+            ]);
+        }
 
         $antrian->delete();
 
@@ -627,7 +704,7 @@ class AntrianController extends Controller
 
     public function mcsp()
     {
-        //
+        return view('mcsp.index');
     }
 
     /**

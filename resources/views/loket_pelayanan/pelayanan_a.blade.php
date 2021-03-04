@@ -55,7 +55,11 @@
             ->count() <= 1)
                                                             A0{{ $data->count() + 1 }}
                                                         @else
-                                                            A0{{ App\Models\Antrian::where('id_pelayanan', 1)->first()->no_antrian + 1 }}
+                                                        @if (App\Models\Antrian::where('id_pelayanan', 1)->first()->no_antrian >= 9)
+                                                        A{{ App\Models\Antrian::where('id_pelayanan', 1)->first()->no_antrian + 1 }}
+                                                        @else
+                                                        A0{{ App\Models\Antrian::where('id_pelayanan', 1)->first()->no_antrian + 1 }}
+                                                        @endif
                                                         @endif
                                                     </h2>
                                                 @endif

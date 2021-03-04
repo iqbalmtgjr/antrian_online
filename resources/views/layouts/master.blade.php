@@ -325,25 +325,20 @@
         <script src={{ asset("assets/js/app.js") }}></script>
         <script type="text/javascript">
             $(document).ready(function() {
-                $('#datatable').DataTable({
-                    dom: 'Bfrtip',
-                    buttons: [
-                        'excel', 'pdf', 'print'
-                    ]
-                });
+                $('#datatable').DataTable();
             } );
         </script>
-        <script>
+        {{-- <script>
             $(function() {
-                $("#example").DataTable({
+                $("#datatable").DataTable({
                     "responsive": true,
                     "autoWidth": false,
                     "language": {
                         "sEmptyTable": "Tidak ada data yang tersedia pada tabel ini",
                         "sProcessing": "Sedang memproses...",
-                        // "sLengthMenu": "Tampilkan MENU data",
+                        "sLengthMenu": "Tampilkan MENU data",
                         "sZeroRecords": "Tidak ditemukan data yang sesuai",
-                        // "sInfo": "Menampilkan START sampai END dari TOTAL data",
+                        "sInfo": "Menampilkan START sampai END dari TOTAL data",
                         "sInfoEmpty": "Menampilkan 0 sampai 0 dari 0 data",
                         "sInfoFiltered": "(disaring dari MAX data keseluruhan)",
                         "sInfoPostFix": "",
@@ -359,7 +354,7 @@
                     }
                 });
             });
-        </script>
+        </script> --}}
         
 
         <script>
