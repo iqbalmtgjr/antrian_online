@@ -475,16 +475,12 @@ class AntrianController extends Controller
     {
         $date = new DateTime('now');
         $localtime = $date->format('H:i:s');
-<<<<<<< HEAD
         $tanggal = $date->format('Y-m-d');
         $antrian_total = Laporan::where('id_pelayanan', 1)->get()->count();
-=======
->>>>>>> c142bcebf1aeca5b651f183852b74f0961c01243
         $antrian = Antrian::where('id_pelayanan', 1)->first();
         $first_count = $antrian->no_antrian + 1;
         $antriann = Antrian::where('no_antrian', $first_count)->where('id_pelayanan', 1)->first();
         $waktu_awal = new DateTime($antrian->waktu_awal_antrian);
-<<<<<<< HEAD
         $waktu_akhir = new DateTime($localtime);
         $lama_menunggu = $waktu_awal->diff($waktu_akhir);
         $estimasi = new DateTime($antrian->estimasi);
@@ -506,47 +502,25 @@ class AntrianController extends Controller
             $laporan = Laporan::create([
                 'id_pelayanan' => $antrian->id_pelayanan,
                 'lamapelayanan_id' => $antrian->lamapelayanan_id,
-=======
-        // dd($antriann);
-        if ($antriann == null) {
-            $waktu_akhir = new DateTime($localtime);
-        } else {
-            $waktu_akhir = new DateTime($antriann->waktu_awal_antrian);
-        }
-
-        $hitung = $waktu_awal->diff($waktu_akhir);
-        if ($antriann == null) {
-            $laporan = Laporan::create([
-                'id_pelayanan' => $antrian->id_pelayanan,
->>>>>>> c142bcebf1aeca5b651f183852b74f0961c01243
                 'id_user' => $antrian->id_user,
                 'no_antrian' => $antrian->no_antrian,
                 'hari' => $antrian->hari,
                 'tgl_antrian' => $antrian->tgl_antrian,
                 'waktu_awal_antrian' => $antrian->waktu_awal_antrian,
                 'waktu_akhir_antrian' => $localtime,
-<<<<<<< HEAD
                 'lama_menunggu' => $lama_menunggu->format('%H:%I:%S'),
                 'waktu_awal_pelayanan' => $localtime,
                 // 'estimasi' => ($estimasi)->diff($kurang)->format('%H:%I:%S'),
-=======
-                'lama_pelayanan' => $hitung->format('%H:%I:%S'),
-                'estimasi' => $antrian->estimasi
->>>>>>> c142bcebf1aeca5b651f183852b74f0961c01243
             ]);
         } else {
             $laporan = Laporan::create([
                 'id_pelayanan' => $antrian->id_pelayanan,
-<<<<<<< HEAD
                 'lamapelayanan_id' => $antrian->lamapelayanan_id,
-=======
->>>>>>> c142bcebf1aeca5b651f183852b74f0961c01243
                 'id_user' => $antrian->id_user,
                 'no_antrian' => $antrian->no_antrian,
                 'hari' => $antrian->hari,
                 'tgl_antrian' => $antrian->tgl_antrian,
                 'waktu_awal_antrian' => $antrian->waktu_awal_antrian,
-<<<<<<< HEAD
                 'waktu_akhir_antrian' => $localtime,
                 'lama_menunggu' => $lama_menunggu->format('%H:%I:%S'),
                 'waktu_awal_pelayanan' => $localtime,
@@ -570,14 +544,6 @@ class AntrianController extends Controller
         //     ]);
         // }
 
-=======
-                'waktu_akhir_antrian' => $antriann->waktu_awal_antrian,
-                'lama_pelayanan' => $hitung->format('%H:%I:%S'),
-                'estimasi' => $antrian->estimasi
-            ]);
-        }
-
->>>>>>> c142bcebf1aeca5b651f183852b74f0961c01243
 
         $antrian->delete();
 
@@ -618,15 +584,11 @@ class AntrianController extends Controller
         }
 
         $hitung = $waktu_awal->diff($waktu_akhir);
-<<<<<<< HEAD
         $date = new DateTime('now');
         $localtime = $date->format('H:i:s');
         $estimasi = new DateTime($antrian->estimasi);
         $kurang = new DateTime($hitung->format('%H:%I:%S'));
         if ($antrian->estimasi > $localtime) {
-=======
-        if ($antriann == null) {
->>>>>>> c142bcebf1aeca5b651f183852b74f0961c01243
             $laporan = Laporan::create([
                 'id_pelayanan' => $antrian->id_pelayanan,
                 'id_user' => $antrian->id_user,
@@ -634,16 +596,10 @@ class AntrianController extends Controller
                 'hari' => $antrian->hari,
                 'tgl_antrian' => $antrian->tgl_antrian,
                 'waktu_awal_antrian' => $antrian->waktu_awal_antrian,
-<<<<<<< HEAD
                 'waktu_akhir_antrian' => $antriann->waktu_awal_antrian,
                 'lama_pelayanan' => $hitung->format('%H:%I:%S'),
                 'estimasi' => ($estimasi)->diff($kurang)->format('%H:%I:%S'),
                 // 'estimasi' => date('H:i:s', strtotime($antrian->estimasi) - strtotime($hitung->format('%H:%I:%S')))
-=======
-                'waktu_akhir_antrian' => $localtime,
-                'lama_pelayanan' => $hitung->format('%H:%I:%S'),
-                'estimasi' => $antrian->estimasi
->>>>>>> c142bcebf1aeca5b651f183852b74f0961c01243
             ]);
         } else {
             $laporan = Laporan::create([
@@ -658,10 +614,6 @@ class AntrianController extends Controller
                 'estimasi' => $antrian->estimasi
             ]);
         }
-<<<<<<< HEAD
-=======
-
->>>>>>> c142bcebf1aeca5b651f183852b74f0961c01243
 
         $antrian->delete();
 
@@ -702,15 +654,11 @@ class AntrianController extends Controller
         }
 
         $hitung = $waktu_awal->diff($waktu_akhir);
-<<<<<<< HEAD
         $date = new DateTime('now');
         $localtime = $date->format('H:i:s');
         $estimasi = new DateTime($antrian->estimasi);
         $kurang = new DateTime($hitung->format('%H:%I:%S'));
         if ($antrian->estimasi > $localtime) {
-=======
-        if ($antriann == null) {
->>>>>>> c142bcebf1aeca5b651f183852b74f0961c01243
             $laporan = Laporan::create([
                 'id_pelayanan' => $antrian->id_pelayanan,
                 'id_user' => $antrian->id_user,
@@ -718,16 +666,10 @@ class AntrianController extends Controller
                 'hari' => $antrian->hari,
                 'tgl_antrian' => $antrian->tgl_antrian,
                 'waktu_awal_antrian' => $antrian->waktu_awal_antrian,
-<<<<<<< HEAD
                 'waktu_akhir_antrian' => $antriann->waktu_awal_antrian,
                 'lama_pelayanan' => $hitung->format('%H:%I:%S'),
                 'estimasi' => ($estimasi)->diff($kurang)->format('%H:%I:%S'),
                 // 'estimasi' => date('H:i:s', strtotime($antrian->estimasi) - strtotime($hitung->format('%H:%I:%S')))
-=======
-                'waktu_akhir_antrian' => $localtime,
-                'lama_pelayanan' => $hitung->format('%H:%I:%S'),
-                'estimasi' => $antrian->estimasi
->>>>>>> c142bcebf1aeca5b651f183852b74f0961c01243
             ]);
         } else {
             $laporan = Laporan::create([
@@ -742,10 +684,6 @@ class AntrianController extends Controller
                 'estimasi' => $antrian->estimasi
             ]);
         }
-<<<<<<< HEAD
-=======
-
->>>>>>> c142bcebf1aeca5b651f183852b74f0961c01243
 
         $antrian->delete();
 
@@ -786,15 +724,11 @@ class AntrianController extends Controller
         }
 
         $hitung = $waktu_awal->diff($waktu_akhir);
-<<<<<<< HEAD
         $date = new DateTime('now');
         $localtime = $date->format('H:i:s');
         $estimasi = new DateTime($antrian->estimasi);
         $kurang = new DateTime($hitung->format('%H:%I:%S'));
         if ($antrian->estimasi > $localtime) {
-=======
-        if ($antriann == null) {
->>>>>>> c142bcebf1aeca5b651f183852b74f0961c01243
             $laporan = Laporan::create([
                 'id_pelayanan' => $antrian->id_pelayanan,
                 'id_user' => $antrian->id_user,
@@ -802,16 +736,10 @@ class AntrianController extends Controller
                 'hari' => $antrian->hari,
                 'tgl_antrian' => $antrian->tgl_antrian,
                 'waktu_awal_antrian' => $antrian->waktu_awal_antrian,
-<<<<<<< HEAD
                 'waktu_akhir_antrian' => $antriann->waktu_awal_antrian,
                 'lama_pelayanan' => $hitung->format('%H:%I:%S'),
                 'estimasi' => ($estimasi)->diff($kurang)->format('%H:%I:%S'),
                 // 'estimasi' => date('H:i:s', strtotime($antrian->estimasi) - strtotime($hitung->format('%H:%I:%S')))
-=======
-                'waktu_akhir_antrian' => $localtime,
-                'lama_pelayanan' => $hitung->format('%H:%I:%S'),
-                'estimasi' => $antrian->estimasi
->>>>>>> c142bcebf1aeca5b651f183852b74f0961c01243
             ]);
         } else {
             $laporan = Laporan::create([
@@ -826,10 +754,6 @@ class AntrianController extends Controller
                 'estimasi' => $antrian->estimasi
             ]);
         }
-<<<<<<< HEAD
-=======
-
->>>>>>> c142bcebf1aeca5b651f183852b74f0961c01243
 
         $antrian->delete();
 

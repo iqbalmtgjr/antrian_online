@@ -53,18 +53,13 @@
                                                     <h2>
                                                         @if (App\Models\Antrian::where('id_pelayanan', 1)
             ->get()
-<<<<<<< HEAD
             ->count() <= 1)
-=======
-            ->count() < 2)
->>>>>>> c142bcebf1aeca5b651f183852b74f0961c01243
                                                             -
                                                         @else
-                                                        @if (App\Models\Antrian::where('id_pelayanan', 1)->first()->no_antrian >= 9)
-                                                        A{{ App\Models\Antrian::where('id_pelayanan', 1)->first()->no_antrian + 1 }}
+                                                            @if (App\Models\Antrian::where('id_pelayanan',
+                                                            1)->first()->no_antrian >= 9) A{{ App\Models\Antrian::where('id_pelayanan', 1)->first()->no_antrian + 1 }}
                                                         @else
-                                                        A0{{ App\Models\Antrian::where('id_pelayanan', 1)->first()->no_antrian + 1 }}
-                                                        @endif
+                                                            A0{{ App\Models\Antrian::where('id_pelayanan', 1)->first()->no_antrian + 1 }} @endif
                                                         @endif
                                                     </h2>
                                                 @endif
