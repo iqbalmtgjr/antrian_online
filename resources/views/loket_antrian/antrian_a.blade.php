@@ -20,38 +20,40 @@
                         <a href="#" class="btn btn-primary btn-md m-l-15 m-b-15" data-toggle="modal"
                             data-target="#mulai_lanjut"><i class="mdi mdi-skip-next-circle"></i>
                             Mulai/Lanjut</a> <br>
-                            <form action="{{ url('/antrian_a') }}" method="GET">
+                        <form action="{{ url('/antrian_a') }}" method="GET">
                             <div class="pull-right input-group mb-2 col-md-3">
-                                <input type="number" name="cari" id="cari" class="form-control" aria-label="Search" placeholder="Cari No Antrian .. (Hanya Angka No Antrian)">
+                                <input type="number" name="cari" id="cari" class="form-control" aria-label="Search"
+                                    placeholder="Cari No Antrian .. (Hanya Angka No Antrian)">
                                 <div class="input-group-append">
                                     <button class="btn btn-outline-secondary" type="submit">Cari</button>
                                 </div>
-                            </form>
+                        </form>
+                </div>
+                <!-- Modal -->
+                <div class="modal fade" id="mulai_lanjut" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+                    aria-hidden="true">
+                    <div class="modal-dialog" role="document">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h5 class="modal-title" id="exampleModalLabel">Antrian Loket A</h5>
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                    <span aria-hidden="true">&times;</span>
+                                </button>
                             </div>
-                        <!-- Modal -->
-                        <div class="modal fade" id="mulai_lanjut" tabindex="-1" role="dialog"
-                            aria-labelledby="exampleModalLabel" aria-hidden="true">
-                            <div class="modal-dialog" role="document">
-                                <div class="modal-content">
-                                    <div class="modal-header">
-                                        <h5 class="modal-title" id="exampleModalLabel">Antrian Loket A</h5>
-                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                            <span aria-hidden="true">&times;</span>
-                                        </button>
-                                    </div>
-                                    <div class="modal-body">
-                                        <form action="{{ url('/antrian/lanjut/a') }}" method="post">
-                                            @csrf
-                                            <center>
-                                                @if ($data->count() >= 9)
-                                                    <h2>
-                                                        A{{ App\Models\Antrian::where('id_pelayanan', 1)->get()->last()->no_antrian + 1 }}
+                            <div class="modal-body">
+                                <form action="{{ url('/antrian/lanjut/a') }}" method="post">
+                                    @csrf
+                                    <center>
+                                        @if ($data->count() >= 9)
+                                            <h2>
+                                                A{{ App\Models\Antrian::where('id_pelayanan', 1)->get()->last()->no_antrian + 1 }}
 
-                                                    </h2>
-                                                @else
-                                                    <h2>
-                                                        @if (App\Models\Antrian::where('id_pelayanan', 1)
+                                            </h2>
+                                        @else
+                                            <h2>
+                                                @if (App\Models\Antrian::where('id_pelayanan', 1)
             ->get()
+<<<<<<< HEAD
             ->count() < 1)
                                                             A0{{ $data->count() + 1 }}
                                                         @else
@@ -62,77 +64,85 @@
                                                         @endif
                                                         @endif
                                                     </h2>
+=======
+            ->count() <= 1)
+                                                    A0{{ $data->count() + 1 }}
+                                                @else
+                                                    A0{{ App\Models\Antrian::where('id_pelayanan', 1)->get()->last()->no_antrian + 1 }}
+>>>>>>> c142bcebf1aeca5b651f183852b74f0961c01243
                                                 @endif
-                                            </center>
-                                    </div>
-                                    <div class="modal-footer">
-                                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Tutup</button>
-                                        @if ($data->count() < 1)
-                                            <button type="submit" id="selesai" class="btn btn-primary">Mulai</button>
-                                        @else
-                                            <button type="submit" id="selesai" class="btn btn-primary">Lanjut</button>
+                                            </h2>
                                         @endif
-                                        </form>
-                                    </div>
-                                </div>
+                                    </center>
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Tutup</button>
+                                @if ($data->count() < 1)
+                                    <button type="submit" id="selesai" class="btn btn-primary">Mulai</button>
+                                @else
+                                    <button type="submit" id="selesai" class="btn btn-primary">Lanjut</button>
+                                @endif
+                                </form>
                             </div>
                         </div>
-                        <thead class="thead-dark">
-                            <tr>
-                                <th scope="col">No Antrian</th>
-                                <th scope="col">Estimasi Waktu Tunggu</th>
-                            </tr>
-                        </thead>
-
-                        @foreach ($data as $datas)
-                            <tbody>
-                                <tr>
-                                    @if ($datas->no_antrian >= 10)
-                                        <td>{{ 'A' . $datas->no_antrian }}</td>
-                                    @else
-                                        <td>{{ 'A0' . $datas->no_antrian }}</td>
-                                    @endif
-                                    {{-- <td id="antri{{ $datas->id }}"></td> --}}
-                                    <td>
-                                        @if ($datas->estimasi <= $localtime)
-                                            Sedang Dalam Pelayanan
-                                        @else
-                                            {{ 'Akan Dilayani Pada Pukul ' . $datas->estimasi . ' Wib' }}
-                                        @endif
-                                    </td>
-                                </tr>
-                            </tbody>
-                        @endforeach
-                    </table>
-                    {{-- <div class="row"> --}}
-                        <div class="">
-                            Menampilkan
-                            {{ $data->firstItem() }}
-                            sampai
-                            {{ $data->lastItem() }}
-                            dari
-                            {{ $data->total() }}
-                            data
-                        </div>
-                        <div class="text-right pull-right">
-                            {{ $data->links() }}
-                        </div>
-                    {{-- </div>   --}}
-                    <div class="row mt-5">
-                        {{-- <div class="col-md-4"></div> --}}
-                        {{-- <div class="col-md-4"></div> --}}
-                        <div class="col-md-4">
-                            <a href="#" class="btn btn-success btn-md m-l-15 m-b-15 reset"><i class="mdi mdi-reload"></i>
-                                Reset Antrian</a>
-                            <a href="#" id="tombol" class="btn btn-danger btn-md m-l-15 m-b-15 stop"><i
-                                    class="fa fa-times-circle"></i>
-                                Hentikan Antrian</a>
-                        </div>
-
                     </div>
+                </div>
+                <thead class="thead-dark">
+                    <tr>
+                        <th scope="col">No Antrian</th>
+                        <th scope="col">Estimasi Waktu Tunggu</th>
+                    </tr>
+                </thead>
+
+                @foreach ($data as $datas)
+                    <tbody>
+                        <tr>
+                            @if ($datas->no_antrian >= 10)
+                                <td>{{ 'A' . $datas->no_antrian }}</td>
+                            @else
+                                <td>{{ 'A0' . $datas->no_antrian }}</td>
+                            @endif
+                            {{-- <td id="antri{{ $datas->id }}"></td> --}}
+                            <td>
+                                @if ($datas->estimasi <= $localtime)
+                                    Sedang Dalam Pelayanan
+                                @else
+                                    {{ 'Akan Dilayani Pada Pukul ' . $datas->estimasi . ' Wib' }}
+                                @endif
+                            </td>
+                        </tr>
+                    </tbody>
+                @endforeach
+                </table>
+                {{-- <div class="row"> --}}
+                <div class="">
+                    Menampilkan
+                    {{ $data->firstItem() }}
+                    sampai
+                    {{ $data->lastItem() }}
+                    dari
+                    {{ $data->total() }}
+                    data
+                </div>
+                <div class="text-right pull-right">
+                    {{ $data->links() }}
+                </div>
+                {{-- </div> --}}
+                <div class="row mt-5">
+                    {{-- <div class="col-md-4"></div> --}}
+                    {{-- <div class="col-md-4"></div> --}}
+                    <div class="col-md-4">
+                        <a href="#" class="btn btn-success btn-md m-l-15 m-b-15 reset"><i class="mdi mdi-reload"></i>
+                            Reset Antrian</a>
+                        <a href="#" id="tombol" class="btn btn-danger btn-md m-l-15 m-b-15 stop"><i
+                                class="fa fa-times-circle"></i>
+                            Hentikan Antrian</a>
+                    </div>
+
                 </div>
             </div>
         </div>
+    </div>
     </div>
 @endsection
 @section('footer')

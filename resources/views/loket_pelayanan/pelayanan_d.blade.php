@@ -20,14 +20,15 @@
                         <a href="#" class="btn btn-primary btn-md m-l-15 m-b-15" data-toggle="modal"
                             data-target="#mulai_lanjut"><i class="mdi mdi-skip-next-circle"></i>
                             Mulai/Lanjut</a> <br>
-                            <form action="{{ url('/pelayanan_d') }}" method="GET">
-                                <div class="row pull-right input-group mb-2 col-md-3">
-                                        <input type="number" name="cari" id="cari" class="form-control" aria-label="Search" placeholder="Cari No Antrian .. (Hanya Angka No Antrian)">
-                                        <div class="input-group-append">
-                                            <button class="btn btn-outline-secondary" type="submit">Cari</button>
-                                        </div>
-                                </div> 
-                            </form>
+                        <form action="{{ url('/pelayanan_d') }}" method="GET">
+                            <div class="row pull-right input-group mb-2 col-md-3">
+                                <input type="number" name="cari" id="cari" class="form-control" aria-label="Search"
+                                    placeholder="Cari No Antrian .. (Hanya Angka No Antrian)">
+                                <div class="input-group-append">
+                                    <button class="btn btn-outline-secondary" type="submit">Cari</button>
+                                </div>
+                            </div>
+                        </form>
                         <!-- Modal -->
                         <div class="modal fade" id="mulai_lanjut" tabindex="-1" role="dialog"
                             aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -52,7 +53,11 @@
                                                     <h2>
                                                         @if (App\Models\Antrian::where('id_pelayanan', 4)
             ->get()
+<<<<<<< HEAD
             ->count() <= 1)
+=======
+            ->count() < 2)
+>>>>>>> c142bcebf1aeca5b651f183852b74f0961c01243
                                                             -
                                                         @else
                                                             B0{{ App\Models\Antrian::where('id_pelayanan', 4)->first()->no_antrian + 1 }}
@@ -91,10 +96,10 @@
                                     {{-- <td id="antri{{ $datas->id }}"></td> --}}
                                     <td>
                                         @if ($datas->estimasi <= $localtime)
-                                        Sedang Dalam Pelayanan
+                                            Sedang Dalam Pelayanan
                                         @else
-                                        {{ 'Akan Dilayani Pada Pukul ' . $datas->estimasi . ' Wib' }}
-                                        {{-- {{ $localtime }} --}}
+                                            {{ 'Akan Dilayani Pada Pukul ' . $datas->estimasi . ' Wib' }}
+                                            {{-- {{ $localtime }} --}}
                                         @endif
                                     </td>
                                 </tr>
