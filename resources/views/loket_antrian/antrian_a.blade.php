@@ -51,16 +51,25 @@
                                             </h2>
                                         @else
                                             <h2>
-                                                @if (App\Models\Antrian::where('id_pelayanan', 1)
-            ->get()
-            ->count() < 1)
+                                                @if ($data->count() == 0)
+                                                    @if($data->count() == 0 && App\Models\Laporan::where('id_pelayanan', 1)->where('tgl_antrian', $tgl)->get()->count() == 0)
                                                     A0{{ $data->count() + 1 }}
+                                                    @else
+                                                        @if (App\Models\Laporan::where('id_pelayanan', 1)->where('tgl_antrian', $tgl)->get()->count() >= 9)
+                                                        A{{ App\Models\Laporan::where('id_pelayanan', 1)->where('tgl_antrian', $tgl)->get()->last()->no_antrian + 1 }}
+                                                        @else
+                                                        A0{{ App\Models\Laporan::where('id_pelayanan', 1)->where('tgl_antrian', $tgl)->get()->last()->no_antrian + 1 }}
+                                                        @endif
+                                                    @endif
+                                                @elseif (App\Models\Antrian::where('id_pelayanan', 1)->count() < 1)
+                                                A0{{ $data->count() + 1 }}
                                                 @else
                                                     @if (App\Models\Antrian::where('id_pelayanan', 1)
                                                     ->get()
                                                     ->last()->no_antrian >= 9) A{{ App\Models\Antrian::where('id_pelayanan', 1)->get()->last()->no_antrian + 1 }}
-                                                @else
-                                                    A0{{ App\Models\Antrian::where('id_pelayanan', 1)->get()->last()->no_antrian + 1 }} @endif
+                                                    @else
+                                                    A0{{ App\Models\Antrian::where('id_pelayanan', 1)->get()->last()->no_antrian + 1 }} 
+                                                    @endif
                                                 @endif
                                             </h2>
                                             {{-- @endif --}}
@@ -131,7 +140,6 @@
                                 class="fa fa-times-circle"></i>
                             Hentikan Antrian</a> --}}
                     </div>
-
                 </div>
             </div>
         </div>
@@ -156,7 +164,6 @@
                         window.location = "{{ url('/antrian/reset/a ') }}";
                     }
                 });
-
         });
 
         $('.stop').click(function() {

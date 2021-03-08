@@ -26,10 +26,14 @@ class AntrianController extends Controller
     public function antrian_a(Request $request)
     {
         // dd($request->all());
+        $date = new DateTime('now');
+        $localtime = $date->format('H:i:s');
+        $tgl = $date->format('Y-m-d');
         if ($request->has('cari')) {
             $data = Antrian::where('id_pelayanan', 1)->where('no_antrian', 'LIKE', '%' . $request->cari . '%')->paginate(10);
         } else {
             $data = Antrian::where('id_pelayanan', 1)->paginate(10);
+            // return $data = Antrian::where('id_pelayanan', 1)->where('tgl_antrian', $tgl)->get()->last();
         }
         // dd($data);
 
@@ -38,23 +42,27 @@ class AntrianController extends Controller
         // }
         // $count = Antrian::all()->last();
         // $hitung = date('H:i:s', strtotime($data->waktu_awal_antrian) + strtotime($data->lamapelayanan->lamapelayanan));
-        $date = new DateTime('now');
-        $localtime = $date->format('H:i:s');
-        return view('loket_antrian.antrian_a', compact('data', 'localtime'));
+        return view('loket_antrian.antrian_a', compact('data', 'localtime', 'tgl'));
     }
 
     public function store_a(Request $request)
     {
+        $date = new DateTime('now');
+        $tgl = $date->format('Y-m-d');
         $antrii = Antrian::where('id_pelayanan', 1)->get();
         $antriii = Antrian::where('id_pelayanan', 1)->get()->last();
         $lama_pelayanan = Lamapelayanan::get()->first()->lamapelayanan;
         // $lama_pelayanan = 180;
         // $lama_pelayanan = strtotime($lama_pelayanan1);
-        if ($antriii == null) {
+        if ($antriii == null && Laporan::where('id_pelayanan', 1)->where('tgl_antrian', $tgl)->get()->count() == 0) {
             $antri = $antrii->count() + 1;
+        } elseif ($antriii == null && Laporan::where('id_pelayanan', 1)->where('tgl_antrian', $tgl)->get()->count() != 0) {
+            $antri = Laporan::where('id_pelayanan', 1)->where('tgl_antrian', $tgl)->get()->last()->no_antrian + 1;
         } else {
             $antri = $antriii->no_antrian + 1;
         }
+
+        // dd($antri);
 
 
         // $timezone = "Asia/Jakarta";
