@@ -127,9 +127,9 @@
                     <div class="col-md-4">
                         <a href="#" class="btn btn-success btn-md m-l-15 m-b-15 reset"><i class="mdi mdi-reload"></i>
                             Reset Antrian</a>
-                        <a href="#" id="tombol" class="btn btn-danger btn-md m-l-15 m-b-15 stop"><i
+                        {{-- <a href="#" id="tombol" class="btn btn-danger btn-md m-l-15 m-b-15 stop"><i
                                 class="fa fa-times-circle"></i>
-                            Hentikan Antrian</a>
+                            Hentikan Antrian</a> --}}
                     </div>
 
                 </div>

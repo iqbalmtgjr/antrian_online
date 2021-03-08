@@ -19,14 +19,15 @@
                     <a href="#" class="btn btn-primary btn-md m-l-15 m-b-15" data-toggle="modal"
                         data-target="#mulai_lanjut"><i class="mdi mdi-skip-next-circle"></i>
                         Mulai/Lanjut</a> <br>
-                        <form action="{{ url('/antrian_b') }}" method="GET">
-                            <div class="row pull-right input-group mb-2 col-md-3">
-                                    <input type="number" name="cari" id="cari" class="form-control" aria-label="Search" placeholder="Cari No Antrian .. (Hanya Angka No Antrian)">
-                                    <div class="input-group-append">
-                                        <button class="btn btn-outline-secondary" type="submit">Cari</button>
-                                    </div>
-                            </div> 
-                        </form>
+                    <form action="{{ url('/antrian_b') }}" method="GET">
+                        <div class="row pull-right input-group mb-2 col-md-3">
+                            <input type="number" name="cari" id="cari" class="form-control" aria-label="Search"
+                                placeholder="Cari No Antrian .. (Hanya Angka No Antrian)">
+                            <div class="input-group-append">
+                                <button class="btn btn-outline-secondary" type="submit">Cari</button>
+                            </div>
+                        </div>
+                    </form>
                     <table id="" class="table">
                         <!-- Modal -->
                         <div class="modal fade" id="mulai_lanjut" tabindex="-1" role="dialog"
@@ -53,13 +54,13 @@
                                                         @if (App\Models\Antrian::where('id_pelayanan', 2)
             ->get()
             ->count() <= 1)
-                                                        A0{{ App\Models\Antrian::where('id_pelayanan', 2)->get()->last()->no_antrian + 1 }}
-                                                        @else
-                                                            @if (App\Models\Antrian::where('id_pelayanan', 2)->get()->last()->no_antrian >= 9)
-                                                            A{{ App\Models\Antrian::where('id_pelayanan', 2)->get()->last()->no_antrian + 1 }}
-                                                            @else
                                                             A0{{ App\Models\Antrian::where('id_pelayanan', 2)->get()->last()->no_antrian + 1 }}
-                                                            @endif
+                                                        @else
+                                                            @if (App\Models\Antrian::where('id_pelayanan', 2)
+                                                            ->get()
+                                                            ->last()->no_antrian >= 9) A{{ App\Models\Antrian::where('id_pelayanan', 2)->get()->last()->no_antrian + 1 }}
+                                                        @else
+                                                            A0{{ App\Models\Antrian::where('id_pelayanan', 2)->get()->last()->no_antrian + 1 }} @endif
                                                         @endif
                                                     </h2>
                                                 @endif
@@ -126,9 +127,9 @@
                         <div class="col-md-4">
                             <a href="#" class="btn btn-success btn-md m-l-15 m-b-15 reset"><i class="mdi mdi-reload"></i>
                                 Reset Antrian</a>
-                            <a href="#" id="tombol" class="btn btn-danger btn-md m-l-15 m-b-15 stop"><i
+                            {{-- <a href="#" id="tombol" class="btn btn-danger btn-md m-l-15 m-b-15 stop"><i
                                     class="fa fa-times-circle"></i>
-                                Hentikan Antrian</a>
+                                Hentikan Antrian</a> --}}
                         </div>
 
                     </div>

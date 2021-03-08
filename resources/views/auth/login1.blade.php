@@ -3,7 +3,8 @@
 @section('content')
     <h3 class="text-center mt-0 m-b-15">
         <a href="index.html" class="logo logo-admin"><img src={{ asset('assets/images/sintang.png') }} height="100 px"
-                alt="logo"></a>
+                alt="logo"></a> <br>
+        {{-- <h2 class="text-center">Login <br> SIANTRI</h2> --}}
     </h3>
 
     <div class="p-3">
