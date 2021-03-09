@@ -46,21 +46,20 @@
                                             <center>
                                                 @if ($data->count() >= 9)
                                                     <h2>
-                                                        B{{ App\Models\Antrian::where('id_pelayanan', 4)->first()->no_antrian + 1 }}
+                                                        D{{ App\Models\Antrian::where('id_pelayanan', 4)->first()->no_antrian + 1 }}
 
                                                     </h2>
                                                 @else
                                                     <h2>
                                                         @if (App\Models\Antrian::where('id_pelayanan', 4)
             ->get()
-<<<<<<< HEAD
             ->count() <= 1)
-=======
-            ->count() < 2)
->>>>>>> c142bcebf1aeca5b651f183852b74f0961c01243
                                                             -
                                                         @else
-                                                            B0{{ App\Models\Antrian::where('id_pelayanan', 4)->first()->no_antrian + 1 }}
+                                                            @if (App\Models\Antrian::where('id_pelayanan',
+                                                            1)->first()->no_antrian >= 9) D{{ App\Models\Antrian::where('id_pelayanan', 4)->first()->no_antrian + 1 }}
+                                                        @else
+                                                            D0{{ App\Models\Antrian::where('id_pelayanan', 4)->first()->no_antrian + 1 }} @endif
                                                         @endif
                                                     </h2>
                                                 @endif
@@ -99,7 +98,6 @@
                                             Sedang Dalam Pelayanan
                                         @else
                                             {{ 'Akan Dilayani Pada Pukul ' . $datas->estimasi . ' Wib' }}
-                                            {{-- {{ $localtime }} --}}
                                         @endif
                                     </td>
                                 </tr>

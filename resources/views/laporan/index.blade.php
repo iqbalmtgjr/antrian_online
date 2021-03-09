@@ -36,7 +36,6 @@
                                 <button class="form-control btn-primary" type="submit">Cari</button>
                             </div>
                         </div>
-<<<<<<< HEAD
                     </div>
                 </form>
                 <table id="datatables" class="table table-striped">
@@ -50,20 +49,6 @@
                             <th>Lama Pelayanan</th>
                         </tr>
                     </thead>
-=======
-                    </form>
-                    <table id="datatable" class="table table-striped">
-                        <thead>
-                            <tr>
-                                <th>No</th>
-                                <th>Loket Pelayanan</th>
-                                <th>No Antrian</th>
-                                <th>Hari</th>
-                                <th>Tanggal</th>
-                                <th>Lama Pelayanan</th>
-                            </tr>
-                        </thead>
->>>>>>> c142bcebf1aeca5b651f183852b74f0961c01243
 
 
                         <tbody>
@@ -110,7 +95,6 @@
             </div>
         </div>
     </div>
-<<<<<<< HEAD
 </div>
 @endsection
 
@@ -126,6 +110,3 @@
     } );
 </script>
 @endsection
-=======
-@endsection
->>>>>>> c142bcebf1aeca5b651f183852b74f0961c01243

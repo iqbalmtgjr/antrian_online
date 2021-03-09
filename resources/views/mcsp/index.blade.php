@@ -37,59 +37,9 @@
                         </div>
                     </div> --}}
                 </form>
-                <table id="datatable" class="table table-striped">
-                    <thead>
-                        <tr>
-                            <th>No</th>
-                            <th>Loket Pelayanan</th>
-                            <th>No Antrian</th>
-                            <th>Hari</th>
-                            <th>Tanggal</th>
-                            <th>Lama Pelayanan</th>
-                        </tr>
-                    </thead>
-
-
-                    <tbody>
-                        {{-- @foreach ($data as $datas)
-                        <tr>
-                            <td>{{ $loop->iteration }}</td>
-                            @if ($datas->id_pelayanan == 1)
-                            <td>Loket A</td>
-                            @elseif ($datas->id_pelayanan == 2)
-                            <td>Loket B</td>
-                            @elseif ($datas->id_pelayanan == 3)
-                            <td>Loket C</td>
-                            @else
-                            <td>Loket D</td>
-                            @endif
-
-                            @if ($datas->id_pelayanan == 1 && $datas->no_antrian >= 10)
-                            <td>{{"A". $datas->no_antrian }}</td>
-                            @elseif ($datas->id_pelayanan == 1 )
-                            <td>{{"A0". $datas->no_antrian }}</td>
-                            @elseif($datas->id_pelayanan == 2 && $datas->no_antrian >= 10)
-                            <td>{{"B". $datas->no_antrian }}</td>
-                            @elseif ($datas->id_pelayanan == 2)
-                            <td>{{"B0". $datas->no_antrian }}</td>
-                            @elseif($datas->id_pelayanan == 3 && $datas->no_antrian >= 10)
-                            <td>{{"C". $datas->no_antrian }}</td>
-                            @elseif ($datas->id_pelayanan == 3)
-                            <td>{{"C0". $datas->no_antrian }}</td>
-                            @elseif($datas->id_pelayanan == 4 && $datas->no_antrian >= 10)
-                            <td>{{"D". $datas->no_antrian }}</td>
-                            @elseif ($datas->id_pelayanan == 4)
-                            <td>{{"D0". $datas->no_antrian }}</td>
-                            @endif
-
-                            <td>{{ $datas->hari }}</td>
-                            <td>{{ $datas->tgl_antrian }}</td>
-                            <td>{{ $datas->lama_pelayanan }}</td>
-                        </tr>
-                        @endforeach --}}
-                    </tbody>
-                </table>
-
+                <div class="col-lg-12 text-center mt-5 mb-5">
+                    <button class="btn btn-lg btn-success">Lihat Rekomendasi <i>Multi Channel Single Phase</i></button>
+                </div>
             </div>
         </div>
     </div>

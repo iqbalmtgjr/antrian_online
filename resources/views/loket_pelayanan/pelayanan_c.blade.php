@@ -16,7 +16,7 @@
         <div class="col-12">
             <div class="card m-b-30">
                 <div class="card-body">
-                    <table id="" class="table table-striped">
+                    <table id="" class="table">
                         <a href="#" class="btn btn-primary btn-md m-l-15 m-b-15" data-toggle="modal"
                             data-target="#mulai_lanjut"><i class="mdi mdi-skip-next-circle"></i>
                             Mulai/Lanjut</a> <br>
@@ -53,14 +53,13 @@
                                                     <h2>
                                                         @if (App\Models\Antrian::where('id_pelayanan', 3)
             ->get()
-<<<<<<< HEAD
             ->count() <= 1)
-=======
-            ->count() < 2)
->>>>>>> c142bcebf1aeca5b651f183852b74f0961c01243
                                                             -
                                                         @else
-                                                            C0{{ App\Models\Antrian::where('id_pelayanan', 3)->first()->no_antrian + 1 }}
+                                                            @if (App\Models\Antrian::where('id_pelayanan',
+                                                            1)->first()->no_antrian >= 9) C{{ App\Models\Antrian::where('id_pelayanan', 3)->first()->no_antrian + 1 }}
+                                                        @else
+                                                            C0{{ App\Models\Antrian::where('id_pelayanan', 3)->first()->no_antrian + 1 }} @endif
                                                         @endif
                                                     </h2>
                                                 @endif
@@ -78,7 +77,7 @@
                                 </div>
                             </div>
                         </div>
-                        <thead>
+                        <thead class="thead-dark">
                             <tr>
                                 <th>No Antrian</th>
                                 <th>Estimasi Waktu Tunggu</th>
@@ -99,7 +98,6 @@
                                             Sedang Dalam Pelayanan
                                         @else
                                             {{ 'Akan Dilayani Pada Pukul ' . $datas->estimasi . ' Wib' }}
-                                            {{-- {{ $localtime }} --}}
                                         @endif
                                     </td>
                                 </tr>
