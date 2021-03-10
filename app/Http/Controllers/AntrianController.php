@@ -9,6 +9,8 @@ use App\Models\Lamapelayanan;
 use App\Models\Laporan;
 use App\Models\Loketpelayanan;
 use Illuminate\Http\Request;
+use PhpParser\Node\Stmt\Foreach_;
+
 use function GuzzleHttp\Promise\all;
 
 class AntrianController extends Controller
@@ -490,22 +492,21 @@ class AntrianController extends Controller
         $date = new DateTime('now');
         $localtime = $date->format('H:i:s');
         $tanggal = $date->format('Y-m-d');
-        $antrian_total = Laporan::where('id_pelayanan', 1)->where('tgl_antrian', $tanggal)->get()->count();
+        $laporan_total = Laporan::where('id_pelayanan', 1)->where('tgl_antrian', $tanggal)->get()->count();
         $antrian = Antrian::where('id_pelayanan', 1)->first();
         // $first_count = $antrian->no_antrian + 1;
         // $antriann = Antrian::where('no_antrian', $first_count)->where('id_pelayanan', 1)->first();
         if ($antrian == null) {
             return redirect()->back()->with('gagal', 'Antrian Tidak Ada !!!');
-        } else {
-            $waktu_awal = new DateTime($antrian->waktu_awal_antrian);
         }
+        $waktu_awal = new DateTime($antrian->waktu_awal_antrian);
         $waktu_akhir = new DateTime($localtime);
         $lama_menunggu = $waktu_awal->diff($waktu_akhir);
         // $estimasi = new DateTime($antrian->estimasi);
         // $kurang = new DateTime($lama_menunggu->format('%H:%I:%S'));
-        if ($antrian_total >= 1) {
+        if ($laporan_total >= 1) {
             $last = Laporan::where('id_pelayanan', 1)->get()->last();
-            // if ($antrian_total > 1) {
+            // if ($laporan_total > 1) {
             $last_count = $last->no_antrian - 1;
             // } else {
             $last_count = $last->no_antrian;
@@ -516,7 +517,7 @@ class AntrianController extends Controller
             $lama_pelayanan = $w_awal_p->diff($w_akhir_p);
         }
         $antrian_all = Antrian::where('id_pelayanan', 1)->get();
-        if ($antrian_total < 1) {
+        if ($laporan_total < 1) {
             $laporan = Laporan::create([
                 'id_pelayanan' => $antrian->id_pelayanan,
                 'lamapelayanan_id' => $antrian->lamapelayanan_id,
@@ -530,19 +531,16 @@ class AntrianController extends Controller
                 'waktu_awal_pelayanan' => $localtime,
                 // 'estimasi' => ($estimasi)->diff($kurang)->format('%H:%I:%S'),
             ]);
-            $antrian_semua = Antrian::where('id_pelayanan', 1)->where('tgl_antrian', $tanggal)->get();
-            // foreach ($antrian_semua as $annn) {
-            //     $annn;
+            // foreach ($antrian_all as $ann) {
+            // dd($ann);
+            // $est = new DateTime($ann->estimasi);
+            // $lam = new DateTime($localtime);
+            // $has = ($est)->diff($lam)->format('%H:%I:%S');
+            // $data = Antrian::where('id_pelayanan', 1)->update([
+            // 'estimasi' => date('H:i:s', strtotime($ann->estimasi) - strtotime(($localtime)))
+            // ]);
+            // dd($data);
             // }
-            // dd($annn);
-            foreach ($antrian_semua as $ann) {
-                $data1 = Antrian::where('id_pelayanan', 1)->where('tgl_antrian', $tanggal)->get();
-                $est = new DateTime($ann->estimasi);
-                $lam = new DateTime($lama_pelayanan->format('%H:%I:%S'));
-                $data = Antrian::where('id_pelayanan', 1)->where('tgl_antrian', $tanggal)->update([
-                    'estimasi' => date('H:i:s', strtotime($ann->estimasi) - strtotime($lama_pelayanan->format('%H:%I:%S'))),
-                ]);
-            }
         } else {
             $laporan = Laporan::create([
                 'id_pelayanan' => $antrian->id_pelayanan,
@@ -558,39 +556,38 @@ class AntrianController extends Controller
                 // 'estimasi' => ($estimasi)->diff($kurang)->format('%H:%I:%S'),
             ]);
             $laporan = Laporan::where('id_pelayanan', 1)->where('tgl_antrian', $tanggal)->get()->count();
-            $antrian_semua = Antrian::where('id_pelayanan', 1)->where('tgl_antrian', $tanggal)->get();
-            foreach ($antrian_semua as $annn) {
-                $annn;
-            }
+            // foreach ($antrian_semua as $annn) {
+            //     $annn;
+            // }
             // dd($annn->estimasi);
-            // foreach ($antrian_semua as $ann) {
-            //     // dd($ann);
-            //     $est = new DateTime($ann->estimasi);
-            //     $lam = new DateTime($lama_pelayanan->format('%H:%I:%S'));
-            //     // $has = ($est)->diff($lam)->format('%H:%I:%S');
-            //     $data = Antrian::where('id_pelayanan', 1)->where('tgl_antrian', $tanggal)->update([
-            //         'estimasi' => date('H:i:s', strtotime($ann->estimasi) - strtotime($lama_pelayanan->format('%H:%I:%S'))),
+            // foreach ($antrian_all as $ann) {
+            // dd($ann);
+            // $est = new DateTime($ann->estimasi);
+            // $lam = new DateTime($lama_pelayanan->format('%H:%I:%S'));
+            // $has = ($est)->diff($lam)->format('%H:%I:%S');
+            // $data = Antrian::where('id_pelayanan', 1)->update([
+            // 'estimasi' => date('H:i:s', strtotime($ann->estimasi) - strtotime($lama_pelayanan->format('%H:%I:%S'))),
+            // ]);
+            // }
+            // $antrian_s = Antrian::where('id_pelayanan', 1)->get();
+            // foreach ($antrian_all as $key => $value) {
+            // $data_estimasi[$key] = $value->estimasi;
+            //     $data_estimasi = new DateTime($value->estimasi);
+            //     $data_lamapelayanan = new DateTime($lama_pelayanan->format('%H:%I:%S'));
+            //     $data = Antrian::where('id_pelayanan', 1)->upsert([
+            //         'estimasi' => date('H:i:s', strtotime($data_estimasi) - strtotime(($data_lamapelayanan)->format('%H:%I:%S')))
             //     ]);
             // }
-            foreach ($antrian_semua as $ann) {
-                $data1 = Antrian::where('id_pelayanan', 1)->where('tgl_antrian', $tanggal)->get();
-                return $est = $data1;
-                $est = new DateTime($data1->estimasi);
-                $lam = new DateTime($lama_pelayanan->format('%H:%I:%S'));
-                $data = Antrian::where('id_pelayanan', 1)->where('tgl_antrian', $tanggal)->update([
-                    'estimasi' => date('H:i:s', strtotime($ann->estimasi) - strtotime($lama_pelayanan->format('%H:%I:%S'))),
-                ]);
-            }
             $antrian_last->update([
                 'waktu_akhir_pelayanan' => $localtime,
                 'lama_pelayanan' => $lama_pelayanan->format('%H:%I:%S')
             ]);
         }
 
-        // foreach ($antrian_all as $ann) {
+        // foreach ($antrian_semua as $ann) {
         //     $laporann = Laporan::where('id_pelayanan', 1)->get();
-        //     $w_awal = new DateTime($ann->waktu_awal_antrian);
-        //     $w_akhir = new DateTime($laporann->lama_pelayanan);
+        //     $w_awal = new DateTime($ann->estimasi);
+        //     $w_akhir = new DateTime($lama_pelayanan->format('%H:%I:%S'));
         //     $l_pelayanan = $w_awal->diff($w_akhir)->format('%H:%I:%S');
         //     $update = Antrian::where('id_pelayanan', 1)->update([
         //         'estimasi' => (new DateTime($ann->estimasi))->diff(new DateTime($l_pelayanan))->format('%H:%I:%S'),
@@ -629,9 +626,8 @@ class AntrianController extends Controller
         $antrian = Antrian::where('id_pelayanan', 2)->first();
         if ($antrian == null) {
             return redirect()->back()->with('gagal', 'Antrian Tidak Ada !!!');
-        } else {
-            $waktu_awal = new DateTime($antrian->waktu_awal_antrian);
         }
+        $waktu_awal = new DateTime($antrian->waktu_awal_antrian);
         $waktu_akhir = new DateTime($localtime);
         $lama_menunggu = $waktu_awal->diff($waktu_akhir);
         if ($antrian_total >= 1) {
@@ -643,7 +639,7 @@ class AntrianController extends Controller
             $w_akhir_p = new DateTime($localtime);
             $lama_pelayanan = $w_awal_p->diff($w_akhir_p);
         }
-        $antrian_all = Antrian::where('id_pelayanan', 2)->get();
+        $semua = Antrian::where('id_pelayanan', 2)->get();
         if ($antrian_total < 1) {
             $laporan = Laporan::create([
                 'id_pelayanan' => $antrian->id_pelayanan,
@@ -709,9 +705,8 @@ class AntrianController extends Controller
         $antrian = Antrian::where('id_pelayanan', 3)->first();
         if ($antrian == null) {
             return redirect()->back()->with('gagal', 'Antrian Tidak Ada !!!');
-        } else {
-            $waktu_awal = new DateTime($antrian->waktu_awal_antrian);
         }
+        $waktu_awal = new DateTime($antrian->waktu_awal_antrian);
         $waktu_akhir = new DateTime($localtime);
         $lama_menunggu = $waktu_awal->diff($waktu_akhir);
         if ($antrian_total >= 1) {
@@ -789,9 +784,8 @@ class AntrianController extends Controller
         $antrian = Antrian::where('id_pelayanan', 4)->first();
         if ($antrian == null) {
             return redirect()->back()->with('gagal', 'Antrian Tidak Ada !!!');
-        } else {
-            $waktu_awal = new DateTime($antrian->waktu_awal_antrian);
         }
+        $waktu_awal = new DateTime($antrian->waktu_awal_antrian);
         $waktu_akhir = new DateTime($localtime);
         $lama_menunggu = $waktu_awal->diff($waktu_akhir);
         if ($antrian_total >= 1) {

@@ -93,6 +93,7 @@
                     <tr>
                         <th scope="col">No Antrian</th>
                         <th scope="col">Estimasi Waktu Tunggu</th>
+                        {{-- <th scope="col">Status</th> --}}
                     </tr>
                 </thead>
 
@@ -112,7 +113,14 @@
                                     {{ 'Akan Dilayani Pada Pukul ' . $datas->estimasi . ' Wib' }}
                                 @endif
                             </td>
-                        </tr>
+                            {{-- <td>
+                                @if ($datas->estimasi <= $localtime && $datas->first() == true)
+                                    Sedang Dalam Pelayanan
+                                @else
+                                    Sedang Menunggu Antrian
+                                @endif
+                            </td>
+                        </tr> --}}
                     </tbody>
                 @endforeach
                 </table>
