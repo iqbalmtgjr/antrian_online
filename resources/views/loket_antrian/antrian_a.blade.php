@@ -148,6 +148,9 @@
                                 class="fa fa-times-circle"></i>
                             Hentikan Antrian</a> --}}
                     </div>
+                    {{-- @php
+                        echo date('H:i:s', strtotime('15:06:00') - strtotime('00:02:00'));
+                    @endphp --}}
                 </div>
             </div>
         </div>

@@ -9,7 +9,6 @@ use App\Models\Lamapelayanan;
 use App\Models\Laporan;
 use App\Models\Loketpelayanan;
 use Illuminate\Http\Request;
-use PhpParser\Node\Stmt\Foreach_;
 
 use function GuzzleHttp\Promise\all;
 
@@ -518,29 +517,33 @@ class AntrianController extends Controller
         }
         $antrian_all = Antrian::where('id_pelayanan', 1)->get();
         if ($laporan_total < 1) {
-            $laporan = Laporan::create([
-                'id_pelayanan' => $antrian->id_pelayanan,
-                'lamapelayanan_id' => $antrian->lamapelayanan_id,
-                'id_user' => $antrian->id_user,
-                'no_antrian' => $antrian->no_antrian,
-                'hari' => $antrian->hari,
-                'tgl_antrian' => $antrian->tgl_antrian,
-                'waktu_awal_antrian' => $antrian->waktu_awal_antrian,
-                'waktu_akhir_antrian' => $localtime,
-                'lama_menunggu' => $lama_menunggu->format('%H:%I:%S'),
-                'waktu_awal_pelayanan' => $localtime,
-                // 'estimasi' => ($estimasi)->diff($kurang)->format('%H:%I:%S'),
-            ]);
-            // foreach ($antrian_all as $ann) {
-            // dd($ann);
-            // $est = new DateTime($ann->estimasi);
-            // $lam = new DateTime($localtime);
-            // $has = ($est)->diff($lam)->format('%H:%I:%S');
-            // $data = Antrian::where('id_pelayanan', 1)->update([
-            // 'estimasi' => date('H:i:s', strtotime($ann->estimasi) - strtotime(($localtime)))
+            // $laporan = Laporan::create([
+            //     'id_pelayanan' => $antrian->id_pelayanan,
+            //     'lamapelayanan_id' => $antrian->lamapelayanan_id,
+            //     'id_user' => $antrian->id_user,
+            //     'no_antrian' => $antrian->no_antrian,
+            //     'hari' => $antrian->hari,
+            //     'tgl_antrian' => $antrian->tgl_antrian,
+            //     'waktu_awal_antrian' => $antrian->waktu_awal_antrian,
+            //     'waktu_akhir_antrian' => $localtime,
+            //     'lama_menunggu' => $lama_menunggu->format('%H:%I:%S'),
+            //     'waktu_awal_pelayanan' => $localtime,
+            // 'estimasi' => ($estimasi)->diff($kurang)->format('%H:%I:%S'),
             // ]);
-            // dd($data);
-            // }
+            foreach ($antrian_all as $ann) {
+                // dd($ann->estimasi);
+                $est = new DateTime($ann->estimasi);
+                $lam = new DateTime($localtime);
+                $has = ($est)->diff($lam)->format('%H:%I:%S');
+                $awal = '15:54:29';
+                $akhir = '00:02:00';
+                // $data = $ann->update([
+                // 'estimasi' => date('H:i:s', strtotime($awal) - strtotime($akhir))
+                $data = date('h:i:s', strtotime('10:02:00') - strtotime('00:02:00'));
+                dd($data);
+                // ]);
+                // dd($data);
+            }
         } else {
             $laporan = Laporan::create([
                 'id_pelayanan' => $antrian->id_pelayanan,
