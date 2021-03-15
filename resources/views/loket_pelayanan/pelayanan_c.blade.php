@@ -57,7 +57,7 @@
                                                             -
                                                         @else
                                                             @if (App\Models\Antrian::where('id_pelayanan',
-                                                            1)->first()->no_antrian >= 9) C{{ App\Models\Antrian::where('id_pelayanan', 3)->first()->no_antrian + 1 }}
+                                                            3)->first()->no_antrian >= 9) C{{ App\Models\Antrian::where('id_pelayanan', 3)->first()->no_antrian + 1 }}
                                                         @else
                                                             C0{{ App\Models\Antrian::where('id_pelayanan', 3)->first()->no_antrian + 1 }} @endif
                                                         @endif

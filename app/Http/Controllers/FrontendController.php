@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use DateTime;
+use DateTimeZone;
 use App\Models\Antrian;
 use Illuminate\Http\Request;
 
@@ -15,7 +16,8 @@ class FrontendController extends Controller
      */
     public function index(Request $request)
     {
-        $date = new DateTime('now');
+        $timezone = 'Asia/Jakarta';
+        $date = new DateTime('now', new DateTimeZone($timezone));
         $localtime = $date->format('H:i:s');
 
         if ($request->id_pelayanan == 1 && $request->cari == null) {
