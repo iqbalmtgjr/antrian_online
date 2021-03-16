@@ -29,6 +29,7 @@ class AntrianController extends Controller
         // dd($request->all());
         $date = new DateTime('now');
         $localtime = $date->format('H:i:s');
+        dd($localtime);
         $tgl = $date->format('Y-m-d');
         if ($request->has('cari')) {
             $data = Antrian::where('id_pelayanan', 1)->where('no_antrian', 'LIKE', '%' . $request->cari . '%')->paginate(10);

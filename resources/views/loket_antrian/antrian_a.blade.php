@@ -52,28 +52,29 @@
                                         @else
                                             <h2>
                                                 @if ($data->count() == 0)
-                                                    @if($data->count() == 0 && App\Models\Laporan::where('id_pelayanan', 1)->where('tgl_antrian', $tgl)->get()->count() == 0)
-                                                    A0{{ $data->count() + 1 }}
+                                                    @if ($data->count() == 0 &&
+        App\Models\Laporan::where('id_pelayanan', 1)
+            ->where('tgl_antrian', $tgl)
+            ->get()
+            ->count() == 0)
+                                                        A0{{ $data->count() + 1 }}
                                                     @else
-                                                        @if (App\Models\Laporan::where('id_pelayanan', 1)->where('tgl_antrian', $tgl)->get()->count() >= 9)
-                                                        A{{ App\Models\Laporan::where('id_pelayanan', 1)->where('tgl_antrian', $tgl)->get()->last()->no_antrian + 1 }}
+                                                        @if (App\Models\Laporan::where('id_pelayanan', 1)
+            ->where('tgl_antrian', $tgl)
+            ->get()
+            ->count() >= 9)
+                                                            A{{ App\Models\Laporan::where('id_pelayanan', 1)->where('tgl_antrian', $tgl)->get()->last()->no_antrian + 1 }}
                                                         @else
-                                                        A0{{ App\Models\Laporan::where('id_pelayanan', 1)->where('tgl_antrian', $tgl)->get()->last()->no_antrian + 1 }}
+                                                            A0{{ App\Models\Laporan::where('id_pelayanan', 1)->where('tgl_antrian', $tgl)->get()->last()->no_antrian + 1 }}
                                                         @endif
                                                     @endif
                                                 @elseif (App\Models\Antrian::where('id_pelayanan', 1)->count() < 1)
-                                                A0{{ $data->count() + 1 }}
-                                                @else
-                                                    @if (App\Models\Antrian::where('id_pelayanan', 1)
-                                                    ->get()
-                                                    ->last()->no_antrian >= 9) A{{ App\Models\Antrian::where('id_pelayanan', 1)->get()->last()->no_antrian + 1 }}
+                                                    A0{{ $data->count() + 1 }} @else @if (App\Models\Antrian::where('id_pelayanan', 1)
+            ->get()
+            ->last()->no_antrian >= 9) A{{ App\Models\Antrian::where('id_pelayanan', 1)->get()->last()->no_antrian + 1 }}
                                                     @else
-                                                    A0{{ App\Models\Antrian::where('id_pelayanan', 1)->get()->last()->no_antrian + 1 }} 
-                                                    @endif
-                                                @endif
+                                                                                                            A0{{ App\Models\Antrian::where('id_pelayanan', 1)->get()->last()->no_antrian + 1 }} @endif @endif
                                             </h2>
-                                            {{-- @endif --}}
-                                            {{-- </h2> --}}
                                         @endif
                                     </center>
                             </div>
@@ -93,7 +94,6 @@
                     <tr>
                         <th scope="col">No Antrian</th>
                         <th scope="col">Estimasi Waktu Tunggu</th>
-                        {{-- <th scope="col">Status</th> --}}
                     </tr>
                 </thead>
 
@@ -148,9 +148,9 @@
                                 class="fa fa-times-circle"></i>
                             Hentikan Antrian</a> --}}
                     </div>
-                    {{-- @php
-                        echo date('H:i:s', strtotime('15:06:00') - strtotime('00:02:00'));
-                    @endphp --}}
+                    @php
+                        echo date('H:i:s', strtotime('00:15:00') - strtotime('00:02:00'));
+                    @endphp
                 </div>
             </div>
         </div>
