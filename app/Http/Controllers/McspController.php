@@ -29,7 +29,7 @@ class McspController extends Controller
         $timezone = 'Asia/Jakarta';
         $date = new DateTime('now', new DateTimeZone($timezone));
         $localtime = $date->format('H:i:s');
-        $lambda = Antrian::where('estimasi', '<=', '09:00:00')->count();
+        $lambda = Antrian::where('estimasi', '<=', '09:00:00')->get()->count();
     }
 
     public function create()
