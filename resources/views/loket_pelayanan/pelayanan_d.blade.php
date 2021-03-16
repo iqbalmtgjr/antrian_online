@@ -46,7 +46,7 @@
                                             <center>
                                                 @if ($data->count() >= 9)
                                                     <h2>
-                                                        D{{ App\Models\Antrian::where('id_pelayanan', 4)->first()->no_antrian + 1 }}
+                                                        C{{ App\Models\Antrian::where('id_pelayanan', 4)->first()->no_antrian + 1 }}
 
                                                     </h2>
                                                 @else
@@ -57,7 +57,7 @@
                                                             -
                                                         @else
                                                             @if (App\Models\Antrian::where('id_pelayanan',
-                                                            1)->first()->no_antrian >= 9) D{{ App\Models\Antrian::where('id_pelayanan', 4)->first()->no_antrian + 1 }}
+                                                            4)->first()->no_antrian >= 9) D{{ App\Models\Antrian::where('id_pelayanan', 4)->first()->no_antrian + 1 }}
                                                         @else
                                                             D0{{ App\Models\Antrian::where('id_pelayanan', 4)->first()->no_antrian + 1 }} @endif
                                                         @endif

@@ -164,7 +164,7 @@ https://templatemo.com/tm-537-art-factory
                             </tbody>
                             @endforeach
                         </table>
-                        <div class="row">
+                        {{-- <div class="row"> --}}
                             <div class="col-4">
                                 Menampilkan
                                 {{ $data->firstItem() }}
@@ -174,10 +174,10 @@ https://templatemo.com/tm-537-art-factory
                                 {{ $data->total() }}
                                 data
                             </div>
-                            <div class="text-right pull-right offset-4 col-4">
+                            <div class="pull-right">
                                 {{ $data->links() }}
                             </div>
-                        </div>  
+                        {{-- </div>   --}}
                     {{-- </div> --}}
                 </div>
 
