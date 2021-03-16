@@ -30,7 +30,7 @@ class AntrianController extends Controller
         $timezone = 'Asia/Jakarta';
         $date = new DateTime('now', new DateTimeZone($timezone));
         $localtime = $date->format('H:i:s');
-        dd($localtime);
+        // dd($localtime);
         $tgl = $date->format('Y-m-d');
         if ($request->has('cari')) {
             $data = Antrian::where('id_pelayanan', 1)->where('no_antrian', 'LIKE', '%' . $request->cari . '%')->paginate(10);
@@ -910,11 +910,6 @@ class AntrianController extends Controller
         return redirect()->back()->with('sukses', 'Antrian Selanjutnya !!!');
     }
 
-    public function mcsp()
-    {
-        return view('mcsp.index');
-    }
-
     /**
      * Show the form for creating a new resource.
      *
@@ -991,26 +986,5 @@ class AntrianController extends Controller
             // return $lamapelayanan->lamapelayanan;
             return compact('antrian', 'lamapelayanan');
         }
-    }
-
-    public function laporan(Request $request)
-    {
-        // dd($request->all());
-        if ($request->loket_pelayanan == null && $request->tgl_awal && $request->tgl_akhir) {
-            $data = Laporan::whereBetween('tgl_antrian', [$request->tgl_awal, $request->tgl_akhir])->get();
-        } elseif ($request->tgl_awal != null && $request->tgl_akhir == null && $request->loket_pelayanan == null) {
-            $data = Laporan::where('tgl_antrian', $request->tgl_awal)->get();
-        } elseif ($request->loket_pelayanan != null && $request->tgl_awal == null && $request->tgl_akhir == null) {
-            $data = Laporan::where('id_pelayanan', $request->loket_pelayanan)->get();
-        } elseif ($request->loket_pelayanan && $request->tgl_awal && $request->tgl_akhir) {
-            $data = Laporan::where('id_pelayanan', $request->loket_pelayanan)->whereBetween('tgl_antrian', [$request->tgl_awal, $request->tgl_akhir])->get();
-        } elseif ($request->loket_pelayanan != null && $request->tgl_awal != null && $request->tgl_akhir == null) {
-            $data = Laporan::where('id_pelayanan', $request->loket_pelayanan)->where('tgl_antrian', $request->tgl_awal)->get();
-        } else {
-            $data = Laporan::all();
-        }
-        // dd($data);
-
-        return view('laporan.index', compact('data'));
     }
 }

@@ -10,7 +10,7 @@
     </div>
     <div class="row">
         <div class="col-12">
-            <div class="card m-b-30">
+            <div class="card mb-30">
                 <div class="card-body">
                     <form action="/laporan" method="GET">
                         <h5>Filter Laporan</h5>
@@ -36,7 +36,7 @@
                                 <button class="form-control btn-primary" type="submit">Cari</button>
                             </div>
                         </div>
-                    </div>
+                </div>
                 </form>
                 <table id="datatables" class="table table-striped">
                     <thead>
@@ -51,62 +51,63 @@
                     </thead>
 
 
-                        <tbody>
-                            @foreach ($data as $datas)
-                                <tr>
-                                    <td>{{ $loop->iteration }}</td>
-                                    @if ($datas->id_pelayanan == 1)
-                                        <td>Loket A</td>
-                                    @elseif ($datas->id_pelayanan == 2)
-                                        <td>Loket B</td>
-                                    @elseif ($datas->id_pelayanan == 3)
-                                        <td>Loket C</td>
-                                    @else
-                                        <td>Loket D</td>
-                                    @endif
+                    <tbody>
+                        @foreach ($data as $datas)
+                            <tr>
+                                <td>{{ $loop->iteration }}</td>
+                                @if ($datas->id_pelayanan == 1)
+                                    <td>Loket A</td>
+                                @elseif ($datas->id_pelayanan == 2)
+                                    <td>Loket B</td>
+                                @elseif ($datas->id_pelayanan == 3)
+                                    <td>Loket C</td>
+                                @else
+                                    <td>Loket D</td>
+                                @endif
 
-                                    @if ($datas->id_pelayanan == 1 && $datas->no_antrian >= 10)
-                                        <td>{{ 'A' . $datas->no_antrian }}</td>
-                                    @elseif ($datas->id_pelayanan == 1 )
-                                        <td>{{ 'A0' . $datas->no_antrian }}</td>
-                                    @elseif($datas->id_pelayanan == 2 && $datas->no_antrian >= 10)
-                                        <td>{{ 'B' . $datas->no_antrian }}</td>
-                                    @elseif ($datas->id_pelayanan == 2)
-                                        <td>{{ 'B0' . $datas->no_antrian }}</td>
-                                    @elseif($datas->id_pelayanan == 3 && $datas->no_antrian >= 10)
-                                        <td>{{ 'C' . $datas->no_antrian }}</td>
-                                    @elseif ($datas->id_pelayanan == 3)
-                                        <td>{{ 'C0' . $datas->no_antrian }}</td>
-                                    @elseif($datas->id_pelayanan == 4 && $datas->no_antrian >= 10)
-                                        <td>{{ 'D' . $datas->no_antrian }}</td>
-                                    @elseif ($datas->id_pelayanan == 4)
-                                        <td>{{ 'D0' . $datas->no_antrian }}</td>
-                                    @endif
+                                @if ($datas->id_pelayanan == 1 && $datas->no_antrian >= 10)
+                                    <td>{{ 'A' . $datas->no_antrian }}</td>
+                                @elseif ($datas->id_pelayanan == 1 )
+                                    <td>{{ 'A0' . $datas->no_antrian }}</td>
+                                @elseif($datas->id_pelayanan == 2 && $datas->no_antrian >= 10)
+                                    <td>{{ 'B' . $datas->no_antrian }}</td>
+                                @elseif ($datas->id_pelayanan == 2)
+                                    <td>{{ 'B0' . $datas->no_antrian }}</td>
+                                @elseif($datas->id_pelayanan == 3 && $datas->no_antrian >= 10)
+                                    <td>{{ 'C' . $datas->no_antrian }}</td>
+                                @elseif ($datas->id_pelayanan == 3)
+                                    <td>{{ 'C0' . $datas->no_antrian }}</td>
+                                @elseif($datas->id_pelayanan == 4 && $datas->no_antrian >= 10)
+                                    <td>{{ 'D' . $datas->no_antrian }}</td>
+                                @elseif ($datas->id_pelayanan == 4)
+                                    <td>{{ 'D0' . $datas->no_antrian }}</td>
+                                @endif
 
-                                    <td>{{ $datas->hari }}</td>
-                                    <td>{{ $datas->tgl_antrian }}</td>
-                                    <td>{{ $datas->lama_pelayanan }}</td>
-                                </tr>
-                            @endforeach
-                        </tbody>
-                    </table>
+                                <td>{{ $datas->hari }}</td>
+                                <td>{{ $datas->tgl_antrian }}</td>
+                                <td>{{ $datas->lama_pelayanan }}</td>
+                            </tr>
+                        @endforeach
+                    </tbody>
+                </table>
 
-                </div>
             </div>
         </div>
     </div>
-</div>
+    </div>
+    </div>
 @endsection
 
 @section('footer')
-<script type="text/javascript">
-    $(document).ready(function() {
-        $('#datatables').DataTable({
-            dom: 'Bfrtip',
-            buttons: [
-                'excel', 'pdf', 'print'
-            ]
+    <script type="text/javascript">
+        $(document).ready(function() {
+            $('#datatables').DataTable({
+                dom: 'Bfrtip',
+                buttons: [
+                    'excel', 'pdf', 'print'
+                ]
+            });
         });
-    } );
-</script>
+
+    </script>
 @endsection

@@ -73,7 +73,7 @@
             ->get()
             ->last()->no_antrian >= 9) A{{ App\Models\Antrian::where('id_pelayanan', 1)->get()->last()->no_antrian + 1 }}
                                                     @else
-                                                                                                            A0{{ App\Models\Antrian::where('id_pelayanan', 1)->get()->last()->no_antrian + 1 }} @endif @endif
+                                                                                                                                        A0{{ App\Models\Antrian::where('id_pelayanan', 1)->get()->last()->no_antrian + 1 }} @endif @endif
                                             </h2>
                                         @endif
                                     </center>
@@ -141,16 +141,16 @@
                 <div class="row mt-5">
                     {{-- <div class="col-md-4"></div> --}}
                     {{-- <div class="col-md-4"></div> --}}
-                    <div class="col-md-4">
-                        <a href="#" class="btn btn-success btn-md m-l-15 m-b-15 reset"><i class="mdi mdi-reload"></i>
-                            Reset Antrian</a>
-                        {{-- <a href="#" id="tombol" class="btn btn-danger btn-md m-l-15 m-b-15 stop"><i
+                    {{-- <div class="col-md-4"> --}}
+                    <a href="#" class="btn btn-success btn-md m-l-15 m-b-15 reset"><i class="mdi mdi-reload"></i>
+                        Reset Antrian</a>
+                    {{-- <a href="#" id="tombol" class="btn btn-danger btn-md m-l-15 m-b-15 stop"><i
                                 class="fa fa-times-circle"></i>
                             Hentikan Antrian</a> --}}
-                    </div>
-                    @php
+                    {{-- </div> --}}
+                    {{-- @php
                         echo date('H:i:s', strtotime('00:15:00') - strtotime('00:02:00'));
-                    @endphp
+                    @endphp --}}
                 </div>
             </div>
         </div>

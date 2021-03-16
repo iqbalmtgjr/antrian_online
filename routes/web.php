@@ -3,10 +3,11 @@
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HomeController;
-use App\Http\Controllers\KoordinatorController;
+use App\Http\Controllers\McspController;
 use App\Http\Controllers\AntrianController;
-use App\Http\Controllers\FrontendController;
 use App\Http\Controllers\PetugasController;
+use App\Http\Controllers\FrontendController;
+use App\Http\Controllers\KoordinatorController;
 use App\Http\Controllers\KepalabagianController;
 use App\Http\Controllers\LamapelayananController;
 use App\Http\Controllers\LoketPelayananController;
@@ -83,7 +84,7 @@ Route::group(['middleware' => ['auth', 'checkRole:Petugas']], function () {
 });
 
 Route::group(['middleware' => ['auth', 'checkRole:Kepala Bagian']], function () {
-    Route::get('/laporan', [AntrianController::class, 'laporan']);
-    Route::get('/multi_channel_single_phase', [AntrianController::class, 'mcsp']);
+    Route::get('/laporan', [LaporanController::class, 'index']);
+    Route::get('/multi_channel_single_phase', [McspController::class, 'index']);
 });
 // Route::get('/belajarjs', []);
