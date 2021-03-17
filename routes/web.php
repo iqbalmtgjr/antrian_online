@@ -5,6 +5,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\McspController;
 use App\Http\Controllers\AntrianController;
+use App\Http\Controllers\LaporanController;
 use App\Http\Controllers\PetugasController;
 use App\Http\Controllers\FrontendController;
 use App\Http\Controllers\KoordinatorController;

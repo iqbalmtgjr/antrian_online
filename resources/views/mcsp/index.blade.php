@@ -15,9 +15,10 @@
                     <div class="col-lg-12 text-center mt-5 mb-5">
                         <button class="btn btn-lg btn-success">Lihat Rekomendasi <i>Multi Channel Single Phase</i></button>
                         <br>
-                        {{-- @php
-                            echo date('H:i:s', strtotime('04.36') * 2);
-                        @endphp --}}
+                        {{-- @foreach ($lambda as $item)
+                            {{ $item }}
+                        @endforeach --}}
+                        {{-- {{ $hasil }} --}}
                     </div>
                 </div>
             </div>

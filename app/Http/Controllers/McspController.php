@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use DateTime;
 use DateTimeZone;
 use App\Models\Antrian;
+use App\Models\Lamapelayanan;
+use App\Models\Loketpelayanan;
 use Illuminate\Http\Request;
 
 class McspController extends Controller
@@ -16,6 +18,30 @@ class McspController extends Controller
      */
     public function index()
     {
+        $timezone = 'Asia/Jakarta';
+        $date = new DateTime('now', new DateTimeZone($timezone));
+        $localtime = $date->format('H:i:s');
+
+        // Rumus Rasio Pelayanan
+        $lambda = Antrian::where('estimasi', '<=', '17:00:00')->get()->count();
+        $c = Loketpelayanan::all()->count();
+        $miu = Lamapelayanan::first()->lamapelayanan;
+        $menit_miu = $lambda / ($miu * $c * 60);
+        $hasil = number_format($menit_miu, 2);
+        $persen_rasio = round($hasil * 100 / 1, 2);
+        $hasil_persen_rasio = $persen_rasio . "%";
+
+
+
+        // Rumus Probabilitas loket pelayanan yang menganggur
+        $p0 = 1 - $hasil;
+        $tp0 = $p0 * 60;
+        $tp0_format = date('H:i:s', $p0 * 60);
+        $persen_p0 = round($tp0 * 100 / 1, 2);
+
+
+        // Rumus Rata-rata jumlah masyarakat/orangnya yang menunggu di layani
+
         return view('mcsp.index');
     }
 
@@ -24,17 +50,19 @@ class McspController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+
     public function rasio()
     {
-        $timezone = 'Asia/Jakarta';
-        $date = new DateTime('now', new DateTimeZone($timezone));
-        $localtime = $date->format('H:i:s');
-        $lambda = Antrian::where('estimasi', '<=', '09:00:00')->get()->count();
+        // $timezone = 'Asia/Jakarta';
+        // $date = new DateTime('now', new DateTimeZone($timezone));
+        // $localtime = $date->format('H:i:s');
+        // $lambda = Antrian::where('estimasi', '<=', '09:00:00')->get();
+
+        return view('mcsp.index', compact('lambda'));
     }
 
     public function create()
     {
-        //
     }
 
     /**
