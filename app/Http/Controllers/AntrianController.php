@@ -125,7 +125,7 @@ class AntrianController extends Controller
                 'tgl_antrian' => $tanggal,
                 'hari' => $hari_ini,
                 'no_antrian' => $antri,
-                'estimasi' => date('H:i:s', strtotime($last->estimasi) + ($lama_pelayanan * 60))
+                'estimasi' => date('H:i:s', strtotime($last->estimasi) + strtotime($lama_pelayanan))
             ]);
             // $last = Antrian::where('id_pelayanan', 1)->get()->last();
             // $last_count = $last->no_antrian - 1;
@@ -257,7 +257,7 @@ class AntrianController extends Controller
                 'tgl_antrian' => $tanggal,
                 'hari' => $hari_ini,
                 'no_antrian' => $antri,
-                'estimasi' => date('H:i:s', strtotime($last->estimasi) + ($lama_pelayanan * 60))
+                'estimasi' => date('H:i:s', strtotime($last->estimasi) + strtotime($lama_pelayanan))
             ]);
         }
 
@@ -360,7 +360,7 @@ class AntrianController extends Controller
                 'tgl_antrian' => $tanggal,
                 'hari' => $hari_ini,
                 'no_antrian' => $antri,
-                'estimasi' => date('H:i:s', strtotime($last->estimasi) + ($lama_pelayanan * 60))
+                'estimasi' => date('H:i:s', strtotime($last->estimasi) + strtotime($lama_pelayanan))
             ]);
         }
 
@@ -462,7 +462,7 @@ class AntrianController extends Controller
                 'tgl_antrian' => $tanggal,
                 'hari' => $hari_ini,
                 'no_antrian' => $antri,
-                'estimasi' => date('H:i:s', strtotime($last->estimasi) + ($lama_pelayanan * 60))
+                'estimasi' => date('H:i:s', strtotime($last->estimasi) + strtotime($lama_pelayanan))
             ]);
         }
 

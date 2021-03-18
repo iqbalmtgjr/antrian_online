@@ -15,7 +15,7 @@ class CreateLamapelayanansTable extends Migration
     {
         Schema::create('lama_pelayanan', function (Blueprint $table) {
             $table->id();
-            $table->integer('lamapelayanan');
+            $table->time('lamapelayanan');
             $table->timestamps();
         });
     }
