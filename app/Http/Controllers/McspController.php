@@ -58,8 +58,10 @@ class McspController extends Controller
         $faktorial;
 
         // return pow(5, 3); *penggunaan perhitungan pangkat 5 pangkat 3
-        $format_miuu = date('s.i', strtotime($miu) / 60);
-        $bagi_lambdadanmiu = $lambda / $format_miuu;
+        $format_miuu = date('H.i', strtotime($miu) * 60);
+        $asli_miu = 60 / $format_miuu;
+        $format_asli_miu = number_format($asli_miu);
+        $bagi_lambdadanmiu = $lambda / $format_asli_miu;
         $format_bagi_lambdadanmiu = number_format($bagi_lambdadanmiu, 2);
         $dalamkurung = pow($format_bagi_lambdadanmiu, $c);
         $format_dalamkurung = number_format($dalamkurung, 2);
@@ -76,14 +78,21 @@ class McspController extends Controller
         $format_wq = number_format($wq, 2);
 
         // Rumus Rata-rata waktu yang diperlukan masyarakat/orangnya didalam instansi tersebut atau dalam sistem (W)
-        $bagiiii = 1 / $format_miuu;
-        $format_bagi = number_format($bagiiii, 1);
+        $bagiiii = 1 / $format_asli_miu;
+        $format_bagi = number_format($bagiiii, 2);
         $w = $format_wq + $format_bagi;
-        $format_w = number_format($w);
+        // return $format_w = number_format($w, 2);
 
         // Rumus Rata-rata jumlah masyarakat didalam instansi tersebut (L)
-        $L = $lambda * $format_w;
-        $format_L = number_format($L);
+        $L = $lambda * $w;
+        // $format_L = number_format($L, );
+
+        // Rumus Probabilitas jika loket ditambah
+        $p_5_c_atas = pow(($lambda / $format_asli_miu), ($c + 1));
+        $format_p_5_c_atas = number_format($p_5_c_atas, 2);
+        $p_5_c_bawah = $faktorial * (pow($c, (($c + 1)-$c)));
+        $p_5_c = $format_p_5_c_atas / $p_5_c_bawah * $p0;
+       return $hasil_p_5_c = number_format($p_5_c, 4);
 
         return view('mcsp.index', compact('L'));
     }
