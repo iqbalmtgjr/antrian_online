@@ -490,7 +490,7 @@ class AntrianController extends Controller
         $timezone = 'Asia/Jakarta';
         $date = new DateTime('now', new DateTimeZone($timezone));
         $localtime = $date->format('H:i:s');
-        $time = date('H:i:s', strtotime($localtime) + (Lamapelayanan::get()->first()->lamapelayanan * 60));
+        $time = date('H:i:s', strtotime($localtime) + strtotime(Lamapelayanan::get()->first()->lamapelayanan));
         // dd($time);
         // dd($data);
         return view('loket_pelayanan.pelayanan_a', compact('data', 'localtime', 'time'));

@@ -92,7 +92,7 @@ class McspController extends Controller
         $format_p_5_c_atas = number_format($p_5_c_atas, 2);
         $p_5_c_bawah = $faktorial * (pow($c, (($c + 1)-$c)));
         $p_5_c = $format_p_5_c_atas / $p_5_c_bawah * $p0;
-       return $hasil_p_5_c = number_format($p_5_c, 4);
+        $hasil_p_5_c = number_format($p_5_c, 4);
 
         return view('mcsp.index', compact('L'));
     }
