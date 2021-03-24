@@ -512,8 +512,8 @@ class AntrianController extends Controller
         $waktu_awal = new DateTime($antrian->waktu_awal_antrian);
         $waktu_akhir = new DateTime($localtime);
         $lama_menunggu = $waktu_awal->diff($waktu_akhir);
-        // $estimasi = new DateTime($antrian->estimasi);
-        // $kurang = new DateTime($lama_menunggu->format('%H:%I:%S'));
+        $estimasi = new DateTime($antrian->estimasi);
+        $kurang = new DateTime($lama_menunggu->format('%H:%I:%S'));
         if ($laporan_total >= 1) {
             $last = Laporan::where('id_pelayanan', 1)->where('tgl_antrian', $tanggal)->get()->last();
             // if ($laporan_total > 1) {
@@ -540,6 +540,7 @@ class AntrianController extends Controller
                 'waktu_akhir_antrian' => $localtime,
                 'lama_menunggu' => $lama_menunggu->format('%H:%I:%S'),
                 'waktu_awal_pelayanan' => $localtime,
+                // 'lama_pelayanan' => 
                 // 'estimasi' => ($estimasi)->diff($kurang)->format('%H:%I:%S'),
             ]);
             foreach ($antrian_all as $ann) {

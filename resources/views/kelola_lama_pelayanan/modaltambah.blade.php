@@ -8,6 +8,15 @@
             <div class="modal-body">
                 <form action="{{ url('/lama_pelayanan/input') }}" method="POST">
                     {{ csrf_field() }}
+                    {{-- @foreach ($laporan as $item)
+                        @php
+                            $data = App\models\Laporan::avg('lama_pelayanan', strtotime($item->lama_pelayanan));
+                        @endphp
+                    @endforeach
+                    <center>
+                        <h6>Rekomendasi Rata-Rata Waktu Pelayanan Adalah</h6>
+                    </center>
+                    <center> <b> {{ date('H:i:s', $data) }}</b></center> --}}
                     <div class="form-group">
                         <label for="recipient-name" class="col-form-label">Lama Pelayanan</label>
                         <input type="string" placeholder="Jam:menit:detik" class="form-control" id="lamapelayanan"

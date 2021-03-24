@@ -58,6 +58,7 @@ Route::group(['middleware' => ['auth', 'checkRole:Koordinator']], function () {
     Route::post('/lama_pelayanan/update', [LamapelayananController::class, 'update']);
     Route::get('/lama_pelayanan/hapus/{id}', [LamapelayananController::class, 'destroy']);
     Route::get('/getdata_lamapelayanan/{id}', [LamapelayananController::class, 'getdata']);
+    Route::get('/filter/lamapelayanan', [LamapelayananController::class, 'filter_lamapelayanan']);
 });
 
 Route::group(['middleware' => ['auth', 'checkRole:Petugas']], function () {

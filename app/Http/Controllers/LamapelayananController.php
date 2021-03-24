@@ -3,7 +3,9 @@
 namespace App\Http\Controllers;
 
 use App\Models\Lamapelayanan;
+use App\Models\Laporan;
 use Illuminate\Http\Request;
+use DB;
 
 class LamapelayananController extends Controller
 {
@@ -17,11 +19,32 @@ class LamapelayananController extends Controller
         $this->middleware('auth');
     }
 
-    public function index()
+    public function index(Request $request)
     {
         $data = Lamapelayanan::all();
-        return view('kelola_lama_pelayanan.index', compact('data'));
+        if ($request->waktu_awal != null && $request->waktu_akhir != null ) {
+            $laporan = Laporan::whereBetween('tgl_antrian', [$request->waktu_awal, $request->waktu_akhir])->get();
+        } elseif ($request->waktu_awal != null && $request->waktu_akhir == null){
+            $laporan = Laporan::where('tgl_antrian', $request->waktu_awal)->get();
+        } elseif ($request->waktu_awal == null && $request->waktu_akhir != null){
+            $laporan = Laporan::where('tgl_antrian', $request->waktu_akhir)->get();
+        } else {
+            $laporan = Laporan::all();
+        }
+        
+        return view('kelola_lama_pelayanan.index', compact('data', 'laporan'));
     }
+
+    // public function filter_lamapelayanan(Request $request)
+    // {
+    //     if ($request->waktu_awal != null && $request->waktu_akhir != null ) {
+    //         $laporan = Laporan::whereBetween('tgl_antrian', [$request->waktu_awal, $request->waktu_akhir])->get();
+    //     } else {
+    //         $laporan = Laporan::all();
+    //     }
+    //     dd($laporan);
+    //     return view('kelola_lamapelayanan.index', compact('laporan'));
+    // }
 
     /**
      * Show the form for creating a new resource.
