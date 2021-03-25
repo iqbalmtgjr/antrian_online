@@ -10,7 +10,7 @@
                 </button>
             </div>
             <div class="modal-body">
-                <label for="">Filter Waktu Pelayanan</label>
+                {{-- <label for="">Filter Waktu Pelayanan</label>
                 <form action="/kelola_lama_pelayanan" method="get">
                     <div class="input-group">
                         <input type="date" name="waktu_awal" id="waktu_awal" class="form-control"
@@ -31,23 +31,16 @@
                     @php
                         $data = $item->lama_pelayanan;
                         $convert = strtotime($item->lama_pelayanan);
-                        $contoh = $item->id;
-                        $array = collect($contoh);
-                        $rata = $array->avg($item);
-                        // echo $average = collect($laporan)->avg('lama_pelayanan');
-                        
-                        // dd($item->id);
+                        // echo $average = date('H:i:s', collect($laporan)->avg('lama_pelayanan'));
+                        // echo $average = $data->avg();
                     @endphp
-                @endforeach
+                @endforeach --}}
                 @php
-                    // echo $solusi = strtotime($laporan->lama_pelayanan);
-                    echo $average = collect($laporan)->avg('id');
-                    // echo $rata = App\Models\Laporan::avg($array);
-                    // echo $average = collect([['foo' => 10], ['foo' => 10], ['foo' => 20], ['foo' => 40]])->avg('foo');
-                    // echo $rata = date('H:i:s', App\Models\Laporan::avg('l1ama_pelayanan', $convert));
-                    // echo '<center> <b>' . date('H:i:s', $rata) . '</b></center>';
+                    // echo $average = date('H:i:s', collect($laporan)->avg(number_format((int) 'lama_pelayanan')));
+                    // $average = collect($laporan)->avg(number_format((int) 'lama_pelayanan'));
+                    $average = date('H:i:s', App\Models\Laporan::avg('lama_pelayanan'));
                 @endphp
-                {{-- <center> <b> {{ date('H:i:s', $average) }}</b></center> --}}
+                <center> <b> {{ $average }}</b></center>
             </div>
         </div>
     </div>
