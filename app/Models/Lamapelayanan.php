@@ -24,4 +24,6 @@ class Lamapelayanan extends Model
     {
         return $this->hasMany(Antrian::class, 'lamapelayanan_id');
     }
+
+    
 }

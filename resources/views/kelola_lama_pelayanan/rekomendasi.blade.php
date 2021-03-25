@@ -27,25 +27,27 @@
                 <center>
                     <h6>Rekomendasi</h6>
                 </center>
-                {{-- @foreach ($laporan as $item)
-
-                    {{ $item->id }}
-                @endforeach --}}
                 @foreach ($laporan as $item)
                     @php
-                        echo $item->lama_pelayanan . '<br>';
+                        $data = $item->lama_pelayanan;
                         $convert = strtotime($item->lama_pelayanan);
-                        // echo collect($convert)->avg($convert);
-                        // echo $rata = App\Models\Laporan::avg('lama_pelayanan', $convert);
+                        $contoh = $item->id;
+                        $array = collect($contoh);
+                        $rata = $array->avg($item);
+                        // echo $average = collect($laporan)->avg('lama_pelayanan');
+                        
+                        // dd($item->id);
                     @endphp
                 @endforeach
                 @php
-                    $rata = App\Models\Laporan::avg('lama_pelayanan', $convert);
+                    // echo $solusi = strtotime($laporan->lama_pelayanan);
+                    echo $average = collect($laporan)->avg('id');
+                    // echo $rata = App\Models\Laporan::avg($array);
                     // echo $average = collect([['foo' => 10], ['foo' => 10], ['foo' => 20], ['foo' => 40]])->avg('foo');
-                    // echo $rata = date('H:i:s', App\Models\Laporan::avg('lama_pelayanan', $convert));
+                    // echo $rata = date('H:i:s', App\Models\Laporan::avg('l1ama_pelayanan', $convert));
                     // echo '<center> <b>' . date('H:i:s', $rata) . '</b></center>';
                 @endphp
-                <center> <b> {{ date('H:i:s', $rata) }}</b></center>
+                {{-- <center> <b> {{ date('H:i:s', $average) }}</b></center> --}}
             </div>
         </div>
     </div>

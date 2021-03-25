@@ -25,4 +25,10 @@ class Laporan extends Model
         return Carbon::parse($this->attributes['waktu_awal_pelayanan'])
             ->format('H:i:s');
     }
+
+    public function getLamaPelayananAttribute()
+    {
+        return Carbon::parse($this->attributes['lama_pelayanan'])
+        ->format(strtotime($this->attributes['lama_pelayanan']));
+    }
 }

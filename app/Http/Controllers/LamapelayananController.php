@@ -28,6 +28,8 @@ class LamapelayananController extends Controller
             $laporan = Laporan::where('tgl_antrian', $request->waktu_awal)->get();
         } elseif ($request->waktu_awal == null && $request->waktu_akhir != null){
             $laporan = Laporan::where('tgl_antrian', $request->waktu_akhir)->get();
+        } elseif ($request->waktu_awal == null && $request->waktu_akhir == null){
+            $laporan = Laporan::all();
         } else {
             $laporan = Laporan::all();
         }
