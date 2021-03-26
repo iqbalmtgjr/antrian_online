@@ -10,7 +10,7 @@
                 </button>
             </div>
             <div class="modal-body">
-                {{-- <label for="">Filter Waktu Pelayanan</label>
+                <label for="">Filter Waktu Pelayanan</label>
                 <form action="/kelola_lama_pelayanan" method="get">
                     <div class="input-group">
                         <input type="date" name="waktu_awal" id="waktu_awal" class="form-control"
@@ -27,20 +27,26 @@
                 <center>
                     <h6>Rekomendasi</h6>
                 </center>
-                @foreach ($laporan as $item)
-                    @php
-                        $data = $item->lama_pelayanan;
-                        $convert = strtotime($item->lama_pelayanan);
+                @php
+                    $totaltime = 0;
+                    foreach ($laporan as $item) {
+                        // dd($item);
+                        $timestamp = strtotime($item->lama_pelayanan);
+                        $totaltime += $timestamp;
+                        // $data = $item->lama_pelayanan;
+                        // $convert = strtotime($item->lama_pelayanan);
                         // echo $average = date('H:i:s', collect($laporan)->avg('lama_pelayanan'));
                         // echo $average = $data->avg();
-                    @endphp
-                @endforeach --}}
+                    }
+                    $average = $totaltime / count($laporan);
+                    echo '<center><b>' . date('H:i:s', $average) . '</b></center>';
+                @endphp
                 @php
                     // echo $average = date('H:i:s', collect($laporan)->avg(number_format((int) 'lama_pelayanan')));
-                    // $average = collect($laporan)->avg(number_format((int) 'lama_pelayanan'));
-                    $average = date('H:i:s', App\Models\Laporan::avg('lama_pelayanan'));
+                    // $average = collect($laporan)->avg('lama_pelayanan'));
+                    // $average = date('H:i:s', App\Models\Laporan::avg('lama_pelayanan'));
                 @endphp
-                <center> <b> {{ $average }}</b></center>
+                {{-- <center> <b> ({{ date('H:i:s', $average) }})</b></center> --}}
             </div>
         </div>
     </div>
