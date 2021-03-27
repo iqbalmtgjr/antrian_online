@@ -28,6 +28,8 @@
                     <h6>Rekomendasi</h6>
                 </center>
                 @php
+                    // $timezone = 'Asia/Jakarta';
+                    // $date = new DateTime('now', new DateTimeZone($timezone));
                     $totaltime = 0;
                     foreach ($laporan as $item) {
                         // dd($item);
@@ -38,6 +40,7 @@
                         // echo $average = date('H:i:s', collect($laporan)->avg('lama_pelayanan'));
                         // echo $average = $data->avg();
                     }
+                    // echo count($laporan);
                     $average = $totaltime / count($laporan);
                     echo '<center><b>' . date('H:i:s', $average) . '</b></center>';
                 @endphp
