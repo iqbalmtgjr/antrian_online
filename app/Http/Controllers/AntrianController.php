@@ -541,7 +541,7 @@ class AntrianController extends Controller
                 'lama_menunggu' => $lama_menunggu->format('%H:%I:%S'),
                 'waktu_awal_pelayanan' => $localtime,
                 // 'lama_pelayanan' => 
-                // 'estimasi' => ($estimasi)->diff($kurang)->format('%H:%I:%S'),
+                'estimasi' => $antrian->estimasi,
             ]);
             foreach ($antrian_all as $ann) {
                 // dd($ann->estimasi);
@@ -574,6 +574,7 @@ class AntrianController extends Controller
                 'lama_menunggu' => $lama_menunggu->format('%H:%I:%S'),
                 'waktu_awal_pelayanan' => $localtime,
                 // 'estimasi' => ($estimasi)->diff($kurang)->format('%H:%I:%S'),
+                'estimasi' => $antrian->estimasi,
             ]);
             $laporan = Laporan::where('id_pelayanan', 1)->where('tgl_antrian', $tanggal)->get()->count();
             // foreach ($antrian_semua as $annn) {
@@ -676,6 +677,7 @@ class AntrianController extends Controller
                 'waktu_akhir_antrian' => $localtime,
                 'lama_menunggu' => $lama_menunggu->format('%H:%I:%S'),
                 'waktu_awal_pelayanan' => $localtime,
+                'estimasi' => $antrian->estimasi,
             ]);
             foreach ($antrian_all as $ann) {
                 $est = $ann->first()->estimasi;
@@ -697,6 +699,7 @@ class AntrianController extends Controller
                 'waktu_akhir_antrian' => $localtime,
                 'lama_menunggu' => $lama_menunggu->format('%H:%I:%S'),
                 'waktu_awal_pelayanan' => $localtime,
+                'estimasi' => $antrian->estimasi,
             ]);
 
             foreach ($antrian_all as $ann) {
@@ -772,6 +775,7 @@ class AntrianController extends Controller
                 'waktu_akhir_antrian' => $localtime,
                 'lama_menunggu' => $lama_menunggu->format('%H:%I:%S'),
                 'waktu_awal_pelayanan' => $localtime,
+                'estimasi' => $antrian->estimasi,
             ]);
             foreach ($antrian_all as $ann) {
                 $est = $ann->first()->estimasi;
@@ -793,6 +797,7 @@ class AntrianController extends Controller
                 'waktu_akhir_antrian' => $localtime,
                 'lama_menunggu' => $lama_menunggu->format('%H:%I:%S'),
                 'waktu_awal_pelayanan' => $localtime,
+                'estimasi' => $antrian->estimasi,
             ]);
 
             foreach ($antrian_all as $ann) {
@@ -868,6 +873,7 @@ class AntrianController extends Controller
                 'waktu_akhir_antrian' => $localtime,
                 'lama_menunggu' => $lama_menunggu->format('%H:%I:%S'),
                 'waktu_awal_pelayanan' => $localtime,
+                'estimasi' => $antrian->estimasi,
             ]);
             foreach ($antrian_all as $ann) {
                 $est = $ann->first()->estimasi;
@@ -889,6 +895,7 @@ class AntrianController extends Controller
                 'waktu_akhir_antrian' => $localtime,
                 'lama_menunggu' => $lama_menunggu->format('%H:%I:%S'),
                 'waktu_awal_pelayanan' => $localtime,
+                'estimasi' => $antrian->estimasi,
             ]);
 
             foreach ($antrian_all as $ann) {

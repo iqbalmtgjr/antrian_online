@@ -5,9 +5,10 @@ namespace App\Http\Controllers;
 use DateTime;
 use DateTimeZone;
 use App\Models\Antrian;
+use App\Models\Laporan;
+use Illuminate\Http\Request;
 use App\Models\Lamapelayanan;
 use App\Models\Loketpelayanan;
-use Illuminate\Http\Request;
 
 class McspController extends Controller
 {
@@ -23,7 +24,7 @@ class McspController extends Controller
         $localtime = $date->format('H:i:s');
 
         // Diketahui
-        $lambda = Antrian::where('estimasi', '<=', '17:00:00')->get()->count(); // 15
+       return $lambda = Laporan::where('estimasi', '<=', '17:00:00')->get()->count(); // 15
         $c = Loketpelayanan::all()->count(); // 4
         $miu = Lamapelayanan::first()->lamapelayanan; // 04:36
         // return $miuperjam = date('H:i:s', strtotime($miu) * 4);
