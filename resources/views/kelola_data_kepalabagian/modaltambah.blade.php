@@ -23,7 +23,7 @@
                         <label for="message-text" class="col-form-label">Nama</label>
                         <input type="text" class="form-control" id="name" name="name" value="{{ old('name') }}"
                             placeholder="Masukkan Nama Kepala Bagian ...">
-                        @error('nama')
+                        @error('name')
                             <div class="text-danger ml-3 mt-2">
                                 {{ $message }}
                             </div>

@@ -24,7 +24,7 @@ class McspController extends Controller
         $localtime = $date->format('H:i:s');
 
         // Diketahui
-       return $lambda = Laporan::where('estimasi', '<=', '17:00:00')->get()->count(); // 15
+        $lambda = Laporan::where('estimasi', '<=', '17:00:00')->get()->count(); // 15
         $c = Loketpelayanan::all()->count(); // 4
         $miu = Lamapelayanan::first()->lamapelayanan; // 04:36
         // return $miuperjam = date('H:i:s', strtotime($miu) * 4);

@@ -55,7 +55,7 @@ class User extends Authenticatable
 
     public function petugas()
     {
-        return $this->hasOne(Kepalabagian::class);
+        return $this->hasOne(Petugas::class);
     }
 
     public function antrian()

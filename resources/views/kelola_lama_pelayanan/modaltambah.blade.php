@@ -18,6 +18,20 @@
                     </center>
                     <center> <b> {{ date('H:i:s', $data) }}</b></center> --}}
                     <div class="form-group">
+                        <label for="loket" class="col-form-label">Untuk Loket</label>
+                        <select name="loket_pelayanan_id" id="loket" class="form-control">
+                            <option value="">--Pilih Loket--</option>
+                            @foreach ($loket as $item)
+                                <option value="{{ $item->id }}">{{ $item->loket_pelayanan }}</option>
+                            @endforeach
+                        </select>
+                        @error('loket_pelayanan_id')
+                            <span class="invalid-feedback" role="alert">
+                                <strong>{{ $message }}</strong>
+                            </span>
+                        @enderror
+                    </div>
+                    <div class="form-group">
                         <label for="recipient-name" class="col-form-label">Lama Pelayanan</label>
                         <input type="string" placeholder="Jam:menit:detik" class="form-control" id="lamapelayanan"
                             name="lamapelayanan" value="{{ old('lamapelayanan') }}">

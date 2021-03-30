@@ -17,4 +17,14 @@ class Loketpelayanan extends Model
     {
         return $this->hasOne(Antrian::class);
     }
+
+    public function petugas()
+    {
+        return $this->hasOne(Petugas::class, 'loket_pelayanan_id');
+    }
+
+    public function lamapelayanan()
+    {
+        return $this->hasOne(Lamapelayanan::class, 'loket_pelayanan_id');
+    }
 }

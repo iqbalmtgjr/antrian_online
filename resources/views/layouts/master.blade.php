@@ -107,6 +107,7 @@
                             @endif
 
                             @if (auth()->user()->role == 'Petugas')
+                            @if (auth()->user()->petugas->loket_pelayanan_id == 0)
                             <li class="has_sub">
                                 <a href="javascript:void(0);" class="waves-effect {{ request()->is('/javascript:void(0);') ? 'active' : '' }}"><i class="fa fa-desktop"></i> <span> Loket Antrian </span> <span class="float-right"><i class="mdi mdi-chevron-right"></i></span></a>
                                 <ul class="list-unstyled">
@@ -117,17 +118,29 @@
                                 </ul>
                             </li>
                             @endif
+                            @endif
 
                             @if (auth()->user()->role == 'Petugas')
-                            <li class="has_sub">
-                                <a href="javascript:void(0);" class="waves-effect {{ request()->is('/javascript:void(0);') ? 'active' : '' }}"><i class="fa fa-desktop"></i> <span> Loket Pelayanan </span> <span class="float-right"><i class="mdi mdi-chevron-right"></i></span></a>
-                                <ul class="list-unstyled">
-                                    <li class="{{ request()->is('/pelayanan_a') ? 'active' : '' }}"><a href="/pelayanan_a">Loket A</a></li>
-                                    <li class="{{ request()->is('/pelayanan_b') ? 'active' : '' }}"><a href="/pelayanan_b">Loket B</a></li>
-                                    <li class="{{ request()->is('/pelayanan_c') ? 'active' : '' }}"><a href="/pelayanan_c">Loket C</a></li>
-                                    <li class="{{ request()->is('/pelayanan_d') ? 'active' : '' }}"><a href="/pelayanan_d">Loket D</a></li>
-                                </ul>
-                            </li>
+                            @if (auth()->user()->petugas->loket_pelayanan_id != 0)
+                            {{-- <li class="has_sub"> --}}
+                                {{-- <a href="javascript:void(0);" class="waves-effect {{ request()->is('/javascript:void(0);') ? 'active' : '' }}"><i class="fa fa-desktop"></i> <span> Loket Pelayanan </span> <span class="float-right"><i class="mdi mdi-chevron-right"></i></span></a> --}}
+                                {{-- <ul class="list-unstyled"> --}}
+                                    @if (auth()->user()->petugas->loket_pelayanan_id == 1)
+                                    <li><a href="/pelayanan_a" class="waves-effect {{ request()->is('/pelayanan_a') ? 'active' : '' }}"><i class="fa fa-desktop"></i><span> Loket Pelayanan A </span></a></li>
+                                    @endif
+                                    {{-- <li><a href="">{{ auth()->user()->petugas->id }}</a></li> --}}
+                                    @if (auth()->user()->petugas->loket_pelayanan_id == 2)
+                                    <li><a href="/pelayanan_b" class="waves-effect {{ request()->is('/pelayanan_b') ? 'active' : '' }}"><i class="fa fa-desktop"></i><span> Loket Pelayanan B </span></a></li>
+                                    @endif
+                                    @if (auth()->user()->petugas->loket_pelayanan_id == 3)
+                                    <li><a href="/pelayanan_c" class="waves-effect {{ request()->is('/pelayanan_c') ? 'active' : '' }}"><i class="fa fa-desktop"></i><span> Loket Pelayanan C </span></a></li>
+                                    @endif
+                                    @if (auth()->user()->petugas->loket_pelayanan_id == 4)
+                                    <li><a href="/pelayanan_d" class="waves-effect {{ request()->is('/pelayanan_d') ? 'active' : '' }}"><i class="fa fa-desktop"></i><span> Loket Pelayanan D </span></a></li>
+                                    @endif
+                                {{-- </ul> --}}
+                            {{-- </li> --}}
+                            @endif
                             @endif
 
                             @if (auth()->user()->role == 'Koordinator')

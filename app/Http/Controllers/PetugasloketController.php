@@ -60,7 +60,11 @@ class PetugasloketController extends Controller
 
         $k_bagian = new Petugas();
         $request->request->add(['user_id' => $user->id]);
-        $tambah_k_bagian = Petugas::create($request->except(['email' => $request->email]));
+        if ($request->loket_pelayanan_id =! null) {
+            $tambah_petugas = Petugas::create($request->except(['email' => $request->email, $request->loket]));
+        } else {
+            $tambah_petugas = Petugas::create($request->except(['email' => $request->email]));
+        }
 
         return redirect()->back()->with('sukses', 'Data Berhasil di Simpan !!!');
     }

@@ -2,10 +2,11 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Lamapelayanan;
+use DB;
 use App\Models\Laporan;
 use Illuminate\Http\Request;
-use DB;
+use App\Models\Lamapelayanan;
+use App\Models\Loketpelayanan;
 
 class LamapelayananController extends Controller
 {
@@ -22,6 +23,7 @@ class LamapelayananController extends Controller
     public function index(Request $request)
     {
         $data = Lamapelayanan::all();
+        $loket = Loketpelayanan::all();
         if ($request->waktu_awal != null && $request->waktu_akhir != null ) {
             $laporan = Laporan::whereBetween('tgl_antrian', [$request->waktu_awal, $request->waktu_akhir])->get();
         } elseif ($request->waktu_awal != null && $request->waktu_akhir == null){
@@ -34,7 +36,7 @@ class LamapelayananController extends Controller
             $laporan = Laporan::all();
         }
         
-        return view('kelola_lama_pelayanan.index', compact('data', 'laporan'));
+        return view('kelola_lama_pelayanan.index', compact('data', 'laporan', 'loket'));
     }
 
     // public function filter_lamapelayanan(Request $request)

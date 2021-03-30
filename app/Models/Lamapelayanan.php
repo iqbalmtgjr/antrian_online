@@ -11,7 +11,7 @@ class Lamapelayanan extends Model
     use HasFactory;
 
     protected $table = 'lama_pelayanan';
-    protected $fillable = ['lamapelayanan'];
+    protected $fillable = ['lamapelayanan', 'loket_pelayanan_id'];
     protected $guarded = [];
 
     // public function getLamaPelayananAttribute()
@@ -25,5 +25,9 @@ class Lamapelayanan extends Model
         return $this->hasMany(Antrian::class, 'lamapelayanan_id');
     }
 
+    public function loket()
+    {
+        return $this->belongsTo(Loketpelayanan::class, 'loket_pelayanan_id');
+    }
     
 }

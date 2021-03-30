@@ -1,4 +1,4 @@
-<!-- Modal -->
+{{-- <!-- Modal -->
 <div class="modal fade" id="rekomendasi" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle"
     aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered" role="document">
@@ -50,7 +50,7 @@
                     // $average = date('H:i:s', App\Models\Laporan::avg('lama_pelayanan'));
                 @endphp
                 {{-- <center> <b> ({{ date('H:i:s', $average) }})</b></center> --}}
-            </div>
-        </div>
-    </div>
+{{-- </div>
 </div>
+</div>
+</div> --}}

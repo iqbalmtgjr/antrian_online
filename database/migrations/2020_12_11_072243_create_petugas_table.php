@@ -15,10 +15,11 @@ class CreatePetugasTable extends Migration
     {
         Schema::create('petugas', function (Blueprint $table) {
             $table->id();
+            $table->foreignId('loket_pelayanan_id')->nullable();
             $table->integer('user_id')->unique();
             $table->string('NIP', 18);
             $table->string('username', 20);
-            $table->string('name', 25);
+            $table->string('name', 50);
             $table->timestamps();
         });
     }

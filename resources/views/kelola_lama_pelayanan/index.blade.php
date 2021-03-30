@@ -20,8 +20,8 @@
                         @else
 
                         @endif
-                        <a href="" class="btn btn-success btn-md m-l-15 m-b-15" data-toggle="modal"
-                            data-target="#rekomendasi">Rekomendasi Rata-Rata Pelayanan</a>
+                        {{-- <a href="" class="btn btn-success btn-md m-l-15 m-b-15" data-toggle="modal"
+                            data-target="#rekomendasi">Rekomendasi Rata-Rata Pelayanan</a> --}}
                         @include('kelola_lama_pelayanan/modaltambah')
                         @include('kelola_lama_pelayanan/rekomendasi')
                         <thead>

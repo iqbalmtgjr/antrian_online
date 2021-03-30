@@ -2,10 +2,11 @@
 
 namespace App\Http\Controllers;
 
-use App\Mail\ResetPasswordPetugas;
-use App\Models\Petugas;
 use App\Models\User;
+use App\Models\Petugas;
 use Illuminate\Http\Request;
+use App\Models\Loketpelayanan;
+use App\Mail\ResetPasswordPetugas;
 use Illuminate\Support\Facades\Mail;
 
 class PetugasController extends Controller
@@ -23,7 +24,8 @@ class PetugasController extends Controller
     public function index()
     {
         $data = Petugas::all();
-        return view('kelola_petugas_loket.index', compact('data'));
+        $loket = Loketpelayanan::all();
+        return view('kelola_petugas_loket.index', compact('data', 'loket'));
     }
 
     /**
@@ -43,11 +45,13 @@ class PetugasController extends Controller
      */
     public function store(Request $request)
     {
+        // dd($request->all);
         $this->validate($request, [
             'NIP' => 'required|min:16|max:18|unique:kepala_bagian',
             'username' => 'required|unique:users|max:20',
-            'name' => 'required|max:25',
+            'name' => 'required|max:50',
             'email' => 'required|max:25|unique:users|email',
+            'loket_pelayanan_id' => 'required|max:11',
         ]);
 
         $user = new User;
@@ -58,9 +62,16 @@ class PetugasController extends Controller
         $user->password = bcrypt('rahasia');
         $user->save();
 
-        $k_bagian = new Petugas();
+        $petugas = new Petugas();
         $request->request->add(['user_id' => $user->id]);
-        $tambah_k_bagian = Petugas::create($request->except(['email' => $request->email]));
+        // if ($request->loket == "") {
+        $tambah_petugas = Petugas::create($request->except(['email' => $request->email]));
+        // } else {
+        //     $tambah_petugas = Petugas::create($request->except(['email' => $request->email, $request->loket]));
+        // }
+
+        // dd($tambah_petugas);
+        
 
         return redirect()->back()->with('sukses', 'Data Berhasil di Simpan !!!');
     }

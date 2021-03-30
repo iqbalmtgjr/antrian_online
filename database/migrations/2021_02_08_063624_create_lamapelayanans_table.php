@@ -15,6 +15,7 @@ class CreateLamapelayanansTable extends Migration
     {
         Schema::create('lama_pelayanan', function (Blueprint $table) {
             $table->id();
+            $table->foreignId('loket_pelayanan_id');
             $table->time('lamapelayanan');
             $table->timestamps();
         });

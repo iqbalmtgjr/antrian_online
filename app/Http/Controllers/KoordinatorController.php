@@ -46,7 +46,7 @@ class KoordinatorController extends Controller
         $this->validate($request, [
             'NIP' => 'required|min:16|max:18|unique:koordinator',
             'username' => 'required|unique:users|max:20',
-            'name' => 'required|max:25',
+            'name' => 'required|max:50',
             'email' => 'required|max:35|unique:users|email',
         ]);
         // $tambah_user = User::create($request->except('password'));
