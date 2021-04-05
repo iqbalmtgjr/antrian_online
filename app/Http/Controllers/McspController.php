@@ -6,6 +6,7 @@ use DateTime;
 use DateTimeZone;
 use App\Models\Antrian;
 use App\Models\Laporan;
+use App\Models\Petugas;
 use Illuminate\Http\Request;
 use App\Models\Lamapelayanan;
 use App\Models\Loketpelayanan;
@@ -30,7 +31,7 @@ class McspController extends Controller
             $lambda = 1;
         }
         
-        $c = Loketpelayanan::all()->count() - 3; // 1
+        $c = Petugas::where('loket_pelayanan_id', 1)->get()->count(); // 1
         $miu = Lamapelayanan::first()->lamapelayanan; // 00:04:36
         // return $miuperjam = date('H:i:s', strtotime($miu) * 4);
         // return $formatmiuperjam = number_format($miuperjam, 2);

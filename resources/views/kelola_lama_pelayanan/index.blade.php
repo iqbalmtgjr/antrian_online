@@ -13,7 +13,7 @@
             <div class="card m-b-30">
                 <div class="card-body">
                     <table id="datatable" class="table table-striped">
-                        @if (App\Models\Lamapelayanan::all()->count() == 0)
+                        @if (App\Models\Lamapelayanan::all()->count() > App\Models\Loketpelayanan::all()->count())
                             <a href="" class="btn btn-primary btn-md m-l-15 m-b-15" data-toggle="modal"
                                 data-target="#tambah"><i class="fa fa-plus"></i>
                                 Tambah Lama Pelayanan</a>
@@ -27,6 +27,7 @@
                         <thead>
                             <tr>
                                 <th>No</th>
+                                <th>Nama Loket Pelayan</th>
                                 <th>Lama Pelayanan</th>
                                 <th>Aksi</th>
                             </tr>
@@ -37,6 +38,7 @@
                             @foreach ($data as $data)
                                 <tr>
                                     <td>{{ $loop->iteration }}</td>
+                                    <td>{{ $data->loket->loket_pelayanan }}</td>
                                     <td>{{ $data->lamapelayanan }} Menit</td>
                                     <td>
                                         <a href="#" onclick="getdata({{ $data->id }})" data-toggle="modal"
@@ -50,6 +52,13 @@
                             @endforeach
                         </tbody>
                     </table>
+
+                    <p><b style="color: red"> * Catatan :</b><br> Lama Pelayanan yang sudah ditentukan perloketnya akan
+                        berpengaruh
+                        pada
+                        estimasi waktu
+                        tunggu pada
+                        antrian</p>
 
                 </div>
             </div>

@@ -57,7 +57,7 @@ class AntrianController extends Controller
         $localtime = $date->format('H:i:s');
         $antrii = Antrian::where('id_pelayanan', 1)->get();
         $antriii = Antrian::where('id_pelayanan', 1)->get()->last();
-        $lama_pelayanan = Lamapelayanan::get()->first()->lamapelayanan;
+        $lama_pelayanan = Lamapelayanan::where('loket_pelayanan_id', 1)->first()->lamapelayanan;
         // $lama_pelayanan = 180;
         // $lama_pelayanan = strtotime($lama_pelayanan1);
         if ($antriii == null && Laporan::where('id_pelayanan', 1)->where('tgl_antrian', $tanggal)->get()->count() == 0) {
@@ -191,7 +191,7 @@ class AntrianController extends Controller
         $localtime = $date->format('H:i:s');
         $antrii = Antrian::where('id_pelayanan', 2)->get();
         $antriii = Antrian::where('id_pelayanan', 2)->get()->last();
-        $lama_pelayanan = Lamapelayanan::get()->first()->lamapelayanan;
+        $lama_pelayanan = Lamapelayanan::where('loket_pelayanan_id', 2)->first()->lamapelayanan;
 
         if ($antriii == null && Laporan::where('id_pelayanan', 2)->where('tgl_antrian', $tanggal)->get()->count() == 0) {
             $antri = $antrii->count() + 1;
@@ -294,7 +294,7 @@ class AntrianController extends Controller
         $localtime = $date->format('H:i:s');
         $antrii = Antrian::where('id_pelayanan', 3)->get();
         $antriii = Antrian::where('id_pelayanan', 3)->get()->last();
-        $lama_pelayanan = Lamapelayanan::get()->first()->lamapelayanan;
+        $lama_pelayanan = Lamapelayanan::where('loket_pelayanan_id', 3)->first()->lamapelayanan;
 
         if ($antriii == null && Laporan::where('id_pelayanan', 3)->where('tgl_antrian', $tanggal)->get()->count() == 0) {
             $antri = $antrii->count() + 1;
@@ -396,7 +396,7 @@ class AntrianController extends Controller
         $localtime = $date->format('H:i:s');
         $antrii = Antrian::where('id_pelayanan', 4)->get();
         $antriii = Antrian::where('id_pelayanan', 4)->get()->last();
-        $lama_pelayanan = Lamapelayanan::get()->first()->lamapelayanan;
+        $lama_pelayanan = Lamapelayanan::where('loket_pelayanan_id', 4)->first()->lamapelayanan;
 
         if ($antriii == null && Laporan::where('id_pelayanan', 4)->where('tgl_antrian', $tanggal)->get()->count() == 0) {
             $antri = $antrii->count() + 1;

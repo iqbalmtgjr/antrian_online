@@ -19,6 +19,8 @@
                         <label for="waktu_akhir" style="color: Red; font-size:13px; margin-left: 65px">*
                             Waktu Akhir</label>
                     </div>
+                    <input type="hidden" class="form-control" id="lamapelayanan_id" name="lamapelayanan_id" value="">
+
                 </form>
                 @if ($laporan->count() == 0)
                     <center>
@@ -51,7 +53,7 @@
                     if ($laporan->count() == 0) {
                         # code...
                     } else {
-                        echo '<center><b>' . date('H:i:s', $average) . '</b></center>';
+                        echo '<center><b>' . date('00:i:s', $average) . '</b></center>';
                     }
                     
                 @endphp
@@ -66,7 +68,7 @@
                         @else
                             <label for="recipient-name" class="col-form-label">Lama Pelayanan</label>
                             <input type="time" class="form-control" id="" name="lamapelayanan"
-                                value="{{ date('H:i:s', $average) }}">
+                                value="{{ date('00:i:s', $average) }}">
                             <p style="font-size: 13px; color: red">*Dalam Menit</p>
                             @error('lamapelayanan')
                                 <div class="text-danger ml-3 mt-2">
@@ -75,6 +77,7 @@
                             @enderror
                         @endif
                     </div>
+
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-dismiss="modal">Tutup</button>
@@ -96,11 +99,12 @@
             cache: false,
             success: function(response) {
                 console.log(response);
-                // console.log(response.lamapelayanan);
+                console.log(response.lamapelayanan);
 
                 $('#id').val(id);
                 $('#idd').val(response.id);
                 $('#lamapelayanann').val(response.lamapelayanan);
+                $('#lamapelayanan_id').val(response.loket_pelayanan_id);
 
             }
         });
