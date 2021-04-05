@@ -17,16 +17,21 @@ class McspController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function loket_a(Request $request)
     {
         $timezone = 'Asia/Jakarta';
         $date = new DateTime('now', new DateTimeZone($timezone));
         $localtime = $date->format('H:i:s');
 
         // Diketahui
-        $lambda = Laporan::where('estimasi', '<=', '17:00:00')->get()->count(); // 15
-        $c = Loketpelayanan::all()->count(); // 4
-        $miu = Lamapelayanan::first()->lamapelayanan; // 04:36
+        if ($request->loket_a != null) {
+           $lambda = Laporan::where('estimasi', '<=', '17:00:00')->where('hari', $request->loket_a)->get()->count(); // 15
+        } else {
+            $lambda = 1;
+        }
+        
+        $c = Loketpelayanan::all()->count() - 3; // 1
+        $miu = Lamapelayanan::first()->lamapelayanan; // 00:04:36
         // return $miuperjam = date('H:i:s', strtotime($miu) * 4);
         // return $formatmiuperjam = number_format($miuperjam, 2);
 
@@ -36,7 +41,7 @@ class McspController extends Controller
         $rasio = $lambda / ($rasio_bawah);
         $hasil_rasio = number_format($rasio, 2);
         if ($hasil_rasio >= 1) {
-            $hasil_rasio = 1;
+            $hasil_rasio = 0.9;
         } else {
             $hasil_rasio == $hasil_rasio;
         }

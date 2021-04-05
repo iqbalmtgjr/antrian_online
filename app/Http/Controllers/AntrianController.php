@@ -433,10 +433,6 @@ class AntrianController extends Controller
                 $hari_ini = "Jumat";
                 break;
 
-            case 'Sat':
-                $hari_ini = "Sabtu";
-                break;
-
             default:
                 $hari_ini = "Tidak di ketahui";
                 break;
