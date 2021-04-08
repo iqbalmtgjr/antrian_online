@@ -14,7 +14,7 @@
                 <div class="card-body">
                     <div class="row">
                         <div class="col-md-3">
-                            <div class="card border-dark mb-3" style="max-width: 18rem; height:400px ">
+                            <div class="card border-dark mb-3" style="max-width: 18rem; height:560px ">
                                 <div class="card-header text-light bg-dark text-center">
                                     <h5>Loket A</h5>
                                 </div>
@@ -23,7 +23,7 @@
                                         <div class="row">
                                             <div class="input-group">
                                                 <select name="loket_a" class="custom-select">
-                                                    <option value="">-- Semua Hari --</option>
+                                                    <option value="">-- Setiap Hari --</option>
                                                     <option value="Senin">Senin</option>
                                                     <option value="Selasa">Selasa</option>
                                                     <option value="Rabu">Rabu</option>
@@ -31,17 +31,76 @@
                                                     <option value="Jum'at">Jum'at</option>
                                                 </select>
                                                 <div class="input-group-append">
-                                                    <button class="btn btn-outline-primary" type="submit">Pilih</button>
+                                                    <button class="btn btn-outline-secondary" type="submit">Pilih</button>
                                                 </div>
                                             </div>
                                         </div>
                                     </form>
+                                    <div class="row mt-3">
+                                        <div class="col-md-6 mt-2">
+                                            <h6>Rasio Pelayanan</h6>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <input type="text" value="{{ $hasil_persen_rasio }}" disabled
+                                                class="form-control">
+                                        </div>
+                                    </div>
+                                    <div class="row mt-3">
+                                        <div class="col-md-6">
+                                            <h6>P0</h6>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <input type="text" disabled value="{{ $hasil_tp0 . ' Menit' }}"
+                                                class="form-control">
+                                        </div>
+                                    </div>
+                                    <div class="row mt-3">
+                                        <div class="col-md-4">
+                                            <h6>Wq</h6>
+                                        </div>
+                                        <div class="col-md-8">
+                                            <input type="text" disabled value="{{ $format_wq . ' Menit/Orang' }}"
+                                                class="form-control">
+                                        </div>
+                                    </div>
+                                    <div class="row mt-3">
+                                        <div class="col-md-4">
+                                            <h6>W</h6>
+                                        </div>
+                                        <div class="col-md-8">
+                                            <input type="text" disabled value="{{ $w . ' Menit/Orang' }}"
+                                                class="form-control">
+                                        </div>
+                                    </div>
+                                    <div class="row mt-3">
+                                        <div class="col-md-6">
+                                            <h6>Lq</h6>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <input type="text" disabled value="{{ $format_lq . ' Orang' }}"
+                                                class="form-control">
+                                        </div>
+                                    </div>
+                                    <div class="row mt-3">
+                                        <div class="col-md-6">
+                                            <h6>L</h6>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <input type="text" disabled value="{{ $format_L . ' Orang' }}"
+                                                class="form-control">
+                                        </div>
+                                    </div>
+                                    <div class="row mt-4 ml-2">
+                                        <center style="color: red">
+                                            <h6 class="text-center">Rekomendasi</h6>
+                                            <p>{{ $rekomendasi }}</p>
+                                        </center>
+                                    </div>
                                 </div>
                             </div>
                         </div>
-
                         <div class="col-md-3">
-                            <div class="card border-dark mb-3" style="max-width: 18rem; height:400px">
+                            <div class="card border-dark mb-3" style="max-width: 18rem; height:560px ">
                                 <div class="card-header text-light bg-dark text-center">
                                     <h5>Loket B</h5>
                                 </div>
@@ -49,8 +108,8 @@
                                     <form method="GET" action="/multi_channel_single_phase">
                                         <div class="row">
                                             <div class="input-group">
-                                                <select name="id_pelayanan" class="custom-select">
-                                                    <option value="">-- Semua Hari --</option>
+                                                <select name="loket_b" class="custom-select">
+                                                    <option value="">-- Setiap Hari --</option>
                                                     <option value="Senin">Senin</option>
                                                     <option value="Selasa">Selasa</option>
                                                     <option value="Rabu">Rabu</option>
@@ -58,17 +117,76 @@
                                                     <option value="Jum'at">Jum'at</option>
                                                 </select>
                                                 <div class="input-group-append">
-                                                    <button class="btn btn-outline-primary" type="submit">Pilih</button>
+                                                    <button class="btn btn-outline-secondary" type="submit">Pilih</button>
                                                 </div>
                                             </div>
                                         </div>
                                     </form>
+                                    <div class="row mt-3">
+                                        <div class="col-md-6 mt-2">
+                                            <h6>Rasio Pelayanan</h6>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <input type="text" value="{{ $hasil_persen_rasio_b }}" disabled
+                                                class="form-control">
+                                        </div>
+                                    </div>
+                                    <div class="row mt-3">
+                                        <div class="col-md-6">
+                                            <h6>P0</h6>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <input type="text" disabled value="{{ $hasil_tp0_b . ' Menit' }}"
+                                                class="form-control">
+                                        </div>
+                                    </div>
+                                    <div class="row mt-3">
+                                        <div class="col-md-4">
+                                            <h6>Wq</h6>
+                                        </div>
+                                        <div class="col-md-8">
+                                            <input type="text" disabled value="{{ $format_wq_b . ' Menit/Orang' }}"
+                                                class="form-control">
+                                        </div>
+                                    </div>
+                                    <div class="row mt-3">
+                                        <div class="col-md-4">
+                                            <h6>W</h6>
+                                        </div>
+                                        <div class="col-md-8">
+                                            <input type="text" disabled value="{{ $w_b . ' Menit/Orang' }}"
+                                                class="form-control">
+                                        </div>
+                                    </div>
+                                    <div class="row mt-3">
+                                        <div class="col-md-6">
+                                            <h6>Lq</h6>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <input type="text" disabled value="{{ $format_lq_b . ' Orang' }}"
+                                                class="form-control">
+                                        </div>
+                                    </div>
+                                    <div class="row mt-3">
+                                        <div class="col-md-6">
+                                            <h6>L</h6>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <input type="text" disabled value="{{ $format_L_b . ' Orang' }}"
+                                                class="form-control">
+                                        </div>
+                                    </div>
+                                    <div class="row mt-4 ml-2">
+                                        <center style="color: red">
+                                            <h6 class="text-center">Rekomendasi</h6>
+                                            <p>{{ $rekomendasi_b }}</p>
+                                        </center>
+                                    </div>
                                 </div>
                             </div>
                         </div>
-
                         <div class="col-md-3">
-                            <div class="card border-dark mb-3" style="max-width: 18rem; height:400px">
+                            <div class="card border-dark mb-3" style="max-width: 18rem; height:560px ">
                                 <div class="card-header text-light bg-dark text-center">
                                     <h5>Loket C</h5>
                                 </div>
@@ -76,8 +194,8 @@
                                     <form method="GET" action="/multi_channel_single_phase">
                                         <div class="row">
                                             <div class="input-group">
-                                                <select name="id_pelayanan" class="custom-select" id="id_pelayanan">
-                                                    <option value="">-- Semua Hari --</option>
+                                                <select name="loket_c" class="custom-select">
+                                                    <option value="">-- Setiap Hari --</option>
                                                     <option value="Senin">Senin</option>
                                                     <option value="Selasa">Selasa</option>
                                                     <option value="Rabu">Rabu</option>
@@ -85,17 +203,76 @@
                                                     <option value="Jum'at">Jum'at</option>
                                                 </select>
                                                 <div class="input-group-append">
-                                                    <button class="btn btn-outline-primary" type="submit">Pilih</button>
+                                                    <button class="btn btn-outline-secondary" type="submit">Pilih</button>
                                                 </div>
                                             </div>
                                         </div>
                                     </form>
+                                    <div class="row mt-3">
+                                        <div class="col-md-6 mt-2">
+                                            <h6>Rasio Pelayanan</h6>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <input type="text" value="{{ $hasil_persen_rasio_c }}" disabled
+                                                class="form-control">
+                                        </div>
+                                    </div>
+                                    <div class="row mt-3">
+                                        <div class="col-md-6">
+                                            <h6>P0</h6>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <input type="text" disabled value="{{ $hasil_tp0_c . ' Menit' }}"
+                                                class="form-control">
+                                        </div>
+                                    </div>
+                                    <div class="row mt-3">
+                                        <div class="col-md-4">
+                                            <h6>Wq</h6>
+                                        </div>
+                                        <div class="col-md-8">
+                                            <input type="text" disabled value="{{ $format_wq_c . ' Menit/Orang' }}"
+                                                class="form-control">
+                                        </div>
+                                    </div>
+                                    <div class="row mt-3">
+                                        <div class="col-md-4">
+                                            <h6>W</h6>
+                                        </div>
+                                        <div class="col-md-8">
+                                            <input type="text" disabled value="{{ $w_c . ' Menit/Orang' }}"
+                                                class="form-control">
+                                        </div>
+                                    </div>
+                                    <div class="row mt-3">
+                                        <div class="col-md-6">
+                                            <h6>Lq</h6>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <input type="text" disabled value="{{ $format_lq_c . ' Orang' }}"
+                                                class="form-control">
+                                        </div>
+                                    </div>
+                                    <div class="row mt-3">
+                                        <div class="col-md-6">
+                                            <h6>L</h6>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <input type="text" disabled value="{{ $format_L_c . ' Orang' }}"
+                                                class="form-control">
+                                        </div>
+                                    </div>
+                                    <div class="row mt-4 ml-2">
+                                        <center style="color: red">
+                                            <h6 class="text-center">Rekomendasi</h6>
+                                            <p>{{ $rekomendasi_c }}</p>
+                                        </center>
+                                    </div>
                                 </div>
                             </div>
                         </div>
-
                         <div class="col-md-3">
-                            <div class="card border-dark mb-3" style="max-width: 18rem; height:400px">
+                            <div class="card border-dark mb-3" style="max-width: 18rem; height:560px ">
                                 <div class="card-header text-light bg-dark text-center">
                                     <h5>Loket D</h5>
                                 </div>
@@ -103,8 +280,8 @@
                                     <form method="GET" action="/multi_channel_single_phase">
                                         <div class="row">
                                             <div class="input-group">
-                                                <select name="id_pelayanan" class="custom-select" id="id_pelayanan">
-                                                    <option value="">-- Semua Hari --</option>
+                                                <select name="loket_d" class="custom-select">
+                                                    <option value="">-- Setiap Hari --</option>
                                                     <option value="Senin">Senin</option>
                                                     <option value="Selasa">Selasa</option>
                                                     <option value="Rabu">Rabu</option>
@@ -112,14 +289,75 @@
                                                     <option value="Jum'at">Jum'at</option>
                                                 </select>
                                                 <div class="input-group-append">
-                                                    <button class="btn btn-outline-primary" type="submit">Pilih</button>
+                                                    <button class="btn btn-outline-secondary" type="submit">Pilih</button>
                                                 </div>
                                             </div>
                                         </div>
                                     </form>
+                                    <div class="row mt-3">
+                                        <div class="col-md-6 mt-2">
+                                            <h6>Rasio Pelayanan</h6>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <input type="text" value="{{ $hasil_persen_rasio_d }}" disabled
+                                                class="form-control">
+                                        </div>
+                                    </div>
+                                    <div class="row mt-3">
+                                        <div class="col-md-6">
+                                            <h6>P0</h6>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <input type="text" disabled value="{{ $hasil_tp0_d . ' Menit' }}"
+                                                class="form-control">
+                                        </div>
+                                    </div>
+                                    <div class="row mt-3">
+                                        <div class="col-md-4">
+                                            <h6>Wq</h6>
+                                        </div>
+                                        <div class="col-md-8">
+                                            <input type="text" disabled value="{{ $format_wq_d . ' Menit/Orang' }}"
+                                                class="form-control">
+                                        </div>
+                                    </div>
+                                    <div class="row mt-3">
+                                        <div class="col-md-4">
+                                            <h6>W</h6>
+                                        </div>
+                                        <div class="col-md-8">
+                                            <input type="text" disabled value="{{ $w_d . ' Menit/Orang' }}"
+                                                class="form-control">
+                                        </div>
+                                    </div>
+                                    <div class="row mt-3">
+                                        <div class="col-md-6">
+                                            <h6>Lq</h6>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <input type="text" disabled value="{{ $format_lq_d . ' Orang' }}"
+                                                class="form-control">
+                                        </div>
+                                    </div>
+                                    <div class="row mt-3">
+                                        <div class="col-md-6">
+                                            <h6>L</h6>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <input type="text" disabled value="{{ $format_L_d . ' Orang' }}"
+                                                class="form-control">
+                                        </div>
+                                    </div>
+                                    <div class="row mt-4 ml-2">
+                                        <center style="color: red">
+                                            <h6 class="text-center">Rekomendasi</h6>
+                                            <p>{{ $rekomendasi_d }}</p>
+                                        </center>
+                                    </div>
                                 </div>
                             </div>
                         </div>
+
                         {{-- <div class="col-lg-12 text-center mt-5 mb-5">
                         <button type="button" class="btn btn-lg btn-success" data-toggle="modal"
                             data-target="#exampleModalCenter">Lihat Rekomendasi <i>Multi Channel Single
@@ -143,10 +381,20 @@
                                     </div>
                                 </div>
                             </div>
-                        </div>
-                    </div> --}}
+                        </div> --}}
+                    </div>
+                    <div class="row mt-4">
+                        <p>
+                            <b>* Keterangan :</b> <br> Rasio Pelayanan = Kualitas Pelayanan <br> P0 = Waktu Kosong Pelayanan
+                            <br>
+                            Lq = Jumlah rata-rata masyarakat dalam antrian <br> Wq = Waktu rata-rata masyarakat dalam
+                            antrian <br>
+                            W = Waktu rata-rata masyarakat dalam sistem <br> L = Jumlah rata-rata Masyarakat yang diharapkan
+                            dalam sistem
+                        </p>
                     </div>
                 </div>
             </div>
         </div>
-    @endsection
+    </div>
+@endsection
