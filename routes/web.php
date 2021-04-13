@@ -25,6 +25,7 @@ use App\Http\Controllers\LoketPelayananController;
 */
 
 Route::get('/', [FrontendController::class, 'index']);
+// Route::get('/', [FrontendController::class, 'contoh']);
 
 Auth::routes();
 

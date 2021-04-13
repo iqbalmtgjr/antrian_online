@@ -439,7 +439,8 @@ class McspController extends Controller
              $rekomendasi_d = "Tidak Ada Penambahan Petugas Pada Loket D";
          }
 
-        return view('mcsp.index', compact('hasil_persen_rasio', 'format_L', 'hasil_tp0', 'format_lq', 'format_wq', 'w', 'hasil_p_5_c', 'rekomendasi',
+        return view('mcsp.index', compact(
+        'hasil_persen_rasio', 'format_L', 'hasil_tp0', 'format_lq', 'format_wq', 'w', 'hasil_p_5_c', 'rekomendasi',
         'hasil_persen_rasio_b', 'format_L_b', 'hasil_tp0_b', 'format_lq_b', 'format_wq_b', 'w_b', 'hasil_p_5_c_b', 'rekomendasi_b',
         'hasil_persen_rasio_c', 'format_L_c', 'hasil_tp0_c', 'format_lq_c', 'format_wq_c', 'w_c', 'hasil_p_5_c_c', 'rekomendasi_c',
         'hasil_persen_rasio_d', 'format_L_d', 'hasil_tp0_d', 'format_lq_d', 'format_wq_d', 'w_d', 'hasil_p_5_c_d', 'rekomendasi_d'

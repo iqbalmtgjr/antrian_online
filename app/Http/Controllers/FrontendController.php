@@ -47,6 +47,11 @@ class FrontendController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+
+     public function contoh()
+     {
+         return view('frontend.contoh');
+     }
     public function create()
     {
         //
