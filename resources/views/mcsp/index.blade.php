@@ -11,8 +11,8 @@
     <form action="/multi_channel_single_phase" method="get">
         <div class="row ml-3 mb-3 mt-3 col-md-12">
             <label for="kalender" class="col-md-3">Pilih Tanggal</label>
-            <input type="date" class="form-control col-md-5" name="kalender" id="kalender" value="">
-            <a href="" class="btn btn-success btn-md offset-1 col-md-3" type="submit">Pilih</a>
+            <input type="date" class="form-control col-md-5" name="kalender" id="kalender">
+            <button href="" class="btn btn-success btn-md offset-1 col-md-3" type="submit">Pilih</button>
         </div>
     </form>
     <div class="row">
