@@ -27,7 +27,7 @@ class McspController extends Controller
 
         // -- Loket A -- //
         if ($request->kalender != null) {
-          return $lambda = Laporan::where('id_pelayanan', 1)->where('estimasi', '<=', '17:00:00')->where('tgl_antrian', $request->kalender)->get()->count(); // 15
+           $lambda = Laporan::where('id_pelayanan', 1)->where('estimasi', '<=', '17:00:00')->where('tgl_antrian', $request->kalender)->get()->count(); // 15
         } else {
            $lambda = 1;
         }
