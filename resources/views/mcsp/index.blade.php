@@ -8,6 +8,13 @@
             </div>
         </div>
     </div>
+    <form action="/multi_channel_single_phase" method="get">
+        <div class="row ml-3 mb-3 mt-3 col-md-12">
+            <label for="kalender" class="col-md-3">Pilih Tanggal</label>
+            <input type="date" class="form-control col-md-5" name="kalender" id="kalender" value="">
+            <a href="" class="btn btn-success btn-md offset-1 col-md-3" type="submit">Pilih</a>
+        </div>
+    </form>
     <div class="row">
         <div class="col-12">
             <div class="card m-b-30">
@@ -19,7 +26,7 @@
                                     <h5>Loket A</h5>
                                 </div>
                                 <div class="card-body text-dark">
-                                    <form method="GET" action="/multi_channel_single_phase">
+                                    {{-- <form method="GET" action="/multi_channel_single_phase">
                                         <div class="row">
                                             <div class="input-group">
                                                 <select name="loket_a" class="custom-select">
@@ -35,7 +42,7 @@
                                                 </div>
                                             </div>
                                         </div>
-                                    </form>
+                                    </form> --}}
                                     <div class="row mt-3">
                                         <div class="col-md-6 mt-2">
                                             <h6>Rasio Pelayanan</h6>
@@ -105,7 +112,7 @@
                                     <h5>Loket B</h5>
                                 </div>
                                 <div class="card-body text-dark">
-                                    <form method="GET" action="/multi_channel_single_phase">
+                                    {{-- <form method="GET" action="/multi_channel_single_phase">
                                         <div class="row">
                                             <div class="input-group">
                                                 <select name="loket_b" class="custom-select">
@@ -121,7 +128,7 @@
                                                 </div>
                                             </div>
                                         </div>
-                                    </form>
+                                    </form> --}}
                                     <div class="row mt-3">
                                         <div class="col-md-6 mt-2">
                                             <h6>Rasio Pelayanan</h6>
@@ -191,7 +198,7 @@
                                     <h5>Loket C</h5>
                                 </div>
                                 <div class="card-body text-dark">
-                                    <form method="GET" action="/multi_channel_single_phase">
+                                    {{-- <form method="GET" action="/multi_channel_single_phase">
                                         <div class="row">
                                             <div class="input-group">
                                                 <select name="loket_c" class="custom-select">
@@ -207,7 +214,7 @@
                                                 </div>
                                             </div>
                                         </div>
-                                    </form>
+                                    </form> --}}
                                     <div class="row mt-3">
                                         <div class="col-md-6 mt-2">
                                             <h6>Rasio Pelayanan</h6>
@@ -277,7 +284,7 @@
                                     <h5>Loket D</h5>
                                 </div>
                                 <div class="card-body text-dark">
-                                    <form method="GET" action="/multi_channel_single_phase">
+                                    {{-- <form method="GET" action="/multi_channel_single_phase">
                                         <div class="row">
                                             <div class="input-group">
                                                 <select name="loket_d" class="custom-select">
@@ -293,7 +300,7 @@
                                                 </div>
                                             </div>
                                         </div>
-                                    </form>
+                                    </form> --}}
                                     <div class="row mt-3">
                                         <div class="col-md-6 mt-2">
                                             <h6>Rasio Pelayanan</h6>
