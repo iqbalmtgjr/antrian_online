@@ -25,15 +25,15 @@ class LamapelayananController extends Controller
         $data = Lamapelayanan::all();
         $loket = Loketpelayanan::all();
         if ($request->waktu_awal != null && $request->waktu_akhir != null ) {
-            $laporan = Laporan::whereBetween('tgl_antrian', [$request->waktu_awal, $request->waktu_akhir])->where('lamapelayanan_id', $request->lamapelayanan_id)->get();
+            $laporan = Laporan::whereBetween('tgl_antrian', [$request->waktu_awal, $request->waktu_akhir])->where('id_pelayanan', $request->lamapelayanan_id)->get();
         } elseif ($request->waktu_awal != null && $request->waktu_akhir == null){
-            $laporan = Laporan::where('tgl_antrian', $request->waktu_awal)->where('lamapelayanan_id', $request->lamapelayanan_id)->get();
+            $laporan = Laporan::where('tgl_antrian', $request->waktu_awal)->where('id_pelayanan', $request->lamapelayanan_id)->get();
         } elseif ($request->waktu_awal == null && $request->waktu_akhir != null){
-            $laporan = Laporan::where('tgl_antrian', $request->waktu_akhir)->where('lamapelayanan_id', $request->lamapelayanan_id)->get();
+            $laporan = Laporan::where('tgl_antrian', $request->waktu_akhir)->where('id_pelayanan', $request->lamapelayanan_id)->get();
         } elseif ($request->waktu_awal == null && $request->waktu_akhir == null){
-            $laporan = Laporan::where('lamapelayanan_id', $request->lamapelayanan_id)->get();
+            $laporan = Laporan::where('id_pelayanan', $request->lamapelayanan_id)->get();
         } else {
-            $laporan = Laporan::where('lamapelayanan_id', $request->lamapelayanan_id)->get();
+            $laporan = Laporan::where('id_pelayanan', $request->lamapelayanan_id)->get();
         }
         
         return view('kelola_lama_pelayanan.index', compact('data', 'laporan', 'loket'));

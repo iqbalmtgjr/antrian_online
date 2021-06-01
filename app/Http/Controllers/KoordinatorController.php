@@ -114,7 +114,7 @@ class KoordinatorController extends Controller
         return redirect()->back()->with('sukses', 'Data Berhasil Dihapus !!!');
     }
 
-    public function resetpasswordkoordinkoordinator($id)
+    public function resetpasswordkoordinator($id)
     {
         $data = User::find($id);
         $data->password = bcrypt('rahasiakita');
