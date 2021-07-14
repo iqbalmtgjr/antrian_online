@@ -10,9 +10,18 @@
     </div>
     <form action="/multi_channel_single_phase" method="get">
         <div class="row ml-3 mb-3 mt-3 col-md-12">
-            <label for="kalender" class="col-md-3">Pilih Tanggal</label>
-            <input type="date" class="form-control col-md-5" name="kalender" id="kalender">
-            <button href="" class="btn btn-success btn-md offset-1 col-md-3" type="submit">Pilih</button>
+            <div class="col-md-3">
+                <label for="kalender">Pilih Tanggal</label>
+            </div>
+            <div class="col-md-3">
+                <input type="date" class="form-control" name="tgl_awal" id="tgl_awal">
+            </div>
+            <div class="col-md-3">
+                <input type="date" class="form-control" name="tgl_akhir" id="tgl_akhir">
+            </div>
+            <div class="col-md-3">
+                <button href="" style="width: 280px;" class="btn btn-right btn-success btn-md" type="submit">Pilih</button>
+            </div>
         </div>
     </form>
     <div class="row">

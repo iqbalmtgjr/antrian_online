@@ -26,8 +26,8 @@ class McspController extends Controller
         $localtime = $date->format('H:i:s');
 
         // -- Loket A -- //
-        if ($request->kalender != null) {
-           $lambda = Laporan::where('id_pelayanan', 1)->where('estimasi', '<=', '09:00:00')->where('tgl_antrian', $request->kalender)->get()->count(); // 15
+        if ($request->tgl_awal != null && $request->tgl_akhir != null) {
+           $lambda = Laporan::where('id_pelayanan', 1)->where('estimasi', '<=', '18:00:00')->where('tgl_antrian', [$request->tgl_awal, $request->tgl_akhir])->get()->count(); // 15
         } else {
            $lambda = 1;
         }
@@ -109,8 +109,8 @@ class McspController extends Controller
         }
         
         // -- Loket B -- //
-        if ($request->kalender != null) {
-            $lambda_b = Laporan::where('id_pelayanan', 2)->where('estimasi', '<=', '09:00:00')->where('tgl_antrian', $request->kalender)->get()->count(); // 15
+        if ($request->tgl_awal != null && $request->tgl_akhir != null) {
+            $lambda_b = Laporan::where('id_pelayanan', 2)->where('estimasi', '<=', '18:00:00')->where('tgl_antrian', [$request->tgl_awal, $request->tgl_akhir])->get()->count(); // 15
          } else {
             $lambda_b = 1;
          }
@@ -192,8 +192,8 @@ class McspController extends Controller
          }
          
          // -- Loket C -- //
-        if ($request->kalender != null) {
-            $lambda_c = Laporan::where('id_pelayanan', 3)->where('estimasi', '<=', '09:00:00')->where('tgl_antrian', $request->kalender)->get()->count(); // 15
+         if ($request->tgl_awal != null && $request->tgl_akhir != null) {
+            $lambda_c = Laporan::where('id_pelayanan', 3)->where('estimasi', '<=', '18:00:00')->where('tgl_antrian', [$request->tgl_awal, $request->tgl_akhir])->get()->count(); // 15
          } else {
             $lambda_c = 1;
          }
@@ -275,8 +275,8 @@ class McspController extends Controller
          }
 
          // -- Loket D -- //
-        if ($request->kalender != null) {
-            $lambda_d = Laporan::where('id_pelayanan', 4)->where('estimasi', '<=', '09:00:00')->where('tgl_antrian', $request->kalender)->get()->count(); // 15
+         if ($request->tgl_awal != null && $request->tgl_akhir != null) {
+            $lambda_d = Laporan::where('id_pelayanan', 4)->where('estimasi', '<=', '18:00:00')->where('tgl_antrian', [$request->tgl_awal, $request->tgl_akhir])->get()->count(); // 15
          } else {
             $lambda_d = 1;
          }
