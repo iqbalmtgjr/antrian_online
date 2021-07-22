@@ -27,7 +27,7 @@ class McspController extends Controller
 
         // -- Loket A -- //
         if ($request->tgl_awal != null && $request->tgl_akhir != null) {
-           $lambda = Laporan::where('id_pelayanan', 1)->where('estimasi', '<=', '18:00:00')->where('tgl_antrian', [$request->tgl_awal, $request->tgl_akhir])->get()->count(); // 15
+           $lambda = Laporan::where('id_pelayanan', 1)->where('estimasi', '<=', '09:00:00')->whereBetween('tgl_antrian', [$request->tgl_awal, $request->tgl_akhir])->get()->count(); // 15
         } else {
            $lambda = 1;
         }
@@ -96,11 +96,11 @@ class McspController extends Controller
         $format_L = round($L);
 
         // Rumus Probabilitas jika loket ditambah
-        $p_5_c_atas = pow(($lambda / $format_asli_miu), ($c + 1));
-        $format_p_5_c_atas = number_format($p_5_c_atas, 2);
-        $p_5_c_bawah = $faktorial * (pow($c, (($c + 1)-$c)));
-        $p_5_c = $format_p_5_c_atas / $p_5_c_bawah * $p0;
-        $hasil_p_5_c = number_format($p_5_c, 4);
+        // $p_5_c_atas = pow(($lambda / $format_asli_miu), ($c + 1));
+        // $format_p_5_c_atas = number_format($p_5_c_atas, 2);
+        // $p_5_c_bawah = $faktorial * (pow($c, (($c + 1)-$c)));
+        // $p_5_c = $format_p_5_c_atas / $p_5_c_bawah * $p0;
+        // $hasil_p_5_c = number_format($p_5_c, 4);
 
         if ($tp0 < 3    ) {
             $rekomendasi = "Menambah Petugas Pada Loket A";
@@ -110,13 +110,13 @@ class McspController extends Controller
         
         // -- Loket B -- //
         if ($request->tgl_awal != null && $request->tgl_akhir != null) {
-            $lambda_b = Laporan::where('id_pelayanan', 2)->where('estimasi', '<=', '18:00:00')->where('tgl_antrian', [$request->tgl_awal, $request->tgl_akhir])->get()->count(); // 15
+            $lambda_b = Laporan::where('id_pelayanan', 2)->where('estimasi', '<=', '09:00:00')->whereBetween('tgl_antrian', [$request->tgl_awal, $request->tgl_akhir])->get()->count(); // 15
          } else {
             $lambda_b = 1;
          }
          
          $c_b = Petugas::where('loket_pelayanan_id', 2)->get()->count(); // 1
-         $miu_b = Lamapelayanan::first()->lamapelayanan; // 00:04:36
+         $miu_b = Lamapelayanan::where('id', 2)->first()->lamapelayanan; // 00:04:36
          // return $miuperjam = date('H:i:s', strtotime($miu) * 4);
          // return $formatmiuperjam = number_format($miuperjam, 2);
  
@@ -179,11 +179,11 @@ class McspController extends Controller
          $format_L_b = round($L_b);
  
          // Rumus Probabilitas jika loket ditambah
-         $p_5_c_atas_b = pow(($lambda_b / $format_asli_miu_b), ($c_b + 1));
-         $format_p_5_c_atas_b = number_format($p_5_c_atas_b, 2);
-         $p_5_c_bawah_b = $faktorial_b * (pow($c_b, (($c_b + 1)-$c_b)));
-         $p_5_c_b = $format_p_5_c_atas_b / $p_5_c_bawah_b * $p0_b;
-         $hasil_p_5_c_b = number_format($p_5_c_b, 4);
+        //  $p_5_c_atas_b = pow(($lambda_b / $format_asli_miu_b), ($c_b + 1));
+        //  $format_p_5_c_atas_b = number_format($p_5_c_atas_b, 2);
+        //  $p_5_c_bawah_b = $faktorial_b * (pow($c_b, (($c_b + 1)-$c_b)));
+        //  $p_5_c_b = $format_p_5_c_atas_b / $p_5_c_bawah_b * $p0_b;
+        //  $hasil_p_5_c_b = number_format($p_5_c_b, 4);
  
          if ($tp0_b < 3    ) {
              $rekomendasi_b = "Menambah Petugas Pada Loket B";
@@ -193,13 +193,13 @@ class McspController extends Controller
          
          // -- Loket C -- //
          if ($request->tgl_awal != null && $request->tgl_akhir != null) {
-            $lambda_c = Laporan::where('id_pelayanan', 3)->where('estimasi', '<=', '18:00:00')->where('tgl_antrian', [$request->tgl_awal, $request->tgl_akhir])->get()->count(); // 15
+            $lambda_c = Laporan::where('id_pelayanan', 3)->where('estimasi', '<=', '09:00:00')->whereBetween('tgl_antrian', [$request->tgl_awal, $request->tgl_akhir])->get()->count(); // 15
          } else {
             $lambda_c = 1;
          }
          
          $c_c = Petugas::where('loket_pelayanan_id', 3)->get()->count(); // 1
-         $miu_c = Lamapelayanan::first()->lamapelayanan; // 00:04:36
+         $miu_c = Lamapelayanan::where('id', 3)->first()->lamapelayanan; // 00:04:36
          // return $miuperjam = date('H:i:s', strtotime($miu) * 4);
          // return $formatmiuperjam = number_format($miuperjam, 2);
  
@@ -262,11 +262,11 @@ class McspController extends Controller
          $format_L_c = round($L_c);
  
          // Rumus Probabilitas jika loket ditambah
-         $p_5_c_atas_c = pow(($lambda_c / $format_asli_miu_c), ($c_c + 1));
-         $format_p_5_c_atas_c = number_format($p_5_c_atas_c, 2);
-         $p_5_c_bawah_c = $faktorial_c * (pow($c_c, (($c_c + 1)-$c_c)));
-         $p_5_c_c = $format_p_5_c_atas_c / $p_5_c_bawah_c * $p0_c;
-         $hasil_p_5_c_c = number_format($p_5_c_c, 4);
+        //  $p_5_c_atas_c = pow(($lambda_c / $format_asli_miu_c), ($c_c + 1));
+        //  $format_p_5_c_atas_c = number_format($p_5_c_atas_c, 2);
+        //  $p_5_c_bawah_c = $faktorial_c * (pow($c_c, (($c_c + 1)-$c_c)));
+        //  $p_5_c_c = $format_p_5_c_atas_c / $p_5_c_bawah_c * $p0_c;
+        //  $hasil_p_5_c_c = number_format($p_5_c_c, 4);
  
          if ($tp0_c < 3    ) {
              $rekomendasi_c = "Menambah Petugas Pada Loket C";
@@ -276,13 +276,13 @@ class McspController extends Controller
 
          // -- Loket D -- //
          if ($request->tgl_awal != null && $request->tgl_akhir != null) {
-            $lambda_d = Laporan::where('id_pelayanan', 4)->where('estimasi', '<=', '18:00:00')->where('tgl_antrian', [$request->tgl_awal, $request->tgl_akhir])->get()->count(); // 15
+            $lambda_d = Laporan::where('id_pelayanan', 4)->where('estimasi', '<=', '09:00:00')->whereBetween('tgl_antrian', [$request->tgl_awal, $request->tgl_akhir])->get()->count(); // 15
          } else {
             $lambda_d = 1;
          }
          
          $c_d = Petugas::where('loket_pelayanan_id', 4)->get()->count(); // 1
-         $miu_d = Lamapelayanan::first()->lamapelayanan; // 00:04:36
+         $miu_d = Lamapelayanan::where('id', 4)->first()->lamapelayanan; // 00:04:36
          // return $miuperjam = date('H:i:s', strtotime($miu) * 4);
          // return $formatmiuperjam = number_format($miuperjam, 2);
  
@@ -345,11 +345,11 @@ class McspController extends Controller
          $format_L_d = round($L_d);
  
          // Rumus Probabilitas jika loket ditambah
-         $p_5_d_atas_d = pow(($lambda_d / $format_asli_miu_d), ($c_d + 1));
-         $format_p_5_c_atas_d = number_format($p_5_d_atas_d, 2);
-         $p_5_c_bawah_d = $faktorial_d * (pow($c_d, (($c_d + 1)-$c_d)));
-         $p_5_c_d = $format_p_5_c_atas_d / $p_5_c_bawah_d * $p0_d;
-         $hasil_p_5_c_d = number_format($p_5_c_d, 4);
+        //  $p_5_d_atas_d = pow(($lambda_d / $format_asli_miu_d), ($c_d + 1));
+        //  $format_p_5_c_atas_d = number_format($p_5_d_atas_d, 2);
+        //  $p_5_c_bawah_d = $faktorial_d * (pow($c_d, (($c_d + 1)-$c_d)));
+        //  $p_5_c_d = $format_p_5_c_atas_d / $p_5_c_bawah_d * $p0_d;
+        //  $hasil_p_5_c_d = number_format($p_5_c_d, 4);
  
          if ($tp0_d < 3    ) {
              $rekomendasi_d = "Menambah Petugas Pada Loket D";
@@ -358,10 +358,10 @@ class McspController extends Controller
          }
 
         return view('mcsp.index', compact(
-        'hasil_persen_rasio', 'format_L', 'hasil_tp0', 'format_lq', 'format_wq', 'w', 'hasil_p_5_c', 'rekomendasi',
-        'hasil_persen_rasio_b', 'format_L_b', 'hasil_tp0_b', 'format_lq_b', 'format_wq_b', 'w_b', 'hasil_p_5_c_b', 'rekomendasi_b',
-        'hasil_persen_rasio_c', 'format_L_c', 'hasil_tp0_c', 'format_lq_c', 'format_wq_c', 'w_c', 'hasil_p_5_c_c', 'rekomendasi_c',
-        'hasil_persen_rasio_d', 'format_L_d', 'hasil_tp0_d', 'format_lq_d', 'format_wq_d', 'w_d', 'hasil_p_5_c_d', 'rekomendasi_d'
+        'hasil_persen_rasio', 'format_L', 'hasil_tp0', 'format_lq', 'format_wq', 'w',  'rekomendasi',
+        'hasil_persen_rasio_b', 'format_L_b', 'hasil_tp0_b', 'format_lq_b', 'format_wq_b', 'w_b', 'rekomendasi_b',
+        'hasil_persen_rasio_c', 'format_L_c', 'hasil_tp0_c', 'format_lq_c', 'format_wq_c', 'w_c', 'rekomendasi_c',
+        'hasil_persen_rasio_d', 'format_L_d', 'hasil_tp0_d', 'format_lq_d', 'format_wq_d', 'w_d', 'rekomendasi_d'
         ));
     }
 

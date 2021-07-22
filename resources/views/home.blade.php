@@ -16,7 +16,7 @@
                 </center>
             </div>
             <div class="row">
-                <!-- Column -->
+                <!--Column -->
                 <div class="col-md-6 col-lg-6 col-xl-3">
                     <div class="card m-b-30">
                         <div class="card-body">
@@ -37,30 +37,8 @@
                         </div>
                     </div>
                 </div>
-                <!-- Column -->
-                <!-- Column -->
-                <div class="col-md-6 col-lg-6 col-xl-3">
-                    <div class="card m-b-30">
-                        <div class="card-body">
-                            <div class="d-flex flex-row">
-                                <div class="col-3 align-self-center">
-                                    <div class="round">
-                                        <i class="mdi mdi-account-multiple-plus"></i>
-                                    </div>
-                                </div>
-                                <div class="col-10 text-center align-self-center">
-                                    <div class="m-l-10 ">
-                                        <h5 class="mt-0 round-inner">
-                                            {{ App\Models\Antrian::where('hari', 'Senin')->get()->count() }}</h5>
-                                        <p class="mb-0 text-muted">Jumlah Pengunjung Dalam Antrian <br> Hari Senin</p>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <!-- Column -->
-                <!-- Column -->
+                <!--Column -->
+                <!--Column -->
                 <div class="col-md-6 col-lg-6 col-xl-3">
                     <div class="card m-b-30">
                         <div class="card-body">
@@ -81,32 +59,8 @@
                         </div>
                     </div>
                 </div>
-                <!-- Column -->
-                <!-- Column -->
-                <div class="col-md-6 col-lg-6 col-xl-3">
-                    <div class="card m-b-30">
-                        <div class="card-body">
-                            <div class="d-flex flex-row">
-                                <div class="col-3 align-self-center">
-                                    <div class="round">
-                                        <i class="mdi mdi-account-multiple-plus"></i>
-                                    </div>
-                                </div>
-                                <div class="col-10 text-center align-self-center">
-                                    <div class="m-l-10 ">
-                                        <h5 class="mt-0 round-inner">
-                                            {{ App\Models\Antrian::where('hari', 'Selasa')->get()->count() }}</h5>
-                                        <p class="mb-0 text-muted">Jumlah Pengunjung Dalam Antrian <br> Hari Selasa</p>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <!-- Column -->
-            </div>
-            <div class="row">
-                <!-- Column -->
+                <!--Column -->
+                <!--Column -->
                 <div class="col-md-6 col-lg-6 col-xl-3">
                     <div class="card m-b-30">
                         <div class="card-body">
@@ -127,30 +81,8 @@
                         </div>
                     </div>
                 </div>
-                <!-- Column -->
-                <!-- Column -->
-                <div class="col-md-6 col-lg-6 col-xl-3">
-                    <div class="card m-b-30">
-                        <div class="card-body">
-                            <div class="d-flex flex-row">
-                                <div class="col-3 align-self-center">
-                                    <div class="round">
-                                        <i class="mdi mdi-account-multiple-plus"></i>
-                                    </div>
-                                </div>
-                                <div class="col-10 text-center align-self-center">
-                                    <div class="m-l-10 ">
-                                        <h5 class="mt-0 round-inner">
-                                            {{ App\Models\Antrian::where('hari', 'Rabu')->get()->count() }}</h5>
-                                        <p class="mb-0 text-muted">Jumlah Pengunjung Dalam Antrian <br> Hari Rabu</p>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <!-- Column -->
-                <!-- Column -->
+                <!--Column -->
+                <!--Column -->
                 <div class="col-md-6 col-lg-6 col-xl-3">
                     <div class="card m-b-30">
                         <div class="card-body">
@@ -171,32 +103,10 @@
                         </div>
                     </div>
                 </div>
-                <!-- Column -->
-                <!-- Column -->
-                <div class="col-md-6 col-lg-6 col-xl-3">
-                    <div class="card m-b-30">
-                        <div class="card-body">
-                            <div class="d-flex flex-row">
-                                <div class="col-3 align-self-center">
-                                    <div class="round">
-                                        <i class="mdi mdi-account-multiple-plus"></i>
-                                    </div>
-                                </div>
-                                <div class="col-10 text-center align-self-center">
-                                    <div class="m-l-10 ">
-                                        <h5 class="mt-0 round-inner">
-                                            {{ App\Models\Antrian::where('hari', 'Kamis')->get()->count() }}</h5>
-                                        <p class="mb-0 text-muted">Jumlah Pengunjung Dalam Antrian <br> Hari Kamis</p>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <!-- Column -->
+                <!--Column -->
             </div>
             <div class="row">
-                <!-- Column -->
+                <!--Column -->
                 <div class="col-md-6 col-lg-6 col-xl-3">
                     <div class="card m-b-30">
                         <div class="card-body">
@@ -217,28 +127,7 @@
                         </div>
                     </div>
                 </div>
-                <!-- Column -->
-                <!-- Column -->
-                <div class="col-md-6 col-lg-6 col-xl-3">
-                    <div class="card m-b-30">
-                        <div class="card-body">
-                            <div class="d-flex flex-row">
-                                <div class="col-3 align-self-center">
-                                    <div class="round">
-                                        <i class="mdi mdi-account-multiple-plus"></i>
-                                    </div>
-                                </div>
-                                <div class="col-10 text-center align-self-center">
-                                    <div class="m-l-10 ">
-                                        <h5 class="mt-0 round-inner">
-                                            {{ App\Models\Antrian::where('hari', 'Jumat')->get()->count() }}</h5>
-                                        <p class="mb-0 text-muted">Jumlah Pengunjung Dalam Antrian <br> Hari Jum'at</p>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+                <!--Column -->
             </div>
         </div>
     </div>
@@ -258,11 +147,8 @@
                 type: 'column'
             },
             title: {
-                text: 'Grafik Pengunjung Perminggu'
+                text: 'Grafik Pengunjung Perbulan'
             },
-            // subtitle: {
-            //     text: 'Source: WorldClimate.com'
-            // },
             xAxis: {
                 categories: [
                     'Senin',
@@ -301,6 +187,5 @@
 
             }]
         });
-
     </script>
 @endsection

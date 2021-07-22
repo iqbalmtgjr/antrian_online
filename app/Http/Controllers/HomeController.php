@@ -25,7 +25,7 @@ class HomeController extends Controller
      */
     public function index()
     {
-        $antrian = Laporan::all();
+        $antrian = Laporan::take(50)->get();
         // $data1 = [];
         // $data2 = [];
         foreach ($antrian as $hari) {
