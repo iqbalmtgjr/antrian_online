@@ -20,14 +20,15 @@ class McspController extends Controller
      */
     public function index(Request $request)
     {
-        // dd($request->kalender);
         $timezone = 'Asia/Jakarta';
         $date = new DateTime('now', new DateTimeZone($timezone));
         $localtime = $date->format('H:i:s');
 
         // -- Loket A -- //
         if ($request->tgl_awal != null && $request->tgl_akhir != null) {
-           $lambda = Laporan::where('id_pelayanan', 1)->where('estimasi', '<=', '09:00:00')->whereBetween('tgl_antrian', [$request->tgl_awal, $request->tgl_akhir])->get()->count(); // 15
+           $lambda = Laporan::where('id_pelayanan', 1)->where('waktu_akhir_pelayanan', '<=', '09:00:00')->whereBetween('tgl_antrian', [$request->tgl_awal, $request->tgl_akhir])->get()->count(); // 15
+        } elseif ($request->tgl_awal != null && $request->tgl_akhir == null) {
+           $lambda = Laporan::where('id_pelayanan', 1)->where('waktu_akhir_pelayanan', '<=', '09:00:00')->where('tgl_antrian', $request->tgl_awal)->get()->count(); // 15
         } else {
            $lambda = 1;
         }
@@ -40,7 +41,7 @@ class McspController extends Controller
         // Rumus Rasio Pelayanan
         $rasio_bawah = date('i.s', strtotime($miu) * $c); // 18,24
         // return $rasio_bawah * 2;
-        $rasio = $lambda / ($rasio_bawah);
+        $rasio = $lambda / ($rasio_bawah * $c);
         $hasil_rasio = number_format($rasio, 2);
         if ($hasil_rasio >= 1) {
             $hasil_rasio = 0.9;
@@ -110,8 +111,10 @@ class McspController extends Controller
         
         // -- Loket B -- //
         if ($request->tgl_awal != null && $request->tgl_akhir != null) {
-            $lambda_b = Laporan::where('id_pelayanan', 2)->where('estimasi', '<=', '09:00:00')->whereBetween('tgl_antrian', [$request->tgl_awal, $request->tgl_akhir])->get()->count(); // 15
-         } else {
+            $lambda_b = Laporan::where('id_pelayanan', 2)->where('waktu_akhir_pelayanan', '<=', '09:00:00')->whereBetween('tgl_antrian', [$request->tgl_awal, $request->tgl_akhir])->get()->count(); // 15
+        } elseif ($request->tgl_awal != null && $request->tgl_akhir == null) {
+            $lambda_b = Laporan::where('id_pelayanan', 2)->where('waktu_akhir_pelayanan', '<=', '09:00:00')->where('tgl_antrian', $request->tgl_awal)->get()->count(); // 15 
+        } else {
             $lambda_b = 1;
          }
          
@@ -193,8 +196,10 @@ class McspController extends Controller
          
          // -- Loket C -- //
          if ($request->tgl_awal != null && $request->tgl_akhir != null) {
-            $lambda_c = Laporan::where('id_pelayanan', 3)->where('estimasi', '<=', '09:00:00')->whereBetween('tgl_antrian', [$request->tgl_awal, $request->tgl_akhir])->get()->count(); // 15
-         } else {
+            $lambda_c = Laporan::where('id_pelayanan', 3)->where('waktu_akhir_pelayanan', '<=', '09:00:00')->whereBetween('tgl_antrian', [$request->tgl_awal, $request->tgl_akhir])->get()->count(); // 15
+        } elseif ($request->tgl_awal != null && $request->tgl_akhir == null) {
+            $lambda_c = Laporan::where('id_pelayanan', 3)->where('waktu_akhir_pelayanan', '<=', '09:00:00')->where('tgl_antrian', $request->tgl_awal)->get()->count(); // 15 
+        } else {
             $lambda_c = 1;
          }
          
@@ -276,8 +281,10 @@ class McspController extends Controller
 
          // -- Loket D -- //
          if ($request->tgl_awal != null && $request->tgl_akhir != null) {
-            $lambda_d = Laporan::where('id_pelayanan', 4)->where('estimasi', '<=', '09:00:00')->whereBetween('tgl_antrian', [$request->tgl_awal, $request->tgl_akhir])->get()->count(); // 15
-         } else {
+            $lambda_d = Laporan::where('id_pelayanan', 4)->where('waktu_akhir_pelayanan', '<=', '09:00:00')->whereBetween('tgl_antrian', [$request->tgl_awal, $request->tgl_akhir])->get()->count(); // 15
+        } elseif ($request->tgl_awal != null && $request->tgl_akhir == null) {
+            $lambda_d = Laporan::where('id_pelayanan', 4)->where('waktu_akhir_pelayanan', '<=', '09:00:00')->where('tgl_antrian', $request->tgl_awal)->get()->count(); // 15 
+        } else {
             $lambda_d = 1;
          }
          
