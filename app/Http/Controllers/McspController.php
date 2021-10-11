@@ -26,34 +26,46 @@ class McspController extends Controller
 
         // -- Loket A -- //
         if ($request->tgl_awal != null && $request->tgl_akhir != null) {
-           $lambda = Laporan::where('id_pelayanan', 1)->where('waktu_akhir_pelayanan', '<=', '09:00:00')->whereBetween('tgl_antrian', [$request->tgl_awal, $request->tgl_akhir])->get()->count(); // 15
+           $lambda = Laporan::where('id_pelayanan', 1)->where('waktu_akhir_pelayanan', '<=', '09:00:00')->where('waktu_akhir_pelayanan', '>', '00:00:01')->whereBetween('tgl_antrian', [$request->tgl_awal, $request->tgl_akhir])->get()->count(); // 15
         } elseif ($request->tgl_awal != null && $request->tgl_akhir == null) {
-           $lambda = Laporan::where('id_pelayanan', 1)->where('waktu_akhir_pelayanan', '<=', '09:00:00')->where('tgl_antrian', $request->tgl_awal)->get()->count(); // 15
+           $lambda = Laporan::where('id_pelayanan', 1)->where('waktu_akhir_pelayanan', '<=', '09:00:00')->where('waktu_akhir_pelayanan', '>', '00:00:01')->where('tgl_antrian', $request->tgl_awal)->get()->count(); // 15
         } else {
            $lambda = 1;
         }
         
         $c = Petugas::where('loket_pelayanan_id', 1)->get()->count(); // 1
-        $miu = Lamapelayanan::first()->lamapelayanan; // 00:04:36
+        $miu_awal = Lamapelayanan::first()->lamapelayanan;
+        $miu_2 = ((date('i', strtotime($miu_awal))) * 60) + (date('s', strtotime($miu_awal)));
+        $miu = 3600 / $miu_2;
         // return $miuperjam = date('H:i:s', strtotime($miu) * 4);
         // return $formatmiuperjam = number_format($miuperjam, 2);
 
         // Rumus Rasio Pelayanan
-        $rasio_bawah = date('i.s', strtotime($miu) * $c); // 18,24
-        // return $rasio_bawah * 2;
-        $rasio = $lambda / ($rasio_bawah * $c);
+        $rasio = $lambda / $miu;
         $hasil_rasio = number_format($rasio, 2);
-        if ($hasil_rasio >= 1) {
-            $hasil_rasio = 0.9;
-        } else {
-            $hasil_rasio == $hasil_rasio;
-        }
         $hasil_rasio; // 0.82
         $persen_rasio = round($hasil_rasio * 100 / 1, 2);
         $hasil_persen_rasio = $persen_rasio . "%";
 
         // Rumus Probabilitas loket pelayanan yang menganggur
         $p0 = (1 - $hasil_rasio); // 0.18
+       if($p0 < 0){
+        $hasil_tp0 = '0';
+
+        // return pow(5, 3); *penggunaan perhitungan pangkat 5 pangkat 3
+        $format_lq = '0';
+
+        // Rumus waktu rata'' masyarakat dalam antrian (Wq)
+        $format_wq = '0';
+
+        // Rumus Rata-rata waktu yang diperlukan masyarakat/orangnya didalam instansi tersebut atau dalam sistem (W)
+        $w = '0';
+
+        // Rumus Rata-rata jumlah masyarakat didalam instansi tersebut (L)
+        $format_L = '0';
+
+        $rekomendasi = "Menambah Petugas Pada Loket A";
+       }else{
         $tp0 = $p0 * 60; // 10.8
         $hasil_tp0 = $tp0;
 
@@ -67,10 +79,7 @@ class McspController extends Controller
         $faktorial;
 
         // return pow(5, 3); *penggunaan perhitungan pangkat 5 pangkat 3
-        $format_miuu = date('H.i', strtotime($miu) * 60);
-        $asli_miu = 60 / $format_miuu;
-        $format_asli_miu = number_format($asli_miu);
-        $bagi_lambdadanmiu = $lambda / $format_asli_miu;
+        $bagi_lambdadanmiu = $lambda / $miu;
         $format_bagi_lambdadanmiu = number_format($bagi_lambdadanmiu, 2);
         $dalamkurung = pow($format_bagi_lambdadanmiu, $c);
         $format_dalamkurung = number_format($dalamkurung, 2);
@@ -87,8 +96,8 @@ class McspController extends Controller
         $format_wq = number_format($wq, 2);
 
         // Rumus Rata-rata waktu yang diperlukan masyarakat/orangnya didalam instansi tersebut atau dalam sistem (W)
-        $bagiiii = 1 / $format_asli_miu;
-        $format_bagi = number_format($bagiiii, 2);
+        $bagiiii = 1 / $miu;
+        $format_bagi = number_format($bagiiii, 3);
         $w = $format_wq + $format_bagi;
         // return $format_w = number_format($w, 2);
 
@@ -108,31 +117,32 @@ class McspController extends Controller
         } else {
             $rekomendasi = "Tidak Ada Penambahan Petugas Pada Loket A";
         }
+       }
         
         // -- Loket B -- //
         if ($request->tgl_awal != null && $request->tgl_akhir != null) {
-            $lambda_b = Laporan::where('id_pelayanan', 2)->where('waktu_akhir_pelayanan', '<=', '09:00:00')->whereBetween('tgl_antrian', [$request->tgl_awal, $request->tgl_akhir])->get()->count(); // 15
+            $lambda_b = Laporan::where('id_pelayanan', 2)->where('waktu_akhir_pelayanan', '<=', '09:00:00')->where('waktu_akhir_pelayanan', '>', '00:00:01')->whereBetween('tgl_antrian', [$request->tgl_awal, $request->tgl_akhir])->get()->count(); // 15
         } elseif ($request->tgl_awal != null && $request->tgl_akhir == null) {
-            $lambda_b = Laporan::where('id_pelayanan', 2)->where('waktu_akhir_pelayanan', '<=', '09:00:00')->where('tgl_antrian', $request->tgl_awal)->get()->count(); // 15 
+            $lambda_b = Laporan::where('id_pelayanan', 2)->where('waktu_akhir_pelayanan', '<=', '09:00:00')->where('waktu_akhir_pelayanan', '>', '00:00:01')->where('tgl_antrian', $request->tgl_awal)->get()->count();
         } else {
             $lambda_b = 1;
          }
          
          $c_b = Petugas::where('loket_pelayanan_id', 2)->get()->count(); // 1
-         $miu_b = Lamapelayanan::where('id', 2)->first()->lamapelayanan; // 00:04:36
-         // return $miuperjam = date('H:i:s', strtotime($miu) * 4);
-         // return $formatmiuperjam = number_format($miuperjam, 2);
+         $miu_awal_b = Lamapelayanan::where('id', 2)->first()->lamapelayanan;
+         $miu_2_b = ((date('i', strtotime($miu_awal_b))) * 60) + (date('s', strtotime($miu_awal_b)));
+         $miu_b = 3600 / $miu_2_b;
  
          // Rumus Rasio Pelayanan
-         $rasio_bawah_b = date('i.s', strtotime($miu) * $c); // 18,24
+        //  $rasio_bawah_b = date('i.s', strtotime($miu) * $c); // 18,24
          // return $rasio_bawah * 2;
-         $rasio_b = $lambda_b / ($rasio_bawah_b);
+         $rasio_b = $lambda_b / $miu_b;
          $hasil_rasio_b = number_format($rasio_b, 2);
-         if ($hasil_rasio_b >= 1) {
-             $hasil_rasio_b = 0.9;
-         } else {
-             $hasil_rasio_b == $hasil_rasio_b;
-         }
+        //  if ($hasil_rasio_b >= 1) {
+        //      $hasil_rasio_b = 0.9;
+        //  } else {
+        //      $hasil_rasio_b == $hasil_rasio_b;
+        //  }
          $hasil_rasio_b; // 0.82
          $persen_rasio_b = round($hasil_rasio_b * 100 / 1, 2);
          $hasil_persen_rasio_b = $persen_rasio_b . "%";
@@ -152,10 +162,10 @@ class McspController extends Controller
          $faktorial_b;
  
          // return pow(5, 3); *penggunaan perhitungan pangkat 5 pangkat 3
-         $format_miuu_b = date('H.i', strtotime($miu_b) * 60);
-         $asli_miu_b = 60 / $format_miuu;
-         $format_asli_miu_b = number_format($asli_miu_b);
-         $bagi_lambdadanmiu_b = $lambda_b / $format_asli_miu_b;
+        //  $format_miuu_b = date('H.i', strtotime($miu_b) * 60);
+        //  $asli_miu_b = 60 / $format_miuu;
+        //  $format_asli_miu_b = number_format($asli_miu_b);
+         $bagi_lambdadanmiu_b = $lambda_b / $miu_b;
          $format_bagi_lambdadanmiu_b = number_format($bagi_lambdadanmiu_b, 2);
          $dalamkurung_b = pow($format_bagi_lambdadanmiu_b, $c_b);
          $format_dalamkurung_b = number_format($dalamkurung_b, 2);
@@ -172,7 +182,7 @@ class McspController extends Controller
          $format_wq_b = number_format($wq_b, 2);
  
          // Rumus Rata-rata waktu yang diperlukan masyarakat/orangnya didalam instansi tersebut atau dalam sistem (W)
-         $bagiiii_b = 1 / $format_asli_miu_b;
+         $bagiiii_b = 1 / $miu_b;
          $format_bagi_b = number_format($bagiiii_b, 2);
          $w_b = $format_wq_b + $format_bagi_b;
          // return $format_w = number_format($w, 2);
@@ -188,7 +198,7 @@ class McspController extends Controller
         //  $p_5_c_b = $format_p_5_c_atas_b / $p_5_c_bawah_b * $p0_b;
         //  $hasil_p_5_c_b = number_format($p_5_c_b, 4);
  
-         if ($tp0_b < 3    ) {
+         if ($p0_b < 0) {
              $rekomendasi_b = "Menambah Petugas Pada Loket B";
          } else {
              $rekomendasi_b = "Tidak Ada Penambahan Petugas Pada Loket B";
@@ -196,28 +206,28 @@ class McspController extends Controller
          
          // -- Loket C -- //
          if ($request->tgl_awal != null && $request->tgl_akhir != null) {
-            $lambda_c = Laporan::where('id_pelayanan', 3)->where('waktu_akhir_pelayanan', '<=', '09:00:00')->whereBetween('tgl_antrian', [$request->tgl_awal, $request->tgl_akhir])->get()->count(); // 15
+            $lambda_c = Laporan::where('id_pelayanan', 3)->where('waktu_akhir_pelayanan', '<=', '09:00:00')->where('waktu_akhir_pelayanan', '>', '00:00:01')->whereBetween('tgl_antrian', [$request->tgl_awal, $request->tgl_akhir])->get()->count(); // 15
         } elseif ($request->tgl_awal != null && $request->tgl_akhir == null) {
-            $lambda_c = Laporan::where('id_pelayanan', 3)->where('waktu_akhir_pelayanan', '<=', '09:00:00')->where('tgl_antrian', $request->tgl_awal)->get()->count(); // 15 
+            $lambda_c = Laporan::where('id_pelayanan', 3)->where('waktu_akhir_pelayanan', '<=', '09:00:00')->where('waktu_akhir_pelayanan', '>', '00:00:01')->where('tgl_antrian', $request->tgl_awal)->get()->count(); // 15 
         } else {
             $lambda_c = 1;
          }
          
          $c_c = Petugas::where('loket_pelayanan_id', 3)->get()->count(); // 1
-         $miu_c = Lamapelayanan::where('id', 3)->first()->lamapelayanan; // 00:04:36
-         // return $miuperjam = date('H:i:s', strtotime($miu) * 4);
-         // return $formatmiuperjam = number_format($miuperjam, 2);
+         $miu_awal_c = Lamapelayanan::where('id', 3)->first()->lamapelayanan; // 00:04:36
+         $miu_2_c = ((date('i', strtotime($miu_awal_c))) * 60) + (date('s', strtotime($miu_awal_c)));
+         $miu_c = 3600 / $miu_2_c;
  
          // Rumus Rasio Pelayanan
-         $rasio_bawah_c = date('i.s', strtotime($miu) * $c); // 18,24
+        //  $rasio_bawah_c = date('i.s', strtotime($miu_c) * $c); // 18,24
          // return $rasio_bawah * 2;
-         $rasio_c = $lambda_c / ($rasio_bawah_c);
+         $rasio_c = $lambda_c / ($miu_c);
          $hasil_rasio_c = number_format($rasio_c, 2);
-         if ($hasil_rasio_c >= 1) {
-             $hasil_rasio_c = 0.9;
-         } else {
-             $hasil_rasio_c == $hasil_rasio_c;
-         }
+        //  if ($hasil_rasio_c >= 1) {
+        //      $hasil_rasio_c = 0.9;
+        //  } else {
+        //      $hasil_rasio_c == $hasil_rasio_c;
+        //  }
          $hasil_rasio_c; // 0.82
          $persen_rasio_c = round($hasil_rasio_c * 100 / 1, 2);
          $hasil_persen_rasio_c = $persen_rasio_c . "%";
@@ -237,17 +247,17 @@ class McspController extends Controller
          $faktorial_c;
  
          // return pow(5, 3); *penggunaan perhitungan pangkat 5 pangkat 3
-         $format_miuu_c = date('H.i', strtotime($miu_c) * 60);
-         $asli_miu_c = 60 / $format_miuu;
-         $format_asli_miu_c = number_format($asli_miu_c);
-         $bagi_lambdadanmiu_c = $lambda_c / $format_asli_miu_c;
+        //  $format_miuu_c = date('H.i', strtotime($miu_c) * 60);
+        //  $asli_miu_c = 60 / $format_miuu;
+        //  $format_asli_miu_c = number_format($asli_miu_c);
+         $bagi_lambdadanmiu_c = $lambda_c / $miu_c;
          $format_bagi_lambdadanmiu_c = number_format($bagi_lambdadanmiu_b, 2);
          $dalamkurung_c = pow($format_bagi_lambdadanmiu_c, $c_c);
          $format_dalamkurung_c = number_format($dalamkurung_c, 2);
          $atas_lq_c = $p0_c * $dalamkurung_c * $hasil_rasio_c;
          $format_atas_lq_c = number_format($atas_lq_c, 2);
-         $bawah_lq_c = $faktorial_c * (pow($p0, 2));
-         $format_bawah_lq_c = number_format($bawah_lq_c, 2);
+         $bawah_lq_c = $faktorial_c * (pow($p0_c, 2));
+         $format_bawah_lq_c = number_format($bawah_lq_c, 4);
          $hasil_lq_c = $format_atas_lq_c / $format_bawah_lq_c;
          $format_lq_c = round($hasil_lq_c);
  
@@ -257,7 +267,7 @@ class McspController extends Controller
          $format_wq_c = number_format($wq_c, 2);
  
          // Rumus Rata-rata waktu yang diperlukan masyarakat/orangnya didalam instansi tersebut atau dalam sistem (W)
-         $bagiiii_c = 1 / $format_asli_miu_c;
+         $bagiiii_c = 1 / $miu_c;
          $format_bagi_c = number_format($bagiiii_c, 2);
          $w_c = $format_wq_c + $format_bagi_c;
          // return $format_w = number_format($w, 2);
@@ -273,7 +283,7 @@ class McspController extends Controller
         //  $p_5_c_c = $format_p_5_c_atas_c / $p_5_c_bawah_c * $p0_c;
         //  $hasil_p_5_c_c = number_format($p_5_c_c, 4);
  
-         if ($tp0_c < 3    ) {
+         if ($p0_c < 0) {
              $rekomendasi_c = "Menambah Petugas Pada Loket C";
          } else {
              $rekomendasi_c = "Tidak Ada Penambahan Petugas Pada Loket C";
@@ -281,29 +291,29 @@ class McspController extends Controller
 
          // -- Loket D -- //
          if ($request->tgl_awal != null && $request->tgl_akhir != null) {
-            $lambda_d = Laporan::where('id_pelayanan', 4)->where('waktu_akhir_pelayanan', '<=', '09:00:00')->whereBetween('tgl_antrian', [$request->tgl_awal, $request->tgl_akhir])->get()->count(); // 15
+            $lambda_d = Laporan::where('id_pelayanan', 4)->where('waktu_akhir_pelayanan', '<=', '09:00:00')->where('waktu_akhir_pelayanan', '>', '00:00:01')->whereBetween('tgl_antrian', [$request->tgl_awal, $request->tgl_akhir])->get()->count(); // 15
         } elseif ($request->tgl_awal != null && $request->tgl_akhir == null) {
-            $lambda_d = Laporan::where('id_pelayanan', 4)->where('waktu_akhir_pelayanan', '<=', '09:00:00')->where('tgl_antrian', $request->tgl_awal)->get()->count(); // 15 
+            $lambda_d = Laporan::where('id_pelayanan', 4)->where('waktu_akhir_pelayanan', '<=', '09:00:00')->where('waktu_akhir_pelayanan', '>', '00:00:01')->where('tgl_antrian', $request->tgl_awal)->get()->count(); // 15 
         } else {
             $lambda_d = 1;
          }
          
          $c_d = Petugas::where('loket_pelayanan_id', 4)->get()->count(); // 1
-         $miu_d = Lamapelayanan::where('id', 4)->first()->lamapelayanan; // 00:04:36
-         // return $miuperjam = date('H:i:s', strtotime($miu) * 4);
-         // return $formatmiuperjam = number_format($miuperjam, 2);
+         $miu_awal_d = Lamapelayanan::where('id', 4)->first()->lamapelayanan; // 00:04:36
+         $miu_2_d = ((date('i', strtotime($miu_awal_d))) * 60) + (date('s', strtotime($miu_awal_d)));
+         $miu_d = 3600 / $miu_2_d;
  
          // Rumus Rasio Pelayanan
-         $rasio_bawah_d = date('i.s', strtotime($miu) * $c); // 18,24
+        //  $rasio_bawah_d = date('i.s', strtotime($miu) * $c); // 18,24
          // return $rasio_bawah * 2;
-         $rasio_d = $lambda_d / ($rasio_bawah_d);
+         $rasio_d = $lambda_d / ($miu_d);
          $hasil_rasio_d = number_format($rasio_d, 2);
-         if ($hasil_rasio_d >= 1) {
-             $hasil_rasio_d = 0.9;
-         } else {
-             $hasil_rasio_d == $hasil_rasio_d;
-         }
-         $hasil_rasio_d; // 0.82
+        //  if ($hasil_rasio_d >= 1) {
+        //      $hasil_rasio_d = 0.9;
+        //  } else {
+        //      $hasil_rasio_d == $hasil_rasio_d;
+        //  }
+        //  $hasil_rasio_d; // 0.82
          $persen_rasio_d = round($hasil_rasio_d * 100 / 1, 2);
          $hasil_persen_rasio_d = $persen_rasio_d . "%";
  
@@ -322,17 +332,17 @@ class McspController extends Controller
          $faktorial_d;
  
          // return pow(5, 3); *penggunaan perhitungan pangkat 5 pangkat 3
-         $format_miuu_d = date('H.i', strtotime($miu_d) * 60);
-         $asli_miu_d = 60 / $format_miuu;
-         $format_asli_miu_d = number_format($asli_miu_d);
-         $bagi_lambdadanmiu_d = $lambda_d / $format_asli_miu_d;
+        //  $format_miuu_d = date('H.i', strtotime($miu_d) * 60);
+        //  $asli_miu_d = 60 / $miu_d;
+        //  $format_asli_miu_d = number_format($asli_miu_d);
+         $bagi_lambdadanmiu_d = $lambda_d / $miu_d;
          $format_bagi_lambdadanmiu_d = number_format($bagi_lambdadanmiu_b, 2);
          $dalamkurung_d = pow($format_bagi_lambdadanmiu_d, $c_d);
          $format_dalamkurung_d = number_format($dalamkurung_d, 2);
          $atas_lq_d = $p0_d * $dalamkurung_d * $hasil_rasio_d;
          $format_atas_lq_d = number_format($atas_lq_d, 2);
-         $bawah_lq_d = $faktorial_d * (pow($p0, 2));
-         $format_bawah_lq_d = number_format($bawah_lq_d, 2);
+         $bawah_lq_d = $faktorial_d * (pow($p0_d, 2));
+         $format_bawah_lq_d = number_format($bawah_lq_d, 4);
          $hasil_lq_d = $format_atas_lq_d / $format_bawah_lq_d;
          $format_lq_d = round($hasil_lq_d);
  
@@ -342,7 +352,7 @@ class McspController extends Controller
          $format_wq_d = number_format($wq_d, 2);
  
          // Rumus Rata-rata waktu yang diperlukan masyarakat/orangnya didalam instansi tersebut atau dalam sistem (W)
-         $bagiiii_d = 1 / $format_asli_miu_d;
+         $bagiiii_d = 1 / $miu_d;
          $format_bagi_d = number_format($bagiiii_d, 2);
          $w_d = $format_wq_d + $format_bagi_d;
          // return $format_w = number_format($w, 2);
@@ -358,7 +368,7 @@ class McspController extends Controller
         //  $p_5_c_d = $format_p_5_c_atas_d / $p_5_c_bawah_d * $p0_d;
         //  $hasil_p_5_c_d = number_format($p_5_c_d, 4);
  
-         if ($tp0_d < 3    ) {
+         if ($p0_d < 0) {
              $rekomendasi_d = "Menambah Petugas Pada Loket D";
          } else {
              $rekomendasi_d = "Tidak Ada Penambahan Petugas Pada Loket D";
