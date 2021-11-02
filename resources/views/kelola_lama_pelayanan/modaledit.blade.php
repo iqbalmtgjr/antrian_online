@@ -15,7 +15,8 @@
                         <button class="btn btn-primary" type="submit">Pilih</button>
                     </div>
                     <div class="mb-4">
-                        <label for="waktu_awal" style="color: Red; font-size:13px" class="mr-5">* Waktu Awal</label>
+                        <label for="waktu_awal" style="color: Red; font-size:13px" class="mr-5">* Waktu
+                            Awal</label>
                         <label for="waktu_akhir" style="color: Red; font-size:13px; margin-left: 65px">*
                             Waktu Akhir</label>
                     </div>
@@ -109,5 +110,4 @@
             }
         });
     }
-
 </script>

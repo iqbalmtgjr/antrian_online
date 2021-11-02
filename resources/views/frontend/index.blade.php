@@ -4,6 +4,7 @@
 <head>
 
     <meta charset="utf-8">
+    {{-- <meta http-equiv="Refresh" Content="5"> --}}
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta name="description" content="">
     <meta name="author" content="Template Mo">
@@ -123,54 +124,58 @@ https://templatemo.com/tm-537-art-factory
             </form>
         </div>
         {{-- <div class="col-md-12"> --}}
-        <table class="table">
-            <thead class="thead-dark">
-                <tr>
-                    <th scope="col">No Antrian</th>
-                    <th scope="col">Loket</th>
-                    <th scope="col">Estimasi</th>
-                </tr>
-            </thead>
-            @foreach ($data as $datas)
-                <tbody>
+        {{-- <button id="loadbasic">basic load</button> --}}
+        {{-- <div id="result"></div> --}}
+        <div id="result">
+            <table class="table">
+                <thead class="thead-dark">
                     <tr>
-                        @if ($datas->id_pelayanan == 1 && $datas->no_antrian >= 10)
-                            <td>{{ 'A' . $datas->no_antrian }}</td>
-                        @elseif ($datas->id_pelayanan == 1 )
-                            <td>{{ 'A0' . $datas->no_antrian }}</td>
-                        @elseif($datas->id_pelayanan == 2 && $datas->no_antrian >= 10)
-                            <td>{{ 'B' . $datas->no_antrian }}</td>
-                        @elseif ($datas->id_pelayanan == 2)
-                            <td>{{ 'B0' . $datas->no_antrian }}</td>
-                        @elseif($datas->id_pelayanan == 3 && $datas->no_antrian >= 10)
-                            <td>{{ 'C' . $datas->no_antrian }}</td>
-                        @elseif ($datas->id_pelayanan == 3)
-                            <td>{{ 'C0' . $datas->no_antrian }}</td>
-                        @elseif($datas->id_pelayanan == 4 && $datas->no_antrian >= 10)
-                            <td>{{ 'D' . $datas->no_antrian }}</td>
-                        @elseif ($datas->id_pelayanan == 4)
-                            <td>{{ 'D0' . $datas->no_antrian }}</td>
-                        @endif
-
-                        @if ($datas->id_pelayanan == 1)
-                            <td>Loket A</td>
-                        @elseif($datas->id_pelayanan == 2)
-                            <td>Loket B</td>
-                        @elseif($datas->id_pelayanan == 3)
-                            <td>Loket C</td>
-                        @elseif($datas->id_pelayanan == 4)
-                            <td>Loket D</td>
-                        @endif
-
-                        @if ($datas->estimasi <= $localtime)
-                            <td> Sedang Dalam Pelayanan </td>
-                        @else
-                            <td> {{ 'Akan Dilayani Pada Pukul ' . $datas->estimasi . ' Wib' }} </td>
-                        @endif
+                        <th scope="col">No Antrian</th>
+                        <th scope="col">Loket</th>
+                        <th scope="col">Estimasi</th>
                     </tr>
-                </tbody>
-            @endforeach
-        </table>
+                </thead>
+                @foreach ($data as $datas)
+                    <tbody>
+                        <tr>
+                            @if ($datas->id_pelayanan == 1 && $datas->no_antrian >= 10)
+                                <td>{{ 'A' . $datas->no_antrian }}</td>
+                            @elseif ($datas->id_pelayanan == 1 )
+                                <td>{{ 'A0' . $datas->no_antrian }}</td>
+                            @elseif($datas->id_pelayanan == 2 && $datas->no_antrian >= 10)
+                                <td>{{ 'B' . $datas->no_antrian }}</td>
+                            @elseif ($datas->id_pelayanan == 2)
+                                <td>{{ 'B0' . $datas->no_antrian }}</td>
+                            @elseif($datas->id_pelayanan == 3 && $datas->no_antrian >= 10)
+                                <td>{{ 'C' . $datas->no_antrian }}</td>
+                            @elseif ($datas->id_pelayanan == 3)
+                                <td>{{ 'C0' . $datas->no_antrian }}</td>
+                            @elseif($datas->id_pelayanan == 4 && $datas->no_antrian >= 10)
+                                <td>{{ 'D' . $datas->no_antrian }}</td>
+                            @elseif ($datas->id_pelayanan == 4)
+                                <td>{{ 'D0' . $datas->no_antrian }}</td>
+                            @endif
+
+                            @if ($datas->id_pelayanan == 1)
+                                <td>Loket A</td>
+                            @elseif($datas->id_pelayanan == 2)
+                                <td>Loket B</td>
+                            @elseif($datas->id_pelayanan == 3)
+                                <td>Loket C</td>
+                            @elseif($datas->id_pelayanan == 4)
+                                <td>Loket D</td>
+                            @endif
+
+                            @if ($datas->estimasi <= $localtime)
+                                <td> Sedang Dalam Pelayanan </td>
+                            @else
+                                <td> {{ 'Akan Dilayani Pada Pukul ' . $datas->estimasi . ' Wib' }} </td>
+                            @endif
+                        </tr>
+                    </tbody>
+                @endforeach
+            </table>
+        </div>
         {{-- <div class="row"> --}}
         <div class="col-4">
             Menampilkan
@@ -273,75 +278,6 @@ https://templatemo.com/tm-537-art-factory
             </div>
         </div>
     </section>
-    <!-- ***** Features Big Item End ***** -->
-
-    <!-- ***** Features Small Start ***** -->
-    {{-- <section class="section" id="services">
-        <div class="container">
-            <div class="row">
-                <div class="owl-carousel owl-theme">
-                    <div class="item service-item">
-                        <div class="icon">
-                            <i><img src={{ asset("frontend/assets/images/service-icon-01.png") }} alt=""></i>
-                        </div>
-                        <h5 class="service-title">First Box Service</h5>
-                        <p>Aenean vulputate massa sed neque consectetur, ac fringilla quam aliquet. Sed a enim nec eros tempor cursus at id libero.</p>
-                        <a href="#" class="main-button">Read More</a>
-                    </div>
-                    <div class="item service-item">
-                        <div class="icon">
-                            <i><img src={{ asset("frontend/assets/images/service-icon-02.png") }} alt=""></i>
-                        </div>
-                        <h5 class="service-title">Second Box Title</h5>
-                        <p>Pellentesque vitae urna ut nisi viverra tristique quis at dolor. In non sodales dolor, id egestas quam. Aliquam erat volutpat. </p>
-                        <a href="#" class="main-button">Discover More</a>
-                    </div>
-                    <div class="item service-item">
-                        <div class="icon">
-                            <i><img src={{ asset("frontend/assets/images/service-icon-03.png") }} alt=""></i>
-                        </div>
-                        <h5 class="service-title">Third Title Box</h5>
-                        <p>Quisque finibus libero augue, in ultrices quam dictum id. Aliquam quis tellus sit amet urna tincidunt bibendum.</p>
-                        <a href="#" class="main-button">More Detail</a>
-                    </div>
-                    <div class="item service-item">
-                        <div class="icon">
-                            <i><img src={{ asset("frontend/assets/images/service-icon-02.png") }} alt=""></i>
-                        </div>
-                        <h5 class="service-title">Fourth Service Box</h5>
-                        <p>Fusce sollicitudin feugiat risus, tempus faucibus arcu blandit nec. Duis auctor dolor eu scelerisque vestibulum.</p>
-                        <a href="#" class="main-button">Read More</a>
-                    </div>
-                    <div class="item service-item">
-                        <div class="icon">
-                            <i><img src={{ asset("frontend/assets/images/service-icon-01.png") }} alt=""></i>
-                        </div>
-                        <h5 class="service-title">Fifth Service Title</h5>
-                        <p>Curabitur aliquam eget tellus id porta. Proin justo sapien, posuere suscipit tortor in, fermentum mattis elit.</p>
-                        <a href="#" class="main-button">Discover</a>
-                    </div>
-                    <div class="item service-item">
-                        <div class="icon">
-                            <i><img src={{ asset("frontend/assets/images/service-icon-03.png") }} alt=""></i>
-                        </div>
-                        <h5 class="service-title">Sixth Box Title</h5>
-                        <p>Ut nibh velit, aliquam vitae pellentesque nec, convallis vitae lacus. Aliquam porttitor urna ut pellentesque.</p>
-                        <a href="#" class="main-button">Detail</a>
-                    </div>
-                    <div class="item service-item">
-                        <div class="icon">
-                            <i><img src={{ asset("frontend/assets/images/service-icon-01.png") }} alt=""></i>
-                        </div>
-                        <h5 class="service-title">Seventh Title Box</h5>
-                        <p>Sed a consequat velit. Morbi lectus sapien, vestibulum et sapien sit amet, ultrices malesuada odio. Donec non quam.</p>
-                        <a href="#" class="main-button">Read More</a>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section> --}}
-    <!-- ***** Features Small End ***** -->
-
 
     <!-- ***** Frequently Question Start ***** -->
     <section class="section" id="frequently-question">
@@ -387,46 +323,16 @@ https://templatemo.com/tm-537-art-factory
                     -->
                         <iframe
                             src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3989.81602774175!2d111.49835651475325!3d0.06142219995518961!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2e01de0e35dcecc9%3A0x38750985d63180e3!2sDinas%20Kependudukan%20dan%20Catatan%20Sipil%20Sintang!5e0!3m2!1sid!2sid!4v1614321729107!5m2!1sid!2sid"
-                            width="100%" height="500" style="border:0;" allowfullscreen="" loading="lazy"></iframe>
+                            width="100%" height="500" style="border:0;" allowfullscreen="" loading="lazy"
+                            class="justify-content-center align-items-center"></iframe>
                     </div>
                 </div>
                 <!-- ***** Contact Map End ***** -->
 
-                <!-- ***** Contact Form Start ***** -->
-                {{-- <div class="col-lg-6 col-md-6 col-sm-12">
-                    <div class="contact-form">
-                        <form id="contact" action="" method="post">
-                          <div class="row">
-                            <div class="col-md-6 col-sm-12">
-                              <fieldset>
-                                <input name="name" type="text" id="name" placeholder="Full Name" required="" class="contact-field">
-                              </fieldset>
-                            </div>
-                            <div class="col-md-6 col-sm-12">
-                              <fieldset>
-                                <input name="email" type="text" id="email" placeholder="E-mail" required="" class="contact-field">
-                              </fieldset>
-                            </div>
-                            <div class="col-lg-12">
-                              <fieldset>
-                                <textarea name="message" rows="6" id="message" placeholder="Your Message" required="" class="contact-field"></textarea>
-                              </fieldset>
-                            </div>
-                            <div class="col-lg-12">
-                              <fieldset>
-                                <button type="submit" id="form-submit" class="main-button">Send It</button>
-                              </fieldset>
-                            </div>
-                          </div>
-                        </form>
-                    </div>
-                </div> --}}
-                <!-- ***** Contact Form End ***** -->
             </div>
         </div>
     </section>
     <!-- ***** Contact Us End ***** -->
-
 
     <!-- ***** Footer Start ***** -->
     <footer>
@@ -437,21 +343,13 @@ https://templatemo.com/tm-537-art-factory
 
                         . Design: <a rel="nofollow" href="https://templatemo.com">TemplateMo</a></p>
                 </div>
-                {{-- <div class="col-lg-5 col-md-12 col-sm-12">
-                    <ul class="social">
-                        <li><a href="#"><i class="fa fa-facebook"></i></a></li>
-                        <li><a href="#"><i class="fa fa-twitter"></i></a></li>
-                        <li><a href="#"><i class="fa fa-linkedin"></i></a></li>
-                        <li><a href="#"><i class="fa fa-rss"></i></a></li>
-                        <li><a href="#"><i class="fa fa-dribbble"></i></a></li>
-                    </ul>
-                </div> --}}
             </div>
         </div>
     </footer>
 
     <!-- jQuery -->
     <script src={{ asset('frontend/assets/js/jquery-2.1.0.min.js') }}></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
 
     <!-- Bootstrap -->
     <script src={{ asset('frontend/assets/js/popper.js') }}></script>
@@ -466,6 +364,14 @@ https://templatemo.com/tm-537-art-factory
 
     <!-- Global Init -->
     <script src={{ asset('frontend/assets/js/custom.js') }}></script>
+
+    <script>
+        $(document).ready(function() {
+            setInterval(function() {
+                $('#result').load("/ #result");
+            }, 3000);
+        });
+    </script>
 
 </body>
 
