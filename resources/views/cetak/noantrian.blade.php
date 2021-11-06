@@ -9,7 +9,8 @@
 </head>
 
 <body>
-
+    <h2>Nomor Antrian</h2>
+    <h1>A01</h1>
 </body>
 
 </html>
