@@ -59,8 +59,8 @@
             <!-- LOGO -->
             <div class="topbar-left">
                 <div class="text-center">
-                    <a href="#" class="logo"><img style="height: 50px" src="{{ asset('assets/images/sintang.png') }}"
-                            alt=""> &nbsp; SIANTRI</a>
+                    <a href="#" class="logo"><img style="height: 50px"
+                            src="{{ asset('assets/images/sintang.png') }}" alt=""> &nbsp; SIANTRI</a>
                 </div>
             </div>
 
@@ -371,7 +371,6 @@
         $(document).ready(function() {
             $('#datatable').DataTable();
         });
-
     </script>
     {{-- <script>
             $(function() {
@@ -406,13 +405,11 @@
         @if (Session::has('sukses'))
             toastr.success("{{ Session::get('sukses') }}", "Selamat")
         @endif
-
     </script>
     <script>
         @if (Session::has('gagal'))
             toastr.error("{{ Session::get('gagal') }}", "Gagal")
         @endif
-
     </script>
 
     @yield('footer')

@@ -66,6 +66,5 @@
                     }
                 });
         });
-
     </script>
 @endsection

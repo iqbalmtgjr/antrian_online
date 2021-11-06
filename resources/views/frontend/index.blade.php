@@ -323,8 +323,7 @@ https://templatemo.com/tm-537-art-factory
                     -->
                         <iframe
                             src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3989.81602774175!2d111.49835651475325!3d0.06142219995518961!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2e01de0e35dcecc9%3A0x38750985d63180e3!2sDinas%20Kependudukan%20dan%20Catatan%20Sipil%20Sintang!5e0!3m2!1sid!2sid!4v1614321729107!5m2!1sid!2sid"
-                            width="100%" height="500" style="border:0;" allowfullscreen="" loading="lazy"
-                            class="justify-content-center align-items-center"></iframe>
+                            width="100%" height="500" style="border:0;" allowfullscreen="" loading="lazy"></iframe>
                     </div>
                 </div>
                 <!-- ***** Contact Map End ***** -->
