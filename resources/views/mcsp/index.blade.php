@@ -30,7 +30,7 @@
                 <div class="card-body">
                     <div class="row">
                         <div class="col-md-3">
-                            <div class="card border-dark mb-3" style="max-width: 18rem; height:560px ">
+                            <div class="card border-dark mb-3" style="max-width: 18rem; height:620px ">
                                 <div class="card-header text-light bg-dark text-center">
                                     <h5>Loket A</h5>
                                 </div>
@@ -52,6 +52,17 @@
                                             </div>
                                         </div>
                                     </form> --}}
+                                    {{-- <div class="row mt-3"> --}}
+                                    <center>
+                                        <div class="row col-md-10 pull-right">
+                                            <h6>Nama Petugas</h6>
+                                        </div>
+                                        <div class="row col-md-12">
+                                            <input style="background-color: white; text-align: center" type="text"
+                                                value="{{ $petugas_a->name }}" disabled class="form-control">
+                                        </div>
+                                    </center>
+                                    {{-- </div> --}}
                                     <div class="row mt-3">
                                         <div class="col-md-6 mt-2">
                                             <h6>Rasio Pelayanan</h6>
@@ -116,7 +127,7 @@
                             </div>
                         </div>
                         <div class="col-md-3">
-                            <div class="card border-dark mb-3" style="max-width: 18rem; height:560px ">
+                            <div class="card border-dark mb-3" style="max-width: 18rem; height:620px ">
                                 <div class="card-header text-light bg-dark text-center">
                                     <h5>Loket B</h5>
                                 </div>
@@ -138,6 +149,15 @@
                                             </div>
                                         </div>
                                     </form> --}}
+                                    <center>
+                                        <div class="row col-md-10 pull-right">
+                                            <h6>Nama Petugas</h6>
+                                        </div>
+                                        <div class="row col-md-12">
+                                            <input style="background-color: white; text-align: center" type="text"
+                                                value="{{ $petugas_b->name }}" disabled class="form-control">
+                                        </div>
+                                    </center>
                                     <div class="row mt-3">
                                         <div class="col-md-6 mt-2">
                                             <h6>Rasio Pelayanan</h6>
@@ -202,7 +222,7 @@
                             </div>
                         </div>
                         <div class="col-md-3">
-                            <div class="card border-dark mb-3" style="max-width: 18rem; height:560px ">
+                            <div class="card border-dark mb-3" style="max-width: 18rem; height:620px ">
                                 <div class="card-header text-light bg-dark text-center">
                                     <h5>Loket C</h5>
                                 </div>
@@ -224,6 +244,15 @@
                                             </div>
                                         </div>
                                     </form> --}}
+                                    <center>
+                                        <div class="row col-md-10 pull-right">
+                                            <h6>Nama Petugas</h6>
+                                        </div>
+                                        <div class="row col-md-12">
+                                            <input style="background-color: white; text-align: center" type="text"
+                                                value="{{ $petugas_c->name }}" disabled class="form-control">
+                                        </div>
+                                    </center>
                                     <div class="row mt-3">
                                         <div class="col-md-6 mt-2">
                                             <h6>Rasio Pelayanan</h6>
@@ -288,7 +317,7 @@
                             </div>
                         </div>
                         <div class="col-md-3">
-                            <div class="card border-dark mb-3" style="max-width: 18rem; height:560px ">
+                            <div class="card border-dark mb-3" style="max-width: 18rem; height:620px ">
                                 <div class="card-header text-light bg-dark text-center">
                                     <h5>Loket D</h5>
                                 </div>
@@ -310,6 +339,15 @@
                                             </div>
                                         </div>
                                     </form> --}}
+                                    <center>
+                                        <div class="row col-md-10 pull-right">
+                                            <h6>Nama Petugas</h6>
+                                        </div>
+                                        <div class="row col-md-12">
+                                            <input style="background-color: white; text-align: center" type="text"
+                                                value="{{ $petugas_d->name }}" disabled class="form-control">
+                                        </div>
+                                    </center>
                                     <div class="row mt-3">
                                         <div class="col-md-6 mt-2">
                                             <h6>Rasio Pelayanan</h6>

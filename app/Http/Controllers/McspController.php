@@ -374,11 +374,16 @@ class McspController extends Controller
              $rekomendasi_d = "Tidak Ada Penambahan Petugas Pada Loket D";
          }
 
+         $petugas_a = Petugas::where('loket_pelayanan_id', 1)->first();
+         $petugas_b = Petugas::where('loket_pelayanan_id', 2)->first();
+         $petugas_c = Petugas::where('loket_pelayanan_id', 3)->first();
+         $petugas_d = Petugas::where('loket_pelayanan_id', 4)->first();
+
         return view('mcsp.index', compact(
-        'hasil_persen_rasio', 'format_L', 'hasil_tp0', 'format_lq', 'format_wq', 'w',  'rekomendasi',
-        'hasil_persen_rasio_b', 'format_L_b', 'hasil_tp0_b', 'format_lq_b', 'format_wq_b', 'w_b', 'rekomendasi_b',
-        'hasil_persen_rasio_c', 'format_L_c', 'hasil_tp0_c', 'format_lq_c', 'format_wq_c', 'w_c', 'rekomendasi_c',
-        'hasil_persen_rasio_d', 'format_L_d', 'hasil_tp0_d', 'format_lq_d', 'format_wq_d', 'w_d', 'rekomendasi_d'
+        'hasil_persen_rasio', 'format_L', 'hasil_tp0', 'format_lq', 'format_wq', 'w',  'rekomendasi', 'petugas_a',
+        'hasil_persen_rasio_b', 'format_L_b', 'hasil_tp0_b', 'format_lq_b', 'format_wq_b', 'w_b', 'rekomendasi_b', 'petugas_b',
+        'hasil_persen_rasio_c', 'format_L_c', 'hasil_tp0_c', 'format_lq_c', 'format_wq_c', 'w_c', 'rekomendasi_c', 'petugas_c',
+        'hasil_persen_rasio_d', 'format_L_d', 'hasil_tp0_d', 'format_lq_d', 'format_wq_d', 'w_d', 'rekomendasi_d', 'petugas_d'
         ));
     }
 

@@ -76,6 +76,7 @@ Route::group(['middleware' => ['auth', 'checkRole:Petugas']], function () {
     Route::get('/pelayanan_d', [AntrianController::class , 'pelayanan_d']);
     Route::post('/pelayanan/lanjut/d', [AntrianController::class , 'store_pelayanan_d']);
     Route::get('/getdata', [AntrianController::class , 'getdata'])->name('get.data.antrian');
+    Route::get('', );
 });
 
 Route::group(['middleware' => ['auth', 'checkRole:Kepala Bagian']], function () {

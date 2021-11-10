@@ -6,12 +6,13 @@ use DateTime;
 use DateTimeZone;
 use App\Models\Antrian;
 use App\Models\Laporan;
-use Barryvdh\DomPDF\PDF;
+use PDF;
 use Illuminate\Http\Request;
 use App\Models\Lamapelayanan;
 
 use App\Models\Loketpelayanan;
 use function GuzzleHttp\Promise\all;
+// use Barryvdh\DomPDF\PDF;
 
 class AntrianController extends Controller
 {
@@ -148,6 +149,8 @@ class AntrianController extends Controller
 
 
         // dd($antrian);
+        // $pdf = PDF::loadView('cetak.noantrian', compact('antrian'))->setpaper('A4', 'potrait');
+        // return $pdf->stream();
 
         return redirect()->back()->with('sukses', 'Antrian Sudah Masuk !!!');
     }
@@ -642,8 +645,6 @@ class AntrianController extends Controller
 
 
         $antrian->delete();
-        $pdf = PDF::loadView('cetak.noantrian', compact('antrian'));
-        return $pdf->stream('no antrian');
 
         return redirect()->back()->with('berhasil', 'Antrian Selanjutnya !!!');
     }
