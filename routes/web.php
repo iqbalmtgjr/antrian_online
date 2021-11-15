@@ -20,13 +20,11 @@ Route::get('/', [FrontendController::class , 'index']);
 
 Auth::routes();
 
+// Route::get('/kelola_petugas_loket', [PetugasController::class, 'index']);
 Route::get('/home', [HomeController::class , 'index'])->name('home');
 
-// Route::get('/kelola_petugas_loket', [PetugasController::class, 'index']);
-
-
-// Nanti
 Route::group(['middleware' => ['auth', 'checkRole:Admin']], function () {
+    // Route::get('/home', [HomeController::class , 'index'])->name('home');
     Route::get('/kelola_data_koordinator', [KoordinatorController::class , 'index']);
     Route::post('/koordinator/input', [KoordinatorController::class , 'store']);
     Route::get('/koordinator/hapus/{id}', [KoordinatorController::class , 'destroy']);
@@ -41,6 +39,7 @@ Route::group(['middleware' => ['auth', 'checkRole:Admin']], function () {
 });
 
 Route::group(['middleware' => ['auth', 'checkRole:Koordinator']], function () {
+    // Route::get('/home', [HomeController::class , 'index'])->name('home');
     Route::get('/kelola_data_petugas', [PetugasController::class , 'index']);
     Route::post('/petugas/input', [PetugasController::class , 'store']);
     Route::get('/petugas/hapus/{id}', [PetugasController::class , 'destroy']);
@@ -53,7 +52,9 @@ Route::group(['middleware' => ['auth', 'checkRole:Koordinator']], function () {
     Route::get('/filter/lamapelayanan', [LamapelayananController::class , 'filter_lamapelayanan']);
 });
 
-Route::group(['middleware' => ['auth', 'checkRole:Petugas']], function () {
+Route::group(['prefix' => 'loket_antrian', 'middleware' => ['auth', 'checkRole:Petugas']], function () {
+    // Route::get('/home', [HomeController::class , 'index'])->name('home');
+    Route::get('/loket_antrian', [AntrianController::class, 'index'])->name('loketantrian');
     Route::get('/antrian_a', [AntrianController::class , 'antrian_a']);
     Route::post('/antrian/lanjut/a', [AntrianController::class , 'store_a']);
     Route::get('/antrian/reset/a', [AntrianController::class , 'reset_antrian_a']);
@@ -76,10 +77,14 @@ Route::group(['middleware' => ['auth', 'checkRole:Petugas']], function () {
     Route::get('/pelayanan_d', [AntrianController::class , 'pelayanan_d']);
     Route::post('/pelayanan/lanjut/d', [AntrianController::class , 'store_pelayanan_d']);
     Route::get('/getdata', [AntrianController::class , 'getdata'])->name('get.data.antrian');
-    Route::get('', );
+    Route::get('/antrian/cetak_a', [AntrianController::class , 'cetak_a']);
+    Route::get('/antrian/cetak_b', [AntrianController::class , 'cetak_b']);
+    Route::get('/antrian/cetak_c', [AntrianController::class , 'cetak_c']);
+    Route::get('/antrian/cetak_d', [AntrianController::class , 'cetak_d']);
 });
 
 Route::group(['middleware' => ['auth', 'checkRole:Kepala Bagian']], function () {
+    // Route::get('/home', [HomeController::class , 'index'])->name('home');
     Route::get('/laporan', [LaporanController::class , 'index']);
     Route::get('/multi_channel_single_phase', [McspController::class , 'index']);
 });

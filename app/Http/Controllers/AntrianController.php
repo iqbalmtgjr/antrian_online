@@ -26,6 +26,16 @@ class AntrianController extends Controller
         $this->middleware('auth');
     }
 
+    public function index()
+    {
+        $antrian_a = Antrian::where('id_pelayanan', 1)->get()->last();
+        $antrian_b = Antrian::where('id_pelayanan', 2)->get()->last();
+        $antrian_c = Antrian::where('id_pelayanan', 3)->get()->last();
+        $antrian_d = Antrian::where('id_pelayanan', 4)->get()->last();
+
+        return view('loket_antrian.index', compact('antrian_a', 'antrian_b', 'antrian_c', 'antrian_d'));
+    }
+
     public function antrian_a(Request $request)
     {
         // dd($request->all());
@@ -154,6 +164,46 @@ class AntrianController extends Controller
 
         return redirect()->back()->with('sukses', 'Antrian Sudah Masuk !!!');
     }
+
+    public function cetak_a()
+    {
+        $antrian = Antrian::where('id_pelayanan', 1)->get()->last();
+        $p_antrian = Antrian::where('id_pelayanan', 1)->get();
+        // dd($antrian);
+        $pdf = PDF::loadView('cetak.noantrian', compact('antrian', 'p_antrian'))->setpaper('A4', 'potrait');
+        return $pdf->download('No Antrian.pdf');
+    }
+
+    public function cetak_b()
+    {
+        $antrian = Antrian::where('id_pelayanan', 2)->get()->last();
+        $p_antrian = Antrian::where('id_pelayanan', 2)->get();
+        // dd($antrian);
+        $pdf = PDF::loadView('cetak.noantrian', compact('antrian', 'p_antrian'))->setpaper('A4', 'potrait');
+        return $pdf->download('No Antrian.pdf');
+    }
+
+    public function cetak_c()
+    {
+        $antrian = Antrian::where('id_pelayanan', 3)->get()->last();
+        $p_antrian = Antrian::where('id_pelayanan', 3)->get();
+
+        // dd($antrian);
+        $pdf = PDF::loadView('cetak.noantrian', compact('antrian', 'p_antrian'))->setpaper('A4', 'potrait');
+        return $pdf->download('No Antrian.pdf');
+    }
+
+    public function cetak_d()
+    {
+        $antrian = Antrian::where('id_pelayanan', 4)->get()->last();
+        $p_antrian = Antrian::where('id_pelayanan', 4)->get();
+
+        // dd($antrian);
+        $pdf = PDF::loadView('cetak.noantrian', compact('antrian', 'p_antrian'))->setpaper('A4', 'potrait');
+        return $pdf->download('No Antrian.pdf');
+    }
+
+
 
     public function reset_antrian_a()
     {

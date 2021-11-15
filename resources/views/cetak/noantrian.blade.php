@@ -13,12 +13,28 @@
         <div style="margin-top: 100px">
             <h2>Nomor Antrian</h2>
             @if ($antrian->no_antrian > 9)
-                <h1>A{{ $antrian->no_antrian }}</h1>
+                @if ($antrian->id_pelayanan == 1)
+                    <h1>A{{ $antrian->no_antrian }}</h1>
+                @elseif ($antrian->id_pelayanan == 2)
+                    <h1>B{{ $antrian->no_antrian }}</h1>
+                @elseif ($antrian->id_pelayanan == 3)
+                    <h1>C{{ $antrian->no_antrian }}</h1>
+                @elseif ($antrian->id_pelayanan == 4)
+                    <h1>D{{ $antrian->no_antrian }}</h1>
+                @endif
             @else
-                <h1>A0{{ $antrian->no_antrian }}</h1>
+                @if ($antrian->id_pelayanan == 1)
+                    <h1>A0{{ $antrian->no_antrian }}</h1>
+                @elseif ($antrian->id_pelayanan == 2)
+                    <h1>B0{{ $antrian->no_antrian }}</h1>
+                @elseif ($antrian->id_pelayanan == 3)
+                    <h1>C0{{ $antrian->no_antrian }}</h1>
+                @elseif ($antrian->id_pelayanan == 4)
+                    <h1>D0{{ $antrian->no_antrian }}</h1>
+                @endif
             @endif
             <h3>Dinas Kependudukan dan Pencatatan Sipil <br> Sintang</h3>
-            <h4>Sisa Antrian {{ $antrian->count() - 1 }}</h4>
+            <h4>Sisa Antrian {{ $p_antrian->count() - 1 }}</h4>
             <h4>Tanggal {{ $antrian->tgl_antrian }}</h4>
         </div>
     </center>

@@ -26,7 +26,9 @@ class LoginController extends Controller
      *
      * @var string
      */
-    protected $redirectTo = RouteServiceProvider::HOME;
+        // protected $redirectTo = RouteServiceProvider::LOKET_ANTRIAN;
+        protected $redirectTo = RouteServiceProvider::HOME;
+    
 
     /**
      * Create a new controller instance.
@@ -34,7 +36,7 @@ class LoginController extends Controller
      * @return void
      */
     public function __construct()
-    {
+    {        
         $this->middleware('guest')->except('logout');
     }
 }

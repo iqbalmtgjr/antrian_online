@@ -1,14 +1,13 @@
 @extends('layouts.master')
 
 @section('content')
-    <div class="row">
-        <div class="col-sm-12">
+    <div class="col-sm-12">
+        <div class="row">
             <div class="page-title-box">
                 <h4 class="page-title">Loket Antrian A</h4>
                 <form action="">
                     <div class="form-group"></div>
                 </form>
-
             </div>
         </div>
     </div>
@@ -17,13 +16,21 @@
             <div class="card m-b-30">
                 <div class="card-body">
                     <div id="result">
-                        <form action="{{ url('/antrian/lanjut/a') }}" method="post">
-                            @csrf
-                            <button href="#" type="submit" class="btn btn-primary btn-md m-l-15 m-b-15"><i
-                                    class="mdi mdi-skip-next-circle"></i>
-                                Mulai/Lanjut</button> <br>
-                        </form>
-                        <form action="{{ url('/antrian_a') }}" method="GET">
+                        <div class="row">
+                            <form action="{{ url('/antrian/lanjut/a') }}" method="post">
+                                @csrf
+                                <button type="submit" class="btn btn-primary btn-md m-l-15 m-b-15"><i
+                                        class="mdi mdi-skip-next-circle"></i>
+                                    Mulai/Lanjut</button> <br>
+                            </form>
+                            {{-- <form action="/antrian/cetak_a" method="get"> --}}
+                            {{-- @csrf --}}
+                            <a href="{{ url('/antrian/cetak_a') }}" class="btn btn-primary btn-md ml-3 mb-3 ">
+                                <i class="mdi mdi-printer"></i> Cetak Antrian
+                            </a>
+                            {{-- </form> --}}
+                        </div>
+                        {{-- <form action="{{ url('/antrian_a') }}" method="GET">
                             <div class="pull-right input-group mb-2 col-md-3">
                                 <input type="number" name="cari" id="cari" class="form-control" aria-label="Search"
                                     placeholder="Cari No Antrian .. (Hanya Angka No Antrian)">
@@ -31,7 +38,7 @@
                                     <button class="btn btn-outline-secondary" type="submit">Cari</button>
                                 </div>
                             </div>
-                        </form>
+                        </form> --}}
                         <table id="" class="table">
                             <!-- Modal -->
                             <div class="modal fade" id="mulai_lanjut" tabindex="-1" role="dialog"
@@ -190,25 +197,26 @@
                         window.location = "{{ url('/antrian/reset/a ') }}";
                     }
                 });
+
         });
 
-        $('.stop').click(function() {
-            Swal.fire({
-                    title: 'Yakin?',
-                    text: "Mau Menghentikan Antrian ?",
-                    icon: 'warning',
-                    showCancelButton: true,
-                    confirmButtonColor: '#3085d6',
-                    cancelButtonColor: '#d33',
-                    confirmButtonText: 'Ya',
-                })
-                .then((result) => {
-                    console.log(result);
-                    if (result.value) {
-                        window.location = "#tombol";
-                    }
-                });
-        });
+        // $('.stop').click(function() {
+        //     Swal.fire({
+        //             title: 'Yakin?',
+        //             text: "Mau Menghentikan Antrian ?",
+        //             icon: 'warning',
+        //             showCancelButton: true,
+        //             confirmButtonColor: '#3085d6',
+        //             cancelButtonColor: '#d33',
+        //             confirmButtonText: 'Ya',
+        //         })
+        //         .then((result) => {
+        //             console.log(result);
+        //             if (result.value) {
+        //                 window.location = "#tombol";
+        //             }
+        //         });
+        // });
 
         // $.ajax({
         //     url: "{{ url('/getdata') }}",

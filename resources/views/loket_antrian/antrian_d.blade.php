@@ -16,106 +16,114 @@
         <div class="col-12">
             <div class="card m-b-30">
                 <div class="card-body">
-                    <table id="" class="table">
-                        <a href="#" class="btn btn-primary btn-md m-l-15 m-b-15" data-toggle="modal"
-                            data-target="#mulai_lanjut"><i class="mdi mdi-skip-next-circle"></i>
-                            Mulai/Lanjut</a> <br>
-                        <form action="{{ url('/antrian_d') }}" method="GET">
+                    <div id="result">
+                        <table id="" class="table">
+                            <div class="row">
+                                <form action="{{ url('/antrian/lanjut/d') }}" method="post">
+                                    @csrf
+                                    <button type="submit" class="btn btn-primary btn-md m-l-15 m-b-15"><i
+                                            class="mdi mdi-skip-next-circle"></i>
+                                        Mulai/Lanjut</button>
+                                </form>
+                                <a href="{{ url('/antrian/cetak_d') }}" class="btn btn-primary btn-md ml-3 mb-3 ">
+                                    <i class="mdi mdi-printer"></i> Cetak Antrian
+                                </a>
+                            </div>
+                            {{-- <form action="{{ url('/antrian_d') }}" method="GET">
                             <div class="pull-right input-group mb-2 col-md-3">
                                 <input type="number" name="cari" id="cari" class="form-control" aria-label="Search"
                                     placeholder="Cari No Antrian .. (Hanya Angka No Antrian)">
                                 <div class="input-group-append">
                                     <button class="btn btn-outline-secondary" type="submit">Cari</button>
                                 </div>
-                        </form>
-                </div>
-                <!-- Modal -->
-                <div class="modal fade" id="mulai_lanjut" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
-                    aria-hidden="true">
-                    <div class="modal-dialog" role="document">
-                        <div class="modal-content">
-                            <div class="modal-header">
-                                <h5 class="modal-title" id="exampleModalLabel">Antrian Loket D</h5>
-                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                    <span aria-hidden="true">&times;</span>
-                                </button>
-                            </div>
-                            <div class="modal-body">
-                                <form action="{{ url('/antrian/lanjut/d') }}" method="post">
-                                    @csrf
-                                    <center>
-                                        @if ($data->count() >= 9)
-                                            <h2>
-                                                D{{ App\Models\Antrian::where('id_pelayanan', 4)->get()->last()->no_antrian + 1 }}
+                        </form> --}}
+                    </div>
+                    <!-- Modal -->
+                    <div class="modal fade" id="mulai_lanjut" tabindex="-1" role="dialog"
+                        aria-labelledby="exampleModalLabel" aria-hidden="true">
+                        <div class="modal-dialog" role="document">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h5 class="modal-title" id="exampleModalLabel">Antrian Loket D</h5>
+                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                        <span aria-hidden="true">&times;</span>
+                                    </button>
+                                </div>
+                                <div class="modal-body">
+                                    <form action="{{ url('/antrian/lanjut/d') }}" method="post">
+                                        @csrf
+                                        <center>
+                                            @if ($data->count() >= 9)
+                                                <h2>
+                                                    D{{ App\Models\Antrian::where('id_pelayanan', 4)->get()->last()->no_antrian + 1 }}
 
-                                            </h2>
-                                        @else
-                                            <h2>
-                                                @if ($data->count() == 0)
-                                                    @if($data->count() == 0 && App\Models\Laporan::where('id_pelayanan', 4)->where('tgl_antrian', $tgl)->get()->count() == 0)
-                                                    D0{{ $data->count() + 1 }}
-                                                    @else
-                                                        @if (App\Models\Laporan::where('id_pelayanan', 4)->where('tgl_antrian', $tgl)->get()->count() >= 9)
-                                                        D{{ App\Models\Laporan::where('id_pelayanan', 4)->where('tgl_antrian', $tgl)->get()->last()->no_antrian + 1 }}
+                                                </h2>
+                                            @else
+                                                <h2>
+                                                    @if ($data->count() == 0)
+                                                        @if ($data->count() == 0 &&
+        App\Models\Laporan::where('id_pelayanan', 4)->where('tgl_antrian', $tgl)->get()->count() == 0)
+                                                            D0{{ $data->count() + 1 }}
                                                         @else
-                                                        D0{{ App\Models\Laporan::where('id_pelayanan', 4)->where('tgl_antrian', $tgl)->get()->last()->no_antrian + 1 }}
+                                                            @if (App\Models\Laporan::where('id_pelayanan', 4)->where('tgl_antrian', $tgl)->get()->count() >= 9)
+                                                                D{{ App\Models\Laporan::where('id_pelayanan', 4)->where('tgl_antrian', $tgl)->get()->last()->no_antrian + 1 }}
+                                                            @else
+                                                                D0{{ App\Models\Laporan::where('id_pelayanan', 4)->where('tgl_antrian', $tgl)->get()->last()->no_antrian + 1 }}
+                                                            @endif
                                                         @endif
+                                                    @elseif (App\Models\Antrian::where('id_pelayanan', 4)->count() < 1)
+                                                        D0{{ $data->count() + 1 }} @else @if (App\Models\Antrian::where('id_pelayanan', 4)->get()->last()->no_antrian >= 9)
+                                                            D{{ App\Models\Antrian::where('id_pelayanan', 4)->get()->last()->no_antrian + 1 }}
+                                                        @else
+                                                            D0{{ App\Models\Antrian::where('id_pelayanan', 4)->get()->last()->no_antrian + 1 }}
                                                     @endif
-                                                @elseif (App\Models\Antrian::where('id_pelayanan', 4)->count() < 1)
-                                                D0{{ $data->count() + 1 }}
-                                                @else
-                                                    @if (App\Models\Antrian::where('id_pelayanan', 4)
-                                                    ->get()
-                                                    ->last()->no_antrian >= 9) D{{ App\Models\Antrian::where('id_pelayanan', 4)->get()->last()->no_antrian + 1 }}
-                                                    @else
-                                                    D0{{ App\Models\Antrian::where('id_pelayanan', 4)->get()->last()->no_antrian + 1 }} 
-                                                    @endif
-                                                @endif
+                                            @endif
                                             </h2>
                                             {{-- @endif --}}
                                             {{-- </h2> --}}
-                                        @endif
-                                    </center>
-                            </div>
-                            <div class="modal-footer">
-                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Tutup</button>
-                                @if ($data->count() < 1)
-                                    <button type="submit" id="selesai" class="btn btn-primary">Mulai</button>
-                                @else
-                                    <button type="submit" id="selesai" class="btn btn-primary">Lanjut</button>
-                                @endif
-                                </form>
+                                            @endif
+                                        </center>
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Tutup</button>
+                                    @if ($data->count() < 1)
+                                        <button type="submit" id="selesai" class="btn btn-primary">Mulai</button>
+                                    @else
+                                        <button type="submit" id="selesai" class="btn btn-primary">Lanjut</button>
+                                    @endif
+                                    </form>
+                                </div>
                             </div>
                         </div>
                     </div>
-                </div>
-                <thead class="thead-dark">
-                    <tr>
-                        <th scope="col">No Antrian</th>
-                        <th scope="col">Estimasi Waktu Tunggu</th>
-                    </tr>
-                </thead>
-
-                @foreach ($data as $datas)
-                    <tbody>
+                    <thead class="thead-dark">
                         <tr>
-                            @if ($datas->no_antrian >= 10)
-                                <td>{{ 'D' . $datas->no_antrian }}</td>
-                            @else
-                                <td>{{ 'D0' . $datas->no_antrian }}</td>
-                            @endif
-                            {{-- <td id="antri{{ $datas->id }}"></td> --}}
-                            <td>
-                                @if ($datas->estimasi <= $localtime)
-                                    Sedang Dalam Pelayanan
-                                @else
-                                    {{ 'Akan Dilayani Pada Pukul ' . $datas->estimasi . ' Wib' }}
-                                @endif
-                            </td>
+                            <th scope="col">No Antrian</th>
+                            <th scope="col">Estimasi Waktu Tunggu</th>
                         </tr>
-                    </tbody>
-                @endforeach
-                </table>
+                    </thead>
+
+                    @foreach ($data as $datas)
+                        <tbody>
+                            <tr>
+                                @if ($datas->no_antrian >= 10)
+                                    <td>{{ 'D' . $datas->no_antrian }}</td>
+                                @else
+                                    <td>{{ 'D0' . $datas->no_antrian }}</td>
+                                @endif
+                                {{-- <td id="antri{{ $datas->id }}"></td> --}}
+                                <td>
+                                    @if ($datas->estimasi <= $localtime)
+                                        Sedang Dalam Pelayanan
+                                    @else
+                                        {{ 'Akan Dilayani Pada Pukul ' . $datas->estimasi . ' Wib' }}
+                                    @endif
+                                </td>
+                            </tr>
+                        </tbody>
+                    @endforeach
+                    </table>
+                </div>
                 {{-- <div class="row"> --}}
                 <div class="">
                     Menampilkan
@@ -133,13 +141,13 @@
                 <div class="row mt-5">
                     {{-- <div class="col-md-4"></div> --}}
                     {{-- <div class="col-md-4"></div> --}}
-                    <div class="col-md-4">
-                        <a href="#" class="btn btn-success btn-md m-l-15 m-b-15 reset"><i class="mdi mdi-reload"></i>
-                            Reset Antrian</a>
-                        {{-- <a href="#" id="tombol" class="btn btn-danger btn-md m-l-15 m-b-15 stop"><i
+                    {{-- <div class="col-md-4"> --}}
+                    <a href="#" class="btn btn-success btn-md m-l-15 m-b-15 reset"><i class="mdi mdi-reload"></i>
+                        Reset Antrian</a>
+                    {{-- <a href="#" id="tombol" class="btn btn-danger btn-md m-l-15 m-b-15 stop"><i
                                 class="fa fa-times-circle"></i>
                             Hentikan Antrian</a> --}}
-                    </div>
+                    {{-- </div> --}}
                 </div>
             </div>
         </div>
@@ -147,6 +155,15 @@
     </div>
 @endsection
 @section('footer')
+    {{-- Realtime --}}
+    <script>
+        $(document).ready(function() {
+            setInterval(function() {
+                $('#result').load("antrian_d #result");
+            }, 3000);
+        });
+    </script>
+
     <script type="text/javascript">
         $('.reset').click(function() {
             Swal.fire({
@@ -166,23 +183,23 @@
                 });
         });
 
-        $('.stop').click(function() {
-            Swal.fire({
-                    title: 'Yakin?',
-                    text: "Mau Menghentikan Antrian ?",
-                    icon: 'warning',
-                    showCancelButton: true,
-                    confirmButtonColor: '#3085d6',
-                    cancelButtonColor: '#d33',
-                    confirmButtonText: 'Ya',
-                })
-                .then((result) => {
-                    console.log(result);
-                    if (result.value) {
-                        window.location = "#tombol";
-                    }
-                });
-        });
+        // $('.stop').click(function() {
+        //     Swal.fire({
+        //             title: 'Yakin?',
+        //             text: "Mau Menghentikan Antrian ?",
+        //             icon: 'warning',
+        //             showCancelButton: true,
+        //             confirmButtonColor: '#3085d6',
+        //             cancelButtonColor: '#d33',
+        //             confirmButtonText: 'Ya',
+        //         })
+        //         .then((result) => {
+        //             console.log(result);
+        //             if (result.value) {
+        //                 window.location = "#tombol";
+        //             }
+        //         });
+        // });
 
         // $.ajax({
         //     url: "{{ url('/getdata') }}",
@@ -270,7 +287,6 @@
 
         //     }
         // });
-
     </script>
 
 

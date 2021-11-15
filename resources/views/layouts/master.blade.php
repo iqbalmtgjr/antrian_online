@@ -68,15 +68,18 @@
 
                 <div id="sidebar-menu">
                     <ul>
-                        <li class="menu-title">Main</li>
+                        <li class="menu-title">Menu</li>
 
-                        <li>
-                            <a href="{{ url('/home') }}"
-                                class="waves-effect {{ request()->is('/home') ? 'active' : '' }}">
-                                <i class="mdi mdi-airplay"></i>
-                                <span> Dashboard </span>
-                            </a>
-                        </li>
+                        @if (auth()->user()->role != 'Petugas')
+                            <li>
+                                <a href="{{ url('/home') }}"
+                                    class="waves-effect {{ request()->is('/home') ? 'active' : '' }}">
+                                    <i class="mdi mdi-airplay"></i>
+                                    <span> Dashboard </span>
+                                </a>
+                            </li>
+                        @endif
+
                         @if (auth()->user()->role == 'Admin')
                             <li>
                                 <a href="{{ url('/kelola_data_koordinator') }}"
@@ -119,7 +122,7 @@
 
                         @if (auth()->user()->role == 'Petugas')
                             @if (auth()->user()->petugas->loket_pelayanan_id == 0)
-                                <li class="has_sub">
+                                {{-- <li class="has_sub">
                                     <a href="javascript:void(0);"
                                         class="waves-effect {{ request()->is('/javascript:void(0);') ? 'active' : '' }}"><i
                                             class="fa fa-desktop"></i> <span> Loket Antrian </span> <span
@@ -134,11 +137,16 @@
                                         <li class="{{ request()->is('/antrian_d') ? 'active' : '' }}"><a
                                                 href="{{ url('/antrian_d') }}">Loket D</a></li>
                                     </ul>
+                                </li> --}}
+                                <li>
+                                    <a href="{{ url('/loket_antrian') }}"
+                                        class="waves-effect {{ request()->is('/loket_antrian') ? 'active' : '' }}">
+                                        <i class="fa fa-desktop"></i>
+                                        <span> Loket Antrian </span>
+                                    </a>
                                 </li>
                             @endif
-                        @endif
 
-                        @if (auth()->user()->role == 'Petugas')
                             @if (auth()->user()->petugas->loket_pelayanan_id != 0)
                                 {{-- <li class="has_sub"> --}}
                                 {{-- <a href="javascript:void(0);" class="waves-effect {{ request()->is('/javascript:void(0);') ? 'active' : '' }}"><i class="fa fa-desktop"></i> <span> Loket Pelayanan </span> <span class="float-right"><i class="mdi mdi-chevron-right"></i></span></a> --}}
