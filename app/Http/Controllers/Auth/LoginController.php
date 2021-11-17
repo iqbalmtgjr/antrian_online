@@ -29,7 +29,7 @@ class LoginController extends Controller
      * @var string
      */
     // protected $redirectTo = RouteServiceProvider::LOKET_ANTRIAN;
-    protected $redirectTo = RouteServiceProvider::HOME;
+    // protected $redirectTo = RouteServiceProvider::HOME;
 
 
     /**
@@ -44,26 +44,26 @@ class LoginController extends Controller
 
     // Manual //
 
-    public function index()
-    {
-        return view('auth.login1');
-    }
+    // public function index()
+    // {
+    //     return view('auth.login1');
+    // }
 
-    public function authenticate(Request $request)
-    {
-        $credentials = $request->validate([
-            'username' => ['required', 'username'],
-            'password' => ['required'],
-        ]);
+    // public function authenticate(Request $request)
+    // {
+    //     $credentials = $request->validate([
+    //         'username' => ['required', 'username'],
+    //         'password' => ['required'],
+    //     ]);
 
-        if (Auth::attempt($credentials)) {
-            $request->session()->regenerate();
+    //     if (Auth::attempt($credentials)) {
+    //         $request->session()->regenerate();
 
-            return redirect()->intended('loket_antrian');
-        }
+    //         return redirect()->intended('loket_antrian');
+    //     }
 
-        return back()->withErrors([
-            'email' => 'The provided credentials do not match our records.',
-        ]);
-    }
+    //     return back()->withErrors([
+    //         'email' => 'The provided credentials do not match our records.',
+    //     ]);
+    // }
 }
