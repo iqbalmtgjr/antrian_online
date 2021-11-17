@@ -5,10 +5,11 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\McspController;
 use App\Http\Controllers\AntrianController;
+use App\Http\Controllers\Auth\LoginController;
+use App\Http\Controllers\AuthController;
 use App\Http\Controllers\LaporanController;
 use App\Http\Controllers\PetugasController;
 use App\Http\Controllers\FrontendController;
-use App\Http\Controllers\LoginController;
 use App\Http\Controllers\KoordinatorController;
 use App\Http\Controllers\KepalabagianController;
 use App\Http\Controllers\LamapelayananController;
@@ -19,8 +20,8 @@ use App\Http\Controllers\LoketPelayananController;
 // Route::get('/', [FrontendController::class, 'contoh']);
 
 Route::get('/', [FrontendController::class, 'index']);
-Route::get('/login', [LoginController::class, 'index']);
-Route::post('/login', [LoginController::class, 'authenticate']);
+Route::get('/login', [AuthController::class, 'login']);
+Route::post('/login', [AuthController::class, 'authenticate']);
 
 Auth::routes();
 
