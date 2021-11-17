@@ -2,7 +2,9 @@
 
 namespace App\Http\Controllers\Auth;
 
+use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Auth;
 use App\Providers\RouteServiceProvider;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
 
@@ -27,7 +29,7 @@ class LoginController extends Controller
      * @var string
      */
         // protected $redirectTo = RouteServiceProvider::LOKET_ANTRIAN;
-        protected $redirectTo = RouteServiceProvider::HOME;
+        // protected $redirectTo = RouteServiceProvider::HOME;
     
 
     /**
@@ -38,5 +40,30 @@ class LoginController extends Controller
     public function __construct()
     {        
         $this->middleware('guest')->except('logout');
+    }
+
+    // Manual //
+
+public function index()
+{
+    return view('auth.login1');
+}
+
+public function authenticate(Request $request)
+    {
+        $credentials = $request->validate([
+            'username' => ['required', 'username'],
+            'password' => ['required'],
+        ]);
+
+        if (Auth::attempt($credentials)) {
+            $request->session()->regenerate();
+
+            return redirect()->intended('loket_antrian');
+        }
+
+        return back()->withErrors([
+            'email' => 'The provided credentials do not match our records.',
+        ]);
     }
 }

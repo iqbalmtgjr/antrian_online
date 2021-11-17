@@ -16,9 +16,12 @@
         <div class="col-12">
             <div class="card m-b-30">
                 <div class="card-body">
-                    <a href="#" class="btn btn-primary btn-md m-l-15 m-b-15" data-toggle="modal"
-                        data-target="#mulai_lanjut"><i class="mdi mdi-skip-next-circle"></i>
-                        Mulai/Lanjut</a> <br>
+                    <form action="{{ url('/pelayanan/lanjut/d') }}" method="post">
+                        @csrf
+                        <button type="submit" class="btn btn-primary btn-md m-l-15 m-b-15"><i
+                                class="mdi mdi-skip-next-circle"></i>
+                            Mulai/Lanjut</button> <br>
+                    </form>
                     <form action="{{ url('/pelayanan_d') }}" method="GET">
                         <div class="row pull-right input-group mb-2 col-md-3">
                             <input type="number" name="cari" id="cari" class="form-control" aria-label="Search"
