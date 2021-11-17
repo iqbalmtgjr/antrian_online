@@ -11,6 +11,7 @@
 <body>
     <center>
         <div style="margin-top: 100px">
+            <h3>DISDUKCAPIL KAB. SINTANG</h3>
             <h2>Nomor Antrian</h2>
             @if ($antrian->no_antrian > 9)
                 @if ($antrian->id_pelayanan == 1)
@@ -33,8 +34,7 @@
                     <h1>D0{{ $antrian->no_antrian }}</h1>
                 @endif
             @endif
-            <h3>Dinas Kependudukan dan Pencatatan Sipil <br> Sintang</h3>
-            <h4>Sisa Antrian {{ $p_antrian->count() - 1 }}</h4>
+            <h4>Sisa Antrian : {{ $p_antrian->count() - 1 }}</h4>
             <h4>Tanggal {{ $antrian->tgl_antrian }}</h4>
             <h5>Silahkan Menunggu di tempat<br>yang Telah Disediakan <br> *** Terima Kasih ***</h5>
         </div>
