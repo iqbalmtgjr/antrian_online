@@ -36,6 +36,7 @@
             <h3>Dinas Kependudukan dan Pencatatan Sipil <br> Sintang</h3>
             <h4>Sisa Antrian {{ $p_antrian->count() - 1 }}</h4>
             <h4>Tanggal {{ $antrian->tgl_antrian }}</h4>
+            <h5>Silahkan Menunggu di tempat<br>yang Telah Disediakan <br> *** Terima Kasih ***</h5>
         </div>
     </center>
 </body>
