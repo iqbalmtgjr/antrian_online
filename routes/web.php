@@ -20,8 +20,8 @@ use App\Http\Controllers\LoketPelayananController;
 // Route::get('/', [FrontendController::class, 'contoh']);
 
 Route::get('/', [FrontendController::class, 'index']);
-Route::get('/login', [AuthController::class, 'login']);
-Route::post('/login', [AuthController::class, 'authenticate']);
+// Route::get('/login', [AuthController::class, 'login']);
+// Route::post('/login', [AuthController::class, 'authenticate']);
 
 Auth::routes();
 
