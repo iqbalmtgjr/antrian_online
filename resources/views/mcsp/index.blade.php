@@ -13,17 +13,23 @@
             <div class="col-md-3">
                 <label for="kalender">Pilih Tanggal</label>
             </div>
-            <div class="col-md-3">
+            {{-- <div class="col-md-3"></div> --}}
+            <div class="col-md-6">
                 <input type="date" class="form-control" name="tgl_awal" id="tgl_awal">
             </div>
-            <div class="col-md-3">
+            {{-- <div class="col-md-3">
                 <input type="date" class="form-control" name="tgl_akhir" id="tgl_akhir">
-            </div>
+            </div> --}}
             <div class="col-md-3">
                 <button href="" style="width: 280px;" class="btn btn-right btn-success btn-md" type="submit">Pilih</button>
             </div>
         </div>
     </form>
+    @if ($tgl_rekomendasi == null)
+
+    @else
+        <h5>Tanggal {{ date('d-m-Y', strtotime($tgl_rekomendasi)) }}</h5>
+    @endif
     <div class="row">
         <div class="col-12">
             <div class="card m-b-30">
