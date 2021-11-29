@@ -46,10 +46,9 @@ class AntrianController extends Controller
         $tgl = $date->format('Y-m-d');
         if ($request->has('cari')) {
             $data = Antrian::where('id_pelayanan', 1)->where('no_antrian', 'LIKE', '%' . $request->cari . '%')->paginate(10);
-        }
-        else {
+        } else {
             $data = Antrian::where('id_pelayanan', 1)->paginate(10);
-        // return $data = Antrian::where('id_pelayanan', 1)->where('tgl_antrian', $tgl)->get()->last();
+            // return $data = Antrian::where('id_pelayanan', 1)->where('tgl_antrian', $tgl)->get()->last();
         }
         // dd($data);
 
@@ -75,11 +74,9 @@ class AntrianController extends Controller
         // $lama_pelayanan = strtotime($lama_pelayanan1);
         if ($antriii == null && Laporan::where('id_pelayanan', 1)->where('tgl_antrian', $tanggal)->get()->count() == 0) {
             $antri = $antrii->count() + 1;
-        }
-        elseif ($antriii == null && Laporan::where('id_pelayanan', 1)->where('tgl_antrian', $tanggal)->get()->count() != 0) {
+        } elseif ($antriii == null && Laporan::where('id_pelayanan', 1)->where('tgl_antrian', $tanggal)->get()->count() != 0) {
             $antri = Laporan::where('id_pelayanan', 1)->where('tgl_antrian', $tanggal)->get()->last()->no_antrian + 1;
-        }
-        else {
+        } else {
             $antri = $antriii->no_antrian + 1;
         }
 
@@ -129,8 +126,7 @@ class AntrianController extends Controller
                 'no_antrian' => $antri,
                 'estimasi' => date('H:i:s', strtotime($localtime))
             ]);
-        }
-        else {
+        } else {
             $last = Antrian::where('id_pelayanan', 1)->get()->last();
             // $waktu_awal_antrian = $last->waktu_awal_antrian;
             $antrian = Antrian::create([
@@ -143,17 +139,17 @@ class AntrianController extends Controller
                 'no_antrian' => $antri,
                 'estimasi' => date('H:i:s', strtotime($last->estimasi) + strtotime($lama_pelayanan))
             ]);
-        // $last = Antrian::where('id_pelayanan', 1)->get()->last();
-        // $last_count = $last->no_antrian - 1;
-        // $antriann = Antrian::where('no_antrian', $last_count)->where('id_pelayanan', 1)->first();
-        // $waktu_awal = new DateTime($antriann->waktu_awal_antrian);
-        // $waktu_akhir = new DateTime($antriann->waktu_akhir_antrian);
-        // $hitung = $waktu_awal->diff($waktu_akhir);
-        // $antriann->update([
-        //     'waktu_akhir_antrian' => $last->waktu_awal_antrian,
-        //     'lama_pelayanan' => $hitung->format('%H:%I:%S')
-        // ]);
-        // dd($antriann);
+            // $last = Antrian::where('id_pelayanan', 1)->get()->last();
+            // $last_count = $last->no_antrian - 1;
+            // $antriann = Antrian::where('no_antrian', $last_count)->where('id_pelayanan', 1)->first();
+            // $waktu_awal = new DateTime($antriann->waktu_awal_antrian);
+            // $waktu_akhir = new DateTime($antriann->waktu_akhir_antrian);
+            // $hitung = $waktu_awal->diff($waktu_akhir);
+            // $antriann->update([
+            //     'waktu_akhir_antrian' => $last->waktu_awal_antrian,
+            //     'lama_pelayanan' => $hitung->format('%H:%I:%S')
+            // ]);
+            // dd($antriann);
         }
 
 
@@ -229,8 +225,7 @@ class AntrianController extends Controller
     {
         if ($request->has('cari')) {
             $data = Antrian::where('id_pelayanan', 2)->where('no_antrian', 'LIKE', '%' . $request->cari . '%')->paginate(10);
-        }
-        else {
+        } else {
             $data = Antrian::where('id_pelayanan', 2)->paginate(10);
         }
         $timezone = 'Asia/Jakarta';
@@ -254,11 +249,9 @@ class AntrianController extends Controller
 
         if ($antriii == null && Laporan::where('id_pelayanan', 2)->where('tgl_antrian', $tanggal)->get()->count() == 0) {
             $antri = $antrii->count() + 1;
-        }
-        elseif ($antriii == null && Laporan::where('id_pelayanan', 2)->where('tgl_antrian', $tanggal)->get()->count() != 0) {
+        } elseif ($antriii == null && Laporan::where('id_pelayanan', 2)->where('tgl_antrian', $tanggal)->get()->count() != 0) {
             $antri = Laporan::where('id_pelayanan', 2)->where('tgl_antrian', $tanggal)->get()->last()->no_antrian + 1;
-        }
-        else {
+        } else {
             $antri = $antriii->no_antrian + 1;
         }
 
@@ -308,8 +301,7 @@ class AntrianController extends Controller
                 'no_antrian' => $antri,
                 'estimasi' => date('H:i:s', strtotime($localtime))
             ]);
-        }
-        else {
+        } else {
             $last = Antrian::where('id_pelayanan', 2)->get()->last();
             $antrian = Antrian::create([
                 'id_pelayanan' => $pelayanan,
@@ -336,8 +328,7 @@ class AntrianController extends Controller
     {
         if ($request->has('cari')) {
             $data = Antrian::where('id_pelayanan', 3)->where('no_antrian', 'LIKE', '%' . $request->cari . '%')->paginate(10);
-        }
-        else {
+        } else {
             $data = Antrian::where('id_pelayanan', 3)->paginate(10);
         }
         $timezone = 'Asia/Jakarta';
@@ -361,11 +352,9 @@ class AntrianController extends Controller
 
         if ($antriii == null && Laporan::where('id_pelayanan', 3)->where('tgl_antrian', $tanggal)->get()->count() == 0) {
             $antri = $antrii->count() + 1;
-        }
-        elseif ($antriii == null && Laporan::where('id_pelayanan', 3)->where('tgl_antrian', $tanggal)->get()->count() != 0) {
+        } elseif ($antriii == null && Laporan::where('id_pelayanan', 3)->where('tgl_antrian', $tanggal)->get()->count() != 0) {
             $antri = Laporan::where('id_pelayanan', 3)->where('tgl_antrian', $tanggal)->get()->last()->no_antrian + 1;
-        }
-        else {
+        } else {
             $antri = $antriii->no_antrian + 1;
         }
 
@@ -415,8 +404,7 @@ class AntrianController extends Controller
                 'no_antrian' => $antri,
                 'estimasi' => date('H:i:s', strtotime($localtime))
             ]);
-        }
-        else {
+        } else {
             $last = Antrian::where('id_pelayanan', 3)->get()->last();
             $antrian = Antrian::create([
                 'id_pelayanan' => $pelayanan,
@@ -442,8 +430,7 @@ class AntrianController extends Controller
     {
         if ($request->has('cari')) {
             $data = Antrian::where('id_pelayanan', 4)->where('no_antrian', 'LIKE', '%' . $request->cari . '%')->paginate(10);
-        }
-        else {
+        } else {
             $data = Antrian::where('id_pelayanan', 4)->paginate(10);
         }
         $timezone = 'Asia/Jakarta';
@@ -467,11 +454,9 @@ class AntrianController extends Controller
 
         if ($antriii == null && Laporan::where('id_pelayanan', 4)->where('tgl_antrian', $tanggal)->get()->count() == 0) {
             $antri = $antrii->count() + 1;
-        }
-        elseif ($antriii == null && Laporan::where('id_pelayanan', 4)->where('tgl_antrian', $tanggal)->get()->count() != 0) {
+        } elseif ($antriii == null && Laporan::where('id_pelayanan', 4)->where('tgl_antrian', $tanggal)->get()->count() != 0) {
             $antri = Laporan::where('id_pelayanan', 4)->where('tgl_antrian', $tanggal)->get()->last()->no_antrian + 1;
-        }
-        else {
+        } else {
             $antri = $antriii->no_antrian + 1;
         }
 
@@ -517,8 +502,7 @@ class AntrianController extends Controller
                 'no_antrian' => $antri,
                 'estimasi' => date('H:i:s', strtotime($localtime))
             ]);
-        }
-        else {
+        } else {
             $last = Antrian::where('id_pelayanan', 4)->get()->last();
             $antrian = Antrian::create([
                 'id_pelayanan' => $pelayanan,
@@ -546,12 +530,10 @@ class AntrianController extends Controller
 
         if (Antrian::where('id_pelayanan', 1)->get()->count() == null) {
             $data = Antrian::where('id_pelayanan', 1)->paginate(10);
-        }
-        else {
+        } else {
             if ($request->has('cari')) {
                 $data = Antrian::where('id_pelayanan', 1)->where('no_antrian', 'LIKE', '%' . $request->cari . '%')->paginate(10);
-            }
-            else {
+            } else {
                 $data = Antrian::where('id_pelayanan', 1)->paginate(10);
             }
         }
@@ -633,10 +615,9 @@ class AntrianController extends Controller
                     // return $data = date('h:i:s', strtotime($ann->estimasi) - strtotime($has));
                     // dd($data);
                 ]);
-            // dd($data);
+                // dd($data);
             }
-        }
-        else {
+        } else {
             $laporan = Laporan::create([
                 'id_pelayanan' => $antrian->id_pelayanan,
                 'lamapelayanan_id' => $antrian->lamapelayanan_id,
@@ -706,12 +687,10 @@ class AntrianController extends Controller
         $localtime = $date->format('H:i:s');
         if (Antrian::where('id_pelayanan', 2)->get()->count() == null) {
             $data = Antrian::where('id_pelayanan', 2)->paginate(10);
-        }
-        else {
+        } else {
             if ($request->has('cari')) {
                 $data = Antrian::where('id_pelayanan', 2)->where('no_antrian', 'LIKE', '%' . $request->cari . '%')->paginate(10);
-            }
-            else {
+            } else {
                 $data = Antrian::where('id_pelayanan', 2)->paginate(10);
             }
         }
@@ -764,8 +743,7 @@ class AntrianController extends Controller
                     'estimasi' => date('H:i:s', strtotime($ann->estimasi) - strtotime($has))
                 ]);
             }
-        }
-        else {
+        } else {
             $laporan = Laporan::create([
                 'id_pelayanan' => $antrian->id_pelayanan,
                 'lamapelayanan_id' => $antrian->lamapelayanan_id,
@@ -807,12 +785,10 @@ class AntrianController extends Controller
         $localtime = $date->format('H:i:s');
         if (Antrian::where('id_pelayanan', 3)->get()->count() == null) {
             $data = Antrian::where('id_pelayanan', 3)->paginate(10);
-        }
-        else {
+        } else {
             if ($request->has('cari')) {
                 $data = Antrian::where('id_pelayanan', 3)->where('no_antrian', 'LIKE', '%' . $request->cari . '%')->paginate(10);
-            }
-            else {
+            } else {
                 $data = Antrian::where('id_pelayanan', 3)->paginate(10);
             }
         }
@@ -865,8 +841,7 @@ class AntrianController extends Controller
                     'estimasi' => date('H:i:s', strtotime($ann->estimasi) - strtotime($has))
                 ]);
             }
-        }
-        else {
+        } else {
             $laporan = Laporan::create([
                 'id_pelayanan' => $antrian->id_pelayanan,
                 'lamapelayanan_id' => $antrian->lamapelayanan_id,
@@ -908,12 +883,10 @@ class AntrianController extends Controller
         $localtime = $date->format('H:i:s');
         if (Antrian::where('id_pelayanan', 4)->get()->count() == null) {
             $data = Antrian::where('id_pelayanan', 4)->paginate(10);
-        }
-        else {
+        } else {
             if ($request->has('cari')) {
                 $data = Antrian::where('id_pelayanan', 4)->where('no_antrian', 'LIKE', '%' . $request->cari . '%')->paginate(10);
-            }
-            else {
+            } else {
                 $data = Antrian::where('id_pelayanan', 4)->paginate(10);
             }
         }
@@ -966,8 +939,7 @@ class AntrianController extends Controller
                     'estimasi' => date('H:i:s', strtotime($ann->estimasi) - strtotime($has))
                 ]);
             }
-        }
-        else {
+        } else {
             $laporan = Laporan::create([
                 'id_pelayanan' => $antrian->id_pelayanan,
                 'lamapelayanan_id' => $antrian->lamapelayanan_id,
@@ -1009,7 +981,7 @@ class AntrianController extends Controller
      */
     public function create()
     {
-    //
+        //
     }
 
     /**
@@ -1032,7 +1004,7 @@ class AntrianController extends Controller
      */
     public function show($id)
     {
-    //
+        //
     }
 
     /**
@@ -1043,7 +1015,7 @@ class AntrianController extends Controller
      */
     public function edit($id)
     {
-    //
+        //
     }
 
     /**
@@ -1055,7 +1027,7 @@ class AntrianController extends Controller
      */
     public function update(Request $request, $id)
     {
-    //
+        //
     }
 
     /**
@@ -1066,7 +1038,7 @@ class AntrianController extends Controller
      */
     public function destroy($id)
     {
-    //
+        //
     }
 
     public function getdata()
