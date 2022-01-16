@@ -15,7 +15,7 @@
             <div class="card" style="height:540px">
                 <div class="card-body">
                     <div class="container">
-                        <p>Tekan <b><i>"CTRL + Klik Kiri"</i></b> Untuk Mulai/Lanjut Antrian</p>
+                        <p>Tekan <b><i>"CTRL + Klik Kiri"</i></b> Pada Tombol Mulai/Lanjut Untuk Memulai atau Melanjutkan Antrian</p>
 
                         <div class="row">
                             <div class="col-md-3">

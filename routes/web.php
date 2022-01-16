@@ -93,4 +93,4 @@ Route::group(['middleware' => ['auth', 'checkRole:Kepala Bagian']], function () 
     Route::get('/laporan', [LaporanController::class, 'index']);
     Route::get('/multi_channel_single_phase', [McspController::class, 'index']);
 });
-// Route::get('/belajarjs', []);
+// Route::get('/cetakantrian', []);
