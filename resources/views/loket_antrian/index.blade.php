@@ -15,9 +15,11 @@
             <div class="card" style="height:540px">
                 <div class="card-body">
                     <div class="container">
+                        <p>Tekan <b><i>"CTRL + Klik Kiri"</i></b> Untuk Mulai/Lanjut Antrian</p>
+
                         <div class="row">
                             <div class="col-md-3">
-                                <div class="card border-dark mb-3" style="max-width: 18rem; height:320px ">
+                                <div class="card border-dark mb-3" style="max-width: 18rem; height:250px ">
                                     <div class="card-header text-light bg-dark text-center">
                                         <h5>Loket A</h5>
                                     </div>
@@ -29,33 +31,33 @@
                                                         class="mdi mdi-skip-next-circle"></i> <br>
                                                     Mulai/Lanjut</button>
                                             </form>
-                                            <a href="{{ url('/antrian/cetak_a') }}"
+                                            {{-- <a href="{{ url('/antrian/cetak_a') }}"
                                                 class="btn btn-success btn-md ml-3 mb-3 ">
                                                 <i class="mdi mdi-printer"></i> <br> Cetak Antrian
-                                            </a>
+                                            </a> --}}
                                             <a href="#" class="btn btn-danger btn-md m-l-15 mb-3 reset_a"><i
                                                     class="mdi mdi-reload"></i> <br>
                                                 Reset Antrian</a>
                                             {{-- <a href="#" class="btn btn-warning btn-md m-l-15">No Antrian <br>
                                                 A01</a> --}}
                                         </div>
-                                        <div class="card border-dark">
-                                            <div class="card-body text-dark mt-1">
-                                                @if ($antrian_a == null)
-                                                    <h2>Tidak Ada <br> Antrian</h2>
-                                                @elseif ($antrian_a->no_antrian > 9)
-                                                    <h2>Antrian <br> A{{ $antrian_a->no_antrian }}</h2>
-                                                @else
-                                                    <h2>Antrian <br> A0{{ $antrian_a->no_antrian }}</h2>
-                                                @endif
+                                            <div class="card border-dark" id="result">
+                                                <div class="card-body text-dark mt-1">
+                                                    @if ($antrian_a == null)
+                                                        <h2>Tidak Ada <br> Antrian</h2>
+                                                    @elseif ($antrian_a->no_antrian > 9)
+                                                        <h2>Antrian <br> A{{ $antrian_a->no_antrian }}</h2>
+                                                    @else
+                                                        <h2>Antrian <br> A0{{ $antrian_a->no_antrian }}</h2>
+                                                    @endif
+                                                </div>
                                             </div>
-                                        </div>
                                     </center>
                                 </div>
                             </div>
 
                             <div class="col-md-3">
-                                <div class="card border-dark mb-3" style="max-width: 18rem; height:320px">
+                                <div class="card border-dark mb-3" style="max-width: 18rem; height:250px">
                                     <div class="card-header text-light bg-dark text-center">
                                         <h5>Loket B</h5>
                                     </div>
@@ -67,17 +69,17 @@
                                                         class="mdi mdi-skip-next-circle"></i> <br>
                                                     Mulai/Lanjut</button>
                                             </form>
-                                            <a href="{{ url('/antrian/cetak_b') }}"
+                                            {{-- <a href="{{ url('/antrian/cetak_b') }}"
                                                 class="btn btn-success btn-md ml-3 mb-3 ">
                                                 <i class="mdi mdi-printer"></i> <br> Cetak Antrian
-                                            </a>
+                                            </a> --}}
                                             <a href="#" class="btn btn-danger btn-md m-l-15 mb-3 reset_b"><i
                                                     class="mdi mdi-reload"></i> <br>
                                                 Reset Antrian</a>
                                             {{-- <a href="#" class="btn btn-warning btn-md m-l-15">No Antrian <br>
                                                 A01</a> --}}
                                         </div>
-                                        <div class="card border-dark">
+                                        <div class="card border-dark" id="result2">
                                             <div class="card-body text-dark mt-1">
                                                 @if ($antrian_b == null)
                                                     <h2>Tidak Ada <br> Antrian</h2>
@@ -93,7 +95,7 @@
                             </div>
 
                             <div class="col-md-3">
-                                <div class="card border-dark mb-3" style="max-width: 18rem; height:320px">
+                                <div class="card border-dark mb-3" style="max-width: 18rem; height:250px">
                                     <div class="card-header text-light bg-dark text-center">
                                         <h5>Loket C</h5>
                                     </div>
@@ -105,17 +107,17 @@
                                                         class="mdi mdi-skip-next-circle"></i> <br>
                                                     Mulai/Lanjut</button>
                                             </form>
-                                            <a href="{{ url('/antrian/cetak_c') }}"
+                                            {{-- <a href="{{ url('/antrian/cetak_c') }}"
                                                 class="btn btn-success btn-md ml-3 mb-3 ">
                                                 <i class="mdi mdi-printer"></i> <br> Cetak Antrian
-                                            </a>
+                                            </a> --}}
                                             <a href="#" class="btn btn-danger btn-md m-l-15 mb-3 reset_c"><i
                                                     class="mdi mdi-reload"></i> <br>
                                                 Reset Antrian</a>
                                             {{-- <a href="#" class="btn btn-warning btn-md m-l-15">No Antrian <br>
                                                 A01</a> --}}
                                         </div>
-                                        <div class="card border-dark">
+                                        <div class="card border-dark" id="result3">
                                             <div class="card-body text-dark mt-1">
                                                 @if ($antrian_c == null)
                                                     <h2>Tidak Ada <br> Antrian</h2>
@@ -131,7 +133,7 @@
                             </div>
 
                             <div class="col-md-3">
-                                <div class="card border-dark mb-3" style="max-width: 18rem; height:320px">
+                                <div class="card border-dark mb-3" style="max-width: 18rem; height:250px">
                                     <div class="card-header text-light bg-dark text-center">
                                         <h5>Loket D</h5>
                                     </div>
@@ -143,17 +145,17 @@
                                                         class="mdi mdi-skip-next-circle"></i> <br>
                                                     Mulai/Lanjut</button>
                                             </form>
-                                            <a href="{{ url('/antrian/cetak_d') }}"
+                                            {{-- <a href="{{ url('/antrian/cetak_d') }}"
                                                 class="btn btn-success btn-md ml-3 mb-3 ">
                                                 <i class="mdi mdi-printer"></i> <br> Cetak Antrian
-                                            </a>
+                                            </a> --}}
                                             <a href="#" class="btn btn-danger btn-md m-l-15 mb-3 reset_d"><i
                                                     class="mdi mdi-reload"></i> <br>
                                                 Reset Antrian</a>
                                             {{-- <a href="#" class="btn btn-warning btn-md m-l-15">No Antrian <br>
                                                 A01</a> --}}
                                         </div>
-                                        <div class="card border-dark">
+                                        <div class="card border-dark" id="result4">
                                             <div class="card-body text-dark mt-1">
                                                 @if ($antrian_d == null)
                                                     <h2>Tidak Ada <br> Antrian</h2>
@@ -180,6 +182,36 @@
     </div>
 @endsection
 @section('footer')
+{{-- Realtime --}}
+<script>
+    $(document).ready(function() {
+        setInterval(function() {
+            $('#result').load("loket_antrian #result");
+        }, 3000);
+    });
+</script>
+<script>
+    $(document).ready(function() {
+        setInterval(function() {
+            $('#result2').load("loket_antrian #result2");
+        }, 3000);
+    });
+</script>
+<script>
+    $(document).ready(function() {
+        setInterval(function() {
+            $('#result3').load("loket_antrian #result3");
+        }, 3000);
+    });
+</script>
+<script>
+    $(document).ready(function() {
+        setInterval(function() {
+            $('#result4').load("loket_antrian #result4");
+        }, 3000);
+    });
+</script>
+
     <script>
         $('.reset_a').click(function() {
             Swal.fire({

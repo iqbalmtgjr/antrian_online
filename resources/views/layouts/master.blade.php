@@ -64,6 +64,7 @@
                 </div>
             </div>
 
+            @if (auth()->user()->role != 'Petugas')
             <div class="sidebar-inner slimscrollleft">
 
                 <div id="sidebar-menu">
@@ -210,7 +211,8 @@
                     </ul>
                 </div>
                 <div class="clearfix"></div>
-            </div> <!-- end sidebarinner -->
+            </div> 
+            @endif
         </div>
         <!-- Left Sidebar End -->
 

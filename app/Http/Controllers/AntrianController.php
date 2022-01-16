@@ -158,7 +158,11 @@ class AntrianController extends Controller
         // $pdf = PDF::loadView('cetak.noantrian', compact('antrian'))->setpaper('A4', 'potrait');
         // return $pdf->stream();
 
-        return redirect()->back()->with('sukses', 'Antrian Sudah Masuk !!!');
+        // return redirect()->back()->with('sukses', 'Antrian Sudah Masuk !!!');
+        $p_antrian = Antrian::where('id_pelayanan', 1)->get();
+
+        return view('cetak.noantrian', compact('antrian', 'p_antrian'));
+
     }
 
     public function cetak_a()
@@ -315,7 +319,10 @@ class AntrianController extends Controller
             ]);
         }
 
-        return redirect()->back()->with('sukses', 'Antrian Sudah Masuk !!!');
+        // return redirect()->back()->with('sukses', 'Antrian Sudah Masuk !!!');
+        $p_antrian = Antrian::where('id_pelayanan', 2)->get();
+
+        return view('cetak.noantrian', compact('antrian', 'p_antrian'));
     }
 
     public function reset_antrian_b()
@@ -418,7 +425,10 @@ class AntrianController extends Controller
             ]);
         }
 
-        return redirect()->back()->with('sukses', 'Antrian Sudah Masuk !!!');
+        // return redirect()->back()->with('sukses', 'Antrian Sudah Masuk !!!');
+        $p_antrian = Antrian::where('id_pelayanan', 3)->get();
+
+        return view('cetak.noantrian', compact('antrian', 'p_antrian'));
     }
 
     public function reset_antrian_c()
@@ -516,7 +526,10 @@ class AntrianController extends Controller
             ]);
         }
 
-        return redirect()->back()->with('sukses', 'Antrian Sudah Masuk !!!');
+        // return redirect()->back()->with('sukses', 'Antrian Sudah Masuk !!!');
+        $p_antrian = Antrian::where('id_pelayanan', 4)->get();
+
+        return view('cetak.noantrian', compact('antrian', 'p_antrian'));
     }
 
     public function reset_antrian_d()
